@@ -4,6 +4,17 @@ import datetime
 
 # Create your models here.
 
+class LinkNote(models.Model):
+    link_table = models.CharField(max_length=50, db_index=True)
+    link_id = models.IntegerField(db_index=True)
+    note_type = models.CharField(max_length=20)
+    note_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True, blank=False)
+    updated_at = models.DateTimeField(auto_now=True, blank=False)
+
+    def __str__(self):
+        return '%s %s %s' % (self.link_table, self.link_id, self.note_text)
+
 
 class Attendee(models.Model):
     chinese_name = models.CharField(max_length=20, db_index=True)
@@ -28,6 +39,16 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=10, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
+
+    class Meta:
+        db_table = 'mainsite_address'
+
+    @property
+    def notes(self):
+        return LinkNote.objects.filter(
+            link_table='mainsite_address',
+            link_id=self.id
+        )
 
     def __str__(self):
         return '%s %s %s %s %s' % (self.address_type, self.street1, self.city, self.state, self.zip_code)
@@ -74,12 +95,3 @@ class Attending(models.Model):
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.attending_program, self.bed_needs)
 
-
-class LinkNote(models.Model):
-    link_table = models.CharField(max_length=50, db_index=True)
-    link_id = models.IntegerField(db_index=True)
-    note_type = models.CharField(max_length=20)
-    note_text = models.TextField()
-
-    def __str__(self):
-        return '%s %s %s' % (self.link_table, self.link_id, self.note_text)
