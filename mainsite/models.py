@@ -7,8 +7,8 @@ import datetime
 class LinkNote(models.Model):
     link_table = models.CharField(max_length=50, db_index=True)
     link_id = models.IntegerField(db_index=True)
-    note_type = models.CharField(max_length=20)
-    note_text = models.TextField()
+    note_type = models.CharField(max_length=20, blank=True, null=True)
+    note_text = models.CharField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
 
@@ -81,6 +81,7 @@ class Registration(models.Model):
 class Attending(models.Model):
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
+    address = models.ManyToManyField(Address)
     price_x100 = models.IntegerField(default=100, null=True)
     age = models.IntegerField(null=True)
     gender = models.CharField(max_length=10, null=True)
@@ -91,6 +92,16 @@ class Attending(models.Model):
     mobility = models.IntegerField(default=1000)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
+
+    class Meta:
+        db_table = 'mainsite_attending'
+
+    @property
+    def notes(self):
+        return LinkNote.objects.filter(
+            link_table='mainsite_attending',
+            link_id=self.id
+        )
 
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.attending_program, self.bed_needs)
