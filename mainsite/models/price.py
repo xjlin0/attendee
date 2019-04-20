@@ -1,15 +1,14 @@
 from django.db import models
-
-import datetime
+from django.utils import timezone
 
 from .event import Event
 
 
 class Price(models.Model):
-    price_label = models.CharField(max_length=50, default=str(datetime.date.today().year) + " summer retreat")
+    price_label = models.CharField(max_length=50, default=str(timezone.now().year) + " summer retreat")
     event = models.ForeignKey(Event, null=True, on_delete=models.SET_NULL)
     price_type = models.CharField(max_length=20, db_index=True)
-    start_date = models.DateTimeField(auto_now=True, blank=False, db_index=True)
+    start_date = models.DateTimeField(default=timezone.now, blank=False, db_index=True)
     price_value = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)

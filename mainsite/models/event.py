@@ -13,3 +13,6 @@ class Event(models.Model):
 
     def __str__(self):
         return '%s' % self.name
+
+    def get_addresses(self):
+        return "\n".join([a.street1 + a.city for a in self.address.all()])

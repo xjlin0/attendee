@@ -3,15 +3,15 @@ from .link_note import LinkNote
 
 
 class Address(models.Model):
-    email1 = models.CharField(max_length=100, null=True, db_index=True)
-    email2 = models.CharField(max_length=100, null=True)
-    phone1 = models.CharField(max_length=15, null=True, db_index=True)
-    phone2 = models.CharField(max_length=15, null=True)
+    email1 = models.CharField(max_length=100, blank=True, null=True, db_index=True)
+    email2 = models.CharField(max_length=100, blank=True, null=True)
+    phone1 = models.CharField(max_length=15, blank=True, null=True, db_index=True)
+    phone2 = models.CharField(max_length=15, blank=True, null=True)
     address_type = models.CharField(max_length=20, null=True)
-    street1 = models.CharField(max_length=50, null=True)
-    street2 = models.CharField(max_length=50, null=True)
+    street1 = models.CharField(max_length=50, blank=True, null=True)
+    street2 = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, null=True)
-    state = models.CharField(max_length=10, null=True)
+    state = models.CharField(max_length=10, default='CA')
     zip_code = models.CharField(max_length=10, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
