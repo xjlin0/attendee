@@ -17,9 +17,9 @@ class Registration(models.Model):
     @property
     def notes(self):
         return LinkNote.objects.filter(
-            link_table='mainsite_attending',
+            link_table='mainsite_registration',
             link_id=self.id
         )
 
     def __str__(self):
-        return '%s %s %s' % (self.title, self.main_attendee, self.total_x100)
+        return '%s %s %s' % (self.apply_type, self.main_attendee, self.total)

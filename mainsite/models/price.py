@@ -14,4 +14,4 @@ class Price(models.Model):
     updated_at = models.DateTimeField(auto_now=True, blank=False)
 
     def __str__(self):
-        return '%s %s %s %s %s' % (self.event, self.label, self.price_date, self.price_type, self.price_value)
+        return '%s %s %s %s %s' % (self.event, self.price_label, self.start_date, self.price_type, self.price_value)
