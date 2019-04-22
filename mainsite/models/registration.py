@@ -10,7 +10,6 @@ class Registration(models.Model):
     main_attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     apply_type = models.CharField(max_length=20, null=True)
     apply_key = models.CharField(max_length=50, null=True)
-    total = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
 
@@ -20,6 +19,10 @@ class Registration(models.Model):
             link_table='mainsite_registration',
             link_id=self.id
         )
+
+    @property
+    def total(self):
+        return sum([attending.price for attending in self.attending_set.all()])
 
     def __str__(self):
         return '%s %s %s' % (self.apply_type, self.main_attendee, self.total)

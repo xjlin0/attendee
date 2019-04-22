@@ -15,7 +15,7 @@ class PriceAdmin(admin.ModelAdmin):
     list_display = ('price_label', 'price_type', 'start_date', 'price_value', 'updated_at')
 
 class RegistrationAdmin(admin.ModelAdmin):
-    list_display = ('main_attendee', 'apply_type', 'apply_key', 'total', 'updated_at')
+    list_display = ('main_attendee', 'apply_type', 'apply_key', 'event', 'updated_at')
 
 class AttendingAdmin(admin.ModelAdmin):
     list_display = ('registration', 'attendee', 'price', 'bed_needs', 'updated_at')
