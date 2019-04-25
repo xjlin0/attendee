@@ -10,7 +10,7 @@ class Attending(models.Model):
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     address = models.ManyToManyField(Address)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
-    age = models.IntegerField(null=True)
+    age = models.IntegerField(null=True, blank=True)
     gender = models.CharField(max_length=10, null=True)
     attending_type = models.CharField(max_length=20, null=True)
     attending_program = models.CharField(max_length=30, null=True, db_index=True)
