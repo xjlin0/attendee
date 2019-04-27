@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>attendings list</title>
-</head>
-<body>
-attendee/mainsite/templates/attendings/index.html
-<br>
-hi hello {{ price }}
-</body>
-</html>
+<!--attendee/mainsite/templates/attendings/index.html-->
+
+{% extends 'base/base.html'%}
+
+{% block title %}
+    attendee/mainsite/templates/attendings/index.html
+{% endblock %}
+
+{% block content %}
+    <p>I am attendings/index.html</p>
+        hi hello {{ price }}
+{% endblock %}

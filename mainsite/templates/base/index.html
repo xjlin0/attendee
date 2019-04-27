@@ -1,10 +1,17 @@
-{% include "base/base.html" %}
+<!--attendee/mainsite/templates/base/index.html-->
+
+{% extends 'base/base.html'%}
+
+{% block title %}
+    attendee/mainsite/templates/base/index.html
+{% endblock %}
+
+{% block content %}
+    <p>I am base/index.html</p>
+    hi hello {{ base_value }}
+    <br>
+    <a href="attendings/">attending list</a>
+{% endblock %}
 
 
-<p>
-attendee/mainsite/templates/base/index.html
-</p>
 
-hi hello {{ base_value }}
-<br>
-<a href="attendings/">attending list</a>
