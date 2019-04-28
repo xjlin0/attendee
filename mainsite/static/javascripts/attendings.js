@@ -1,0 +1,1 @@
+console.log("attendee/mainsite/static/javascripts/attendings.js");
