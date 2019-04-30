@@ -16,12 +16,9 @@
         {% block content %}
         {% endblock %}
     <hr>
-
-        {% block sidebar %}
-        {% endblock %}
-
     {% include 'shared/footer.html' %}
-
+    {% load static %}
+      <script src="{% static 'javascripts/attendings.js' %}"></script>
 </body>
 
 </html>
