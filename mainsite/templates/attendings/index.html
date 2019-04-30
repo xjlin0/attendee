@@ -1,6 +1,6 @@
 <!--attendee/mainsite/templates/attendings/index.html-->
 
-{% extends 'base/base.html'%}
+{% extends 'attendings/base.html'%}
 
 {% block title %}
     attendee/mainsite/templates/attendings/index.html
@@ -15,4 +15,8 @@
 
     {% load static %}
       <script src="{% static 'javascripts/attendings.js' %}"></script>
+{% endblock %}
+
+{% block sidebar %}
+    apple
 {% endblock %}
