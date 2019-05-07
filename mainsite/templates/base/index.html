@@ -7,10 +7,18 @@
 {% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
     <p>I am base/index.html</p>
     hi hello {{ base_value }}
     <br>
     <a href="attendings/">attending list</a>
+{% else %}
+  <p>You are not logged in</p>
+
+{% endif %}
+
+
 {% endblock %}
 
 
