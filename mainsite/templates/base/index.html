@@ -12,7 +12,7 @@
     <p>I am base/index.html</p>
     hi hello {{ base_value }}
     <br>
-    <a href="attendings/">attending list</a>
+    <a href="{% url 'attendings'%}">attending list</a>
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login'%}">Click here to login again.</a>
