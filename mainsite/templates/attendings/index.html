@@ -10,7 +10,14 @@
 
 {% if user.is_authenticated %}
     <p>I am attendings/index.html</p>
-        hi hello {{ price }}
+
+<h2> List </h2>
+{% for attending in object_list %}
+    <li>{{ attending }}</li>
+{% empty %}
+    <li>Sorry, no attendings in this list.</li>
+{% endfor %}
+
 
     <a href="{% url 'home'%}">go back to root path.</a>
 {% else %}

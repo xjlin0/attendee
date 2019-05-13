@@ -30,6 +30,10 @@ class Attending(models.Model):
             link_id=self.id
         )
 
+    @property
+    def main_contact(self):
+        return self.registration.main_attendee
+
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.attending_program, self.bed_needs)
 
