@@ -20,7 +20,9 @@
       <th scope="col">Contact</th>
       <th scope="col">name</th>
       <th scope="col">price</th>
-      <th scope="col">attending_program</th>
+      <th scope="col">program</th>
+      <th scope="col">bed</th>
+      <th scope="col">action</th>
     </tr>
   </thead>
   <tbody>
@@ -32,6 +34,22 @@
       <td>{{ attending.attendee }}</td>
       <td>{{ attending.price }}</td>
       <td>{{ attending.attending_program }}</td>
+      <td>
+          {% if attending.bed_needs > 0 %}
+              <i class="fas fa-bed"></i>
+          {% endif %}
+      </td>
+      <td>
+        <a href="#ee">
+          <i class="fas fa-edit"></i>
+        </a>
+        <a href="#tt">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+        <a href="#ss">
+          <i class="fas fa-eye"></i>
+        </a>
+      </td>
     </tr>
 {% empty %}
     <tr>

@@ -11,6 +11,7 @@
 
 </head>
 <body>
+  <div class="container-fluid">
     {% include 'shared/header.html' %}
     <hr>
         {% block content %}
@@ -19,6 +20,8 @@
     {% include 'shared/footer.html' %}
 
       <script src="{% static 'javascripts/attendings.js' %}"></script>
+<!--# TODO: to make all scripts defer and css links rel preload in head -->
+  </div>
 </body>
 
 </html>
