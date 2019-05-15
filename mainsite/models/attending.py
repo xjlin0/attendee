@@ -38,3 +38,6 @@ class Attending(models.Model):
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.attending_program, self.bed_needs)
 
+
+    class Meta:
+        ordering = ['registration']

@@ -27,3 +27,7 @@ class Registration(models.Model):
 
     def __str__(self):
         return '%s %s %s' % (self.apply_type, self.main_attendee, self.total)
+
+
+    class Meta:
+        ordering = ['main_attendee__english_name', 'main_attendee__chinese_name']

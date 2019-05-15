@@ -13,8 +13,7 @@ class_decorators = [login_required]
 class AttendingView(ListView):
     model = Attending
     template_name = 'attendings/index.html'
-    # context_object_name = 'attendings'
-    # paginate_by = 100  #no order by yet
+    paginate_by = 100
 
     # # def get_queryset(self):
     # #     # original qs
@@ -31,4 +30,4 @@ class AttendingView(ListView):
 
 
     # def get_queryset(self):
-    #     return Attending.objects.filter(created_by=self.request.user)
+    #     return self.object_list.filter(deleted_on__isnull=False)

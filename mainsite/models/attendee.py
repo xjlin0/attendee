@@ -9,3 +9,7 @@ class Attendee(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.english_name, self.chinese_name)
+
+
+    class Meta:
+        ordering = ['english_name', 'chinese_name']
