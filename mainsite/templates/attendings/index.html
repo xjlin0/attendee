@@ -15,6 +15,12 @@
 
 <div class = "table-responsive">
 <table class="table table-sm table-hover table-striped">
+    <caption>
+        Totally {{attending_list.count}} people attending, here are head counts for each program:
+        {% if program_counts %}
+          {{program_counts}}
+        {% endif %}
+    </caption>
   <thead>
     <tr>
       <th scope="col">Contact</th>
