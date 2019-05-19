@@ -15,6 +15,7 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=10, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
+    archived = models.NullBooleanField(default=False, null=True, db_index=True, help_text="NULL means deleted")
 
     class Meta:
         db_table = 'mainsite_address'
@@ -22,6 +23,7 @@ class Address(models.Model):
     @property
     def notes(self):
         return LinkNote.objects.filter(
+            archived=self.archived,
             link_table='mainsite_address',
             link_id=self.id
         )

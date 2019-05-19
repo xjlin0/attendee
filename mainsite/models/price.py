@@ -12,6 +12,7 @@ class Price(models.Model):
     price_value = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
+    archived = models.NullBooleanField(default=False, null=True, db_index=True, help_text="NULL means deleted")
 
     def __str__(self):
         return '%s %s %s %s %s' % (self.event, self.price_label, self.start_date, self.price_type, self.price_value)
