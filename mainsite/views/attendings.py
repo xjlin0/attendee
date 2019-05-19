@@ -2,8 +2,7 @@ from django.views.generic.list import ListView
 from mainsite.models import Attending
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 
 class_decorators = [login_required]
@@ -24,6 +23,8 @@ class AttendingView(ListView):
     #
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
+        #breakpoint()
+        data['bed_counts'] = self.object_list.aggregate(Sum('bed_needs'))['bed_needs__sum']
         program_counts = self.object_list.values('attending_program').annotate(total=Count('attending_program'))
         data['program_counts'] = ', '.join([program_count['attending_program']+': ' + str(program_count['total']) for program_count in program_counts])
         return data

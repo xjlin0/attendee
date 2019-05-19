@@ -10,15 +10,19 @@
 <div>
 {% if user.is_authenticated %}
 
-<h2> List </h2>
+<h3>
+  Totally {{attending_list.count}} people attending:
+        {% if program_counts %}
+          {{program_counts}}.
+        {% endif %}
+</h3>
 
 
 <div class = "table-responsive">
 <table class="table table-sm table-hover table-striped">
     <caption>
-        Totally {{attending_list.count}} people attending, here are head counts for each program:
-        {% if program_counts %}
-          {{program_counts}}
+        {% if bed_counts %}
+          Beds needed: {{bed_counts}}
         {% endif %}
     </caption>
   <thead>
