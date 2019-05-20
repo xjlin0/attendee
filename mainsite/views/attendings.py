@@ -25,7 +25,7 @@ class AttendingView(ListView):
         data = super().get_context_data(**kwargs)
         #breakpoint()
         data['bed_counts'] = self.object_list.aggregate(Sum('bed_needs'))['bed_needs__sum']
-        program_counts = self.object_list.values('attending_program').annotate(total=Count('attending_program'))
+        program_counts = self.object_list.values('attending_program').annotate(total=Count('attending_program')).order_by('attending_program')
         data['program_counts'] = ', '.join([program_count['attending_program']+': ' + str(program_count['total']) for program_count in program_counts])
         return data
 
