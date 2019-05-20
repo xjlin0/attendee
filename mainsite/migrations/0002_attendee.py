@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
             name='Attendee',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('chinese_name', models.CharField(db_index=True, max_length=20)),
-                ('english_name', models.CharField(db_index=True, max_length=40)),
+                ('chinese_name', models.CharField(blank=True, db_index=True, max_length=20, null=True)),
+                ('english_name', models.CharField(blank=True, db_index=True, max_length=50, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
