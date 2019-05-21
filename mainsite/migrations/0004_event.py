@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(db_index=True, default='2019 summer retreat', max_length=50)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
+                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
                 ('address', models.ManyToManyField(to='mainsite.Address')),
             ],
         ),

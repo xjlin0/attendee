@@ -19,7 +19,7 @@ class Attending(models.Model):
     mobility = models.IntegerField(default=1000)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    archived = models.NullBooleanField(default=False, null=True, db_index=True, help_text="NULL means deleted")
+    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
 
     class Meta:
         db_table = 'mainsite_attending'
@@ -27,7 +27,7 @@ class Attending(models.Model):
     @property
     def notes(self):
         return LinkNote.objects.filter(
-            archived=self.archived,
+            status=self.status,
             link_table='mainsite_attending',
             link_id=self.id
         )

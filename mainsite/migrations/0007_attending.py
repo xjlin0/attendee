@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('mobility', models.IntegerField(default=1000)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
+                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
                 ('address', models.ManyToManyField(to='mainsite.Address')),
                 ('attendee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='mainsite.Attendee')),
                 ('registration', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='mainsite.Registration')),

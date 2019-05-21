@@ -13,12 +13,12 @@ class Registration(models.Model):
     donation = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    archived = models.NullBooleanField(default=False, null=True, db_index=True, help_text="NULL means deleted")
+    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
 
     @property
     def notes(self):
         return LinkNote.objects.filter(
-            archived=self.archived,
+            status=self.status,
             link_table='mainsite_registration',
             link_id=self.id
         )

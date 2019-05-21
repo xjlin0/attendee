@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('zip_code', models.CharField(max_length=10, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
+                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
             ],
             options={
                 'db_table': 'mainsite_address',

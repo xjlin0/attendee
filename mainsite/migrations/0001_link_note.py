@@ -5,9 +5,8 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    initial = True
-
     dependencies = [
+        ('mainsite', '0000_initial'),
     ]
 
     operations = [
@@ -21,7 +20,7 @@ class Migration(migrations.Migration):
                 ('note_text', models.CharField(max_length=2000)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
+                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
             ],
         ),
     ]

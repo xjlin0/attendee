@@ -7,7 +7,7 @@ class Attendee(models.Model):
     english_name = models.CharField(max_length=50, db_index=True, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    archived = models.NullBooleanField(default=False, null=True, db_index=True, help_text="NULL means deleted")
+    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
 
     def __str__(self):
         return '%s %s' % (self.english_name, self.chinese_name)

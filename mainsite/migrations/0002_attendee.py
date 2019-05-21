@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '0001_initial'),
+        ('mainsite', '0001_link_note'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('english_name', models.CharField(blank=True, db_index=True, max_length=50, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
+                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
             ],
             options={
                 'ordering': ['english_name', 'chinese_name'],

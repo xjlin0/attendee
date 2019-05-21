@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('price_value', models.DecimalField(decimal_places=2, default=999999, max_digits=8)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('archived', models.NullBooleanField(db_index=True, default=False, help_text='NULL means deleted')),
+                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
                 ('event', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='mainsite.Event')),
             ],
         ),
