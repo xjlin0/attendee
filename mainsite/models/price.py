@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from .event import Event
+from .enum import RecordStatusEnum
 
 
 class Price(models.Model):
@@ -12,7 +13,7 @@ class Price(models.Model):
     price_value = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
+    status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     def __str__(self):
         return '%s %s %s %s %s' % (self.event, self.price_label, self.start_date, self.price_type, self.price_value)

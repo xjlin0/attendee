@@ -3,6 +3,7 @@ from django.db import models
 from .link_note import LinkNote
 from .event import Event
 from .attendee import Attendee
+from .enum import RecordStatusEnum
 
 
 class Registration(models.Model):
@@ -13,7 +14,7 @@ class Registration(models.Model):
     donation = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
+    status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     @property
     def notes(self):

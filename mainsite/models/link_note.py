@@ -1,4 +1,5 @@
 from django.db import models
+from .enum import RecordStatusEnum
 
 
 class LinkNote(models.Model):
@@ -8,7 +9,7 @@ class LinkNote(models.Model):
     note_text = models.CharField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
+    status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     def __str__(self):
         return '%s %s %s' % (self.link_table, self.link_id, self.note_text)

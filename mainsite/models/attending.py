@@ -1,9 +1,11 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from .link_note import LinkNote
 from .attendee import Attendee
 from .address import Address
 from .registration import Registration
+from .enum import RecordStatusEnum
 
 class Attending(models.Model):
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
@@ -19,7 +21,11 @@ class Attending(models.Model):
     mobility = models.IntegerField(default=1000)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
+    status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
+
+    def clean(self):
+        if (self.bed_needs < 1 and self.age is None):
+            raise ValidationError("You must specify age for kid")
 
     class Meta:
         db_table = 'mainsite_attending'

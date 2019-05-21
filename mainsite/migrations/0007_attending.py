@@ -2,6 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
+from  mainsite.models.enum import RecordStatusEnum
 
 
 class Migration(migrations.Migration):
@@ -25,7 +26,7 @@ class Migration(migrations.Migration):
                 ('mobility', models.IntegerField(default=1000)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(null=False, db_index=True, max_length=10, default="active")),
+                ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
                 ('address', models.ManyToManyField(to='mainsite.Address')),
                 ('attendee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='mainsite.Attendee')),
                 ('registration', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='mainsite.Registration')),

@@ -3,6 +3,7 @@ from django.db import models
 import datetime
 
 from .address import Address
+from .enum import RecordStatusEnum
 
 
 class Event(models.Model):
@@ -10,7 +11,7 @@ class Event(models.Model):
     address = models.ManyToManyField(Address)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
-    status = models.CharField(max_length=10, db_index=True, default="active", null=False)
+    status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     def __str__(self):
         return '%s' % self.name
