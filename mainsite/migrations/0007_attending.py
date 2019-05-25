@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-from  mainsite.models.enum import RecordStatusEnum
+from  mainsite.models.enum import RecordStatusEnum, AttendingProgramEnum
 
 
 class Migration(migrations.Migration):
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('age', models.IntegerField(blank=True, null=True)),
                 ('gender', models.CharField(max_length=10, null=True)),
                 ('attending_type', models.CharField(max_length=20, null=True)),
-                ('attending_program', models.CharField(db_index=True, max_length=30, null=True)),
+                ('attending_program', models.CharField(choices=AttendingProgramEnum.choices(), db_index=True, null=True, default=AttendingProgramEnum.NONE, max_length=30)),
                 ('belief', models.CharField(max_length=20, null=True)),
                 ('bed_needs', models.IntegerField(default=1)),
                 ('mobility', models.IntegerField(default=1000)),
