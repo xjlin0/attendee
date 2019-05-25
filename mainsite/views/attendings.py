@@ -9,7 +9,7 @@ class_decorators = [login_required]
 
 
 @method_decorator(class_decorators, name='dispatch')
-class AttendingView(ListView):
+class AttendingListView(ListView):
     model = Attending
     template_name = 'attendings/index.html'
     paginate_by = 100

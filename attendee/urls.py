@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required, permission_required
 # from django.views.generic.base import TemplateView
-from mainsite.views import AttendingView, BaseView
+from mainsite.views import AttendingListView, BaseView
 
 
 urlpatterns = [
@@ -25,5 +25,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # path('', TemplateView.as_view(template_name='base/index.html'), name='home'),
     path('', BaseView.as_view(), name='home'),
-    path('attendings/', login_required(AttendingView.as_view()), name='attendings'),
+    path('attendings/', login_required(AttendingListView.as_view()), name='attendings'),
 ]
