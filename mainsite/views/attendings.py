@@ -5,10 +5,7 @@ from django.utils.decorators import method_decorator
 from django.db.models import Count, Sum
 
 
-class_decorators = [login_required]
-
-
-@method_decorator(class_decorators, name='dispatch')
+@method_decorator([login_required], name='dispatch')
 class AttendingListView(ListView):
     model = Attending
     template_name = 'attendings/index.html'
