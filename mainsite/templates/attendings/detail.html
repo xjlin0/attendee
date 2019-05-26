@@ -1,10 +1,21 @@
 <!--attendee/mainsite/templates/attendings/detail.html-->
-
 {% extends 'shared/base.html'%}
+
+{% load static %}
 
 {% block title %}
     attendee/mainsite/templates/attendings/detail.html
 {% endblock title %}
+
+{% block extra_head %}
+    <script defer
+        src="{% static 'javascripts/shared/utilities.js' %}">
+    </script>
+
+    <script defer
+        src="{% static 'javascripts/attendings/detail.js' %}">
+    </script>
+{% endblock extra_head %}
 
 {% block content %}
 <div>
