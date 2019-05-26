@@ -9,6 +9,37 @@
         {% block title %}
         {% endblock title %}
     </title>
+
+    <script defer
+        src="{% static 'jquery/jquery.min.js' %}"
+        integrity="sha384-JUMjoW8OzDJw4oFpWIB2Bu/c6768ObEthBMVSiIx4ruBIEdyNSUQAjJNFqT5pnJ6"
+        crossorigin="anonymous"></script>
+
+    <script defer
+        src="{% static 'popper/popper.min.js' %}"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <link rel="preload"
+        as="style"
+        href="{% static 'bootstrap/bootstrap.min.css' %}"
+        onload="this.rel='stylesheet'">
+
+    <script defer
+        src="{% static 'bootstrap/bootstrap.min.js' %}"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script defer
+        src="{% static 'fontawesome/solid.min.js' %}"
+        integrity="sha384-+2/MEhV42Ne5nONkjLVCZFGh5IaEQmfXyvGlsibBiATelTFbVGoLB1sqhczi0hlf"
+        crossorigin="anonymous"></script>
+
+    <script defer
+        src="{% static 'fontawesome/fontawesome.min.js' %}"
+        integrity="sha384-Ia7KZbX22R7DDSbxNmxHqPQ15ceNzg2U4h5A8dy3K47G2fV1k658BTxXjp7rdhXa"
+        crossorigin="anonymous"></script>
+
 </head>
 <body>
   <div class="container-fluid">
