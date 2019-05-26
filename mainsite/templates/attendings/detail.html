@@ -1,0 +1,46 @@
+<!--attendee/mainsite/templates/attendings/detail.html-->
+
+{% extends 'shared/base.html'%}
+
+{% block title %}
+    attendee/mainsite/templates/attendings/detail.html
+{% endblock title %}
+
+{% block content %}
+<div>
+{% if user.is_authenticated %}
+
+    <h3>Attending detail</h3>
+
+<div class = "table-responsive">
+<table class="table table-sm table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col">field</th>
+      <th scope="col">value</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for field in attending_fields %}
+    <tr>
+      <th scope="row">
+          {{ field }}
+      </th>
+      <td> {{attending.attendee}}
+      </td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+</div>
+
+
+<a href="{% url 'home' %}">go back to root path.</a>
+
+{% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Click here to login again.</a>
+{% endif %}
+</div>
+{% endblock content%}

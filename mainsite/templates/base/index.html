@@ -1,10 +1,10 @@
 <!--attendee/mainsite/templates/base/index.html-->
 
-{% extends 'base/base.html'%}
+{% extends 'shared/base.html'%}
 
 {% block title %}
     attendee/mainsite/templates/base/index.html
-{% endblock %}
+{% endblock title %}
 
 {% block content %}
 {% if user.is_authenticated %}
@@ -12,14 +12,14 @@
     <p>I am base/index.html</p>
     hi hello {{ base_value }}
     <br>
-    <a href="{% url 'attendings'%}">attending list</a>
+    <a href="{% url 'attendings' %}">attending list</a>
 {% else %}
   <p>You are not logged in</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
+  <a href="{% url 'login' %}">Click here to login again.</a>
 {% endif %}
 
 
-{% endblock %}
+{% endblock content %}
 
 
 

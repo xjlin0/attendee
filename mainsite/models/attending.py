@@ -15,7 +15,6 @@ class Attending(models.Model):
     age = models.IntegerField(null=True, blank=True)
     gender = models.CharField(max_length=10, null=True)
     attending_type = models.CharField(max_length=20, null=True)
-    # attending_program = models.CharField(max_length=30, null=True, db_index=True)
     attending_program = models.CharField(choices=AttendingProgramEnum.choices(), db_index=True, null=True, default=AttendingProgramEnum.NONE, max_length=30)
     belief = models.CharField(max_length=20, null=True)
     bed_needs = models.IntegerField(default=1)

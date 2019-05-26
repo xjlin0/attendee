@@ -1,27 +1,25 @@
 {% load static %}
-
+<!--attendee/mainsite/templates/base/base.html-->
+ <!--#TODO: script defer load -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>
         {% block title %}
-        {% endblock %}
+        {% endblock title %}
     </title>
-
 </head>
 <body>
   <div class="container-fluid">
     {% include 'shared/header.html' %}
     <hr>
         {% block content %}
-        {% endblock %}
+        {% endblock content %}
     <hr>
     {% include 'shared/footer.html' %}
-
-      <script src="{% static 'javascripts/attendings.js' %}"></script>
+      <script src="{% static 'javascripts/base.js' %}"></script>
 <!--# TODO: to make all scripts defer and css links rel preload in head -->
   </div>
 </body>
-
 </html>

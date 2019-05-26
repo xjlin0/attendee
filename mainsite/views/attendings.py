@@ -1,8 +1,10 @@
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from mainsite.models import Attending
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Count, Sum
+from django.forms.models import model_to_dict
 
 
 @method_decorator([login_required], name='dispatch')
@@ -29,3 +31,14 @@ class AttendingListView(ListView):
 
     # def get_queryset(self):
     #     return self.object_list.filter(deleted_on__isnull=False)
+
+
+@method_decorator([login_required], name='dispatch')
+class AttendingDetailView(DetailView):
+    model = Attending
+    template_name = 'attendings/detail.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['attending_fields'] = [field.name for field in Attending._meta.fields]
+        return data
