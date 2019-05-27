@@ -40,5 +40,5 @@ class AttendingDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        data['attending_fields'] = [field.name for field in Attending._meta.fields]
+        data['utc_time'] = self.object.updated_at.isoformat()
         return data

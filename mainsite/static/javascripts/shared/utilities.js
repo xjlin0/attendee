@@ -3,8 +3,13 @@ Attendee.utilities = {
     console.log("attendee/mainsite/static/javascripts/shared/utilities.js");
   },
 
-  test: () => {
-    console.log("Attendee.utilities.test() ready");
+  convertUTC: (nodeClass, datasetName) => {
+    const nodesWithUtcTime = document.querySelectorAll(nodeClass);
+
+    nodesWithUtcTime.forEach((nodeWithUtcTime)=>{
+      const utcDate = new Date(nodeWithUtcTime.dataset[datasetName]);
+      nodeWithUtcTime.textContent = utcDate.toLocaleString();
+    })
   }
 }
 
