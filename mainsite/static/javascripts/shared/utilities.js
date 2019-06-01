@@ -7,8 +7,9 @@ Attendee.utilities = {
     const nodesWithUtcTime = document.querySelectorAll(nodeClass);
 
     nodesWithUtcTime.forEach((nodeWithUtcTime)=>{
-      const utcDate = new Date(nodeWithUtcTime.dataset[datasetName]);
-      nodeWithUtcTime.textContent = utcDate.toLocaleString();
+      const utcDate = new Date(nodeWithUtcTime.dataset[datasetName]),
+            timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      nodeWithUtcTime.textContent = utcDate.toLocaleString() + ' ' + timeZoneName + ' Time';
     })
   }
 }
