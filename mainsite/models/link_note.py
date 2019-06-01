@@ -14,3 +14,6 @@ class LinkNote(models.Model, Formatter):
 
     def __str__(self):
         return '%s %s %s' % (self.link_table, self.link_id, self.note_text)
+
+    class Meta:
+        ordering = ('-updated_at',)

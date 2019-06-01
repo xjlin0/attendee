@@ -38,7 +38,7 @@ class Attending(models.Model, Formatter):
             status=self.status,
             link_table='mainsite_attending',
             link_id=self.id
-        ).order_by('-updated_at')
+        )
 
     @property
     def main_contact(self):

@@ -26,7 +26,7 @@ class Address(models.Model):
             status=self.status,
             link_table='mainsite_address',
             link_id=self.id
-        ).order_by('-updated_at')
+        )
 
     def __str__(self):
         return '%s %s %s %s %s' % (self.address_type, self.street1, self.city, self.state, self.zip_code)
