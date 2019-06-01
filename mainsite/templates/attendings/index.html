@@ -7,8 +7,6 @@
 {% endblock title %}
 
 {% block content %}
-<div>
-{% if user.is_authenticated %}
 
 <h3>
   Totally {{attending_list.count}} people attending:
@@ -86,9 +84,4 @@
 </div>
 
     <a href="{% url 'home' %}">go back to root path.</a>
-{% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Click here to login again.</a>
-{% endif %}
-</div>
 {% endblock content %}

@@ -18,15 +18,7 @@
 {% endblock extra_head %}
 
 {% block content %}
-  <div>
-    {% if user.is_authenticated %}
         {% include 'attendings/_attending_table.html' %}
         {% include 'attendings/_notes_table.html' %}
         <a href="{% url 'attendings' %}">Back to attending list.</a>
-
-    {% else %}
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Click here to login again.</a>
-    {% endif %}
-  </div>
 {% endblock content%}
