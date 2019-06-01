@@ -4,91 +4,29 @@
 {% load static %}
 
 {% block title %}
-    attendee/mainsite/templates/attendings/detail.html
+  attendee/mainsite/templates/attendings/detail.html
 {% endblock title %}
 
 {% block extra_head %}
-    <script defer
-        src="{% static 'javascripts/shared/utilities.js' %}">
-    </script>
+  <script defer
+          src="{% static 'javascripts/shared/utilities.js' %}">
+  </script>
 
-    <script defer
-        src="{% static 'javascripts/attendings/detail.js' %}">
-    </script>
+  <script defer
+          src="{% static 'javascripts/attendings/detail.js' %}">
+  </script>
 {% endblock extra_head %}
 
 {% block content %}
-<div>
-{% if user.is_authenticated %}
+  <div>
+    {% if user.is_authenticated %}
+        {% include 'attendings/_attending_table.html' %}
 
-    <h3>Attending detail</h3>
+        <a href="{% url 'home' %}">go back to root path.</a>
 
-<div class = "table-responsive">
-<table class="table table-sm table-hover table-striped">
-  <thead>
-    <tr>
-      <th scope="col">field</th>
-      <th scope="col">value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <th scope="row">id</th>
-        <td> {{ attending.id }} </td>
-    </tr>
-    <tr>
-        <th scope="row">registration</th>
-        <td> {{ registration }} </td>
-    </tr>
-    <tr>
-        <th scope="row">attendee</th>
-        <td> {{ attending.attendee }} </td>
-    </tr>
-    <tr>
-        <th scope="row">price</th>
-        <td> {{ attending.price }} </td>
-    </tr>
-    <tr>
-        <th scope="row">age</th>
-        <td> {{ attending.age }} </td>
-    </tr>
-    <tr>
-        <th scope="row">gender</th>
-        <td> {{ attending.gender }} </td>
-    </tr>
-    <tr>
-        <th scope="row">type</th>
-        <td> {{ attending.attending_type }} </td>
-    </tr>
-    <tr>
-        <th scope="row">program</th>
-        <td> {{ attending.attending_program }} </td>
-    </tr>
-    <tr>
-        <th scope="row">belief</th>
-        <td> {{ attending.belief }} </td>
-    </tr>
-    <tr>
-        <th scope="row">bed_needs</th>
-        <td> {{ attending.bed_needs }} </td>
-    </tr>
-    <tr>
-        <th scope="row">updated_at</th>
-        <td class="utc" data-utc={{utc_time}}> {{ attending.updated_at }} UTC Time</td>
-    </tr>
-    <tr>
-        <th scope="row">record status</th>
-        <td> {{ attending.status }} </td>
-    </tr>
-</table>
-</div>
-
-
-<a href="{% url 'home' %}">go back to root path.</a>
-
-{% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Click here to login again.</a>
-{% endif %}
-</div>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Click here to login again.</a>
+    {% endif %}
+  </div>
 {% endblock content%}

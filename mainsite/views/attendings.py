@@ -41,4 +41,5 @@ class AttendingDetailView(DetailView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         data['utc_time'] = self.object.updated_at.isoformat()
+        data['note_counts'] = len(self.object.notes)
         return data

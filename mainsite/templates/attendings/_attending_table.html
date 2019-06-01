@@ -1,0 +1,63 @@
+<h3>Attending detail</h3>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">field</th>
+        <th scope="col">value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">id</th>
+        <td> {{ attending.id }} </td>
+      </tr>
+      <tr>
+        <th scope="row">registration</th>
+        <td> {{ attending.registration }} </td>
+      </tr>
+      <tr>
+        <th scope="row">attendee</th>
+        <td> {{ attending.attendee }} </td>
+      </tr>
+      <tr>
+        <th scope="row">price</th>
+        <td> {{ attending.price }} </td>
+      </tr>
+      <tr>
+        <th scope="row">age</th>
+        <td> {{ attending.age }} </td>
+      </tr>
+      <tr>
+        <th scope="row">gender</th>
+        <td> {{ attending.gender }} </td>
+      </tr>
+      <tr>
+        <th scope="row">type</th>
+        <td> {{ attending.attending_type }} </td>
+      </tr>
+      <tr>
+        <th scope="row">program</th>
+        <td> {{ attending.attending_program }} </td>
+      </tr>
+      <tr>
+        <th scope="row">belief</th>
+        <td> {{ attending.belief }} </td>
+      </tr>
+      <tr>
+        <th scope="row">bed_needs</th>
+        <td> {{ attending.bed_needs }} </td>
+      </tr>
+      <tr>
+        <th scope="row">updated_at</th>
+        <td class="utc" data-utc={{utc_time}}> {{ attending.updated_at }} UTC Time</td>
+      </tr>
+      <tr>
+        <th scope="row">record status</th>
+        <td> {{ attending.status }} </td>
+      </tr>
+    <caption>
+      {{ note_counts }} note(s) attached.
+    </caption>
+  </table>
+</div>
