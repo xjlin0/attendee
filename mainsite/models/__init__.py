@@ -1,4 +1,5 @@
 from .enum import RecordStatusEnum
+from .formatter import Formatter
 from .link_note import LinkNote
 from .attendee import Attendee
 from .address import Address

@@ -4,25 +4,20 @@
     <table class="table table-sm table-hover table-striped">
       <thead>
         <tr>
-          <th scope="col">field</th>
-          <th scope="col">value</th>
+          <th scope="col">Content</th>
+          <th scope="col">Time</th>
         </tr>
       </thead>
       <tbody>
-{% for note in attending.notes %}
-        <tr>
-          <th scope="row">note</th>
-          <td> {{ note.note_text }} </td>
-        </tr>
-        <tr>
-          <th scope="row">updated at</th>
-          <td class="utc" data-utc={{utc_time}}> {{ note.updated_at }} UTC Time</td>
-        </tr>
-        <tr>
-          <th scope="row">status</th>
-          <td> {{ note.status }} </td>
-        </tr>
-{% endfor %}
+        {% for note in attending.notes %}
+          <tr>
+            <td> {{ note.note_text }} </td>
+            <td class="utc"
+                data-utc={{note.iso_updated_at}}>
+              {{ note.updated_at }} UTC Time
+            </td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>

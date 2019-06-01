@@ -6,8 +6,10 @@ from .attendee import Attendee
 from .address import Address
 from .registration import Registration
 from .enum import RecordStatusEnum, AttendingProgramEnum
+from .formatter import Formatter
 
-class Attending(models.Model):
+
+class Attending(models.Model, Formatter):
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     address = models.ManyToManyField(Address)
@@ -36,7 +38,7 @@ class Attending(models.Model):
             status=self.status,
             link_table='mainsite_attending',
             link_id=self.id
-        )
+        ).order_by('-updated_at')
 
     @property
     def main_contact(self):

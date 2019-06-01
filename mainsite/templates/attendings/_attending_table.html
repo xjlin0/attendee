@@ -50,14 +50,17 @@
       </tr>
       <tr>
         <th scope="row">updated_at</th>
-        <td class="utc" data-utc={{utc_time}}> {{ attending.updated_at }} UTC Time</td>
+        <td class="utc"
+            data-utc={{attending.iso_updated_at}}>
+          {{ attending.updated_at }} UTC Time
+        </td>
       </tr>
       <tr>
         <th scope="row">record status</th>
         <td> {{ attending.status }} </td>
       </tr>
     <caption>
-      {{ note_counts }} note(s) attached.
+      {{ note_counts }} note{{ note_counts|pluralize }} attached.
     </caption>
   </table>
 </div>

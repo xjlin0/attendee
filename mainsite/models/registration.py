@@ -22,7 +22,7 @@ class Registration(models.Model):
             status=self.status,
             link_table='mainsite_registration',
             link_id=self.id
-        )
+        ).order_by('-updated_at')
 
     @property
     def total(self):
