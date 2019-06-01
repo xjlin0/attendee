@@ -42,4 +42,5 @@ class AttendingDetailView(DetailView):
         data = super().get_context_data(**kwargs)
         data['utc_time'] = self.object.updated_at.isoformat()
         data['note_counts'] = len(self.object.notes)
+        data['note_class'] = '' if data['note_counts'] > 0 else 'd-none'
         return data

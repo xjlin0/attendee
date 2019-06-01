@@ -21,8 +21,8 @@
   <div>
     {% if user.is_authenticated %}
         {% include 'attendings/_attending_table.html' %}
-
-        <a href="{% url 'home' %}">go back to root path.</a>
+        {% include 'attendings/_notes_table.html' %}
+        <a href="{% url 'attendings' %}">Back to attending list.</a>
 
     {% else %}
         <p>You are not logged in</p>
