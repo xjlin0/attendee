@@ -21,6 +21,10 @@ class Address(models.Model):
         db_table = 'mainsite_address'
 
     @property
+    def street(self):
+        return ('{street1} {street2}').format(street1=self.street1, street2=self.street2 or '').strip()
+
+    @property
     def notes(self):
         return LinkNote.objects.filter(
             status=self.status,

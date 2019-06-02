@@ -4,7 +4,6 @@ from mainsite.models import Attending
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Count, Sum
-from django.forms.models import model_to_dict
 
 
 @method_decorator([login_required], name='dispatch')

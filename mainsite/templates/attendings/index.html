@@ -18,11 +18,6 @@
 
 <div class = "table-responsive">
 <table class="table table-sm table-hover table-striped">
-    <caption>
-        {% if bed_counts %}
-          Total beds needed: {{bed_counts}}
-        {% endif %}
-    </caption>
   <thead>
     <tr>
       <th scope="col">Contact</th>
@@ -80,8 +75,11 @@
 
 
   </tbody>
+  <caption>
+    {% if bed_counts %}
+      Total beds needed: {{bed_counts}}
+    {% endif %}
+  </caption>
 </table>
 </div>
-
-    <a href="{% url 'home' %}">go back to root path.</a>
 {% endblock content %}
