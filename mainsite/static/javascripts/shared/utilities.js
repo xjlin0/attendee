@@ -3,13 +3,13 @@ Attendee.utilities = {
     console.log("attendee/mainsite/static/javascripts/shared/utilities.js");
   },
 
-  convertUTC: (nodeClass, datasetName) => {
-    const nodesWithUtcTime = document.querySelectorAll(nodeClass);
+  convertUTC: (timeNodeSelector = "time", attributeName = "datetime") => {
+      const nodesWithUtcTime = document.querySelectorAll(timeNodeSelector);
 
     nodesWithUtcTime.forEach((nodeWithUtcTime)=>{
-      const utcDate = new Date(nodeWithUtcTime.dataset[datasetName]),
-            timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      nodeWithUtcTime.textContent = utcDate.toLocaleString() + ' ' + timeZoneName + ' Time';
+      const utcDate = new Date(nodeWithUtcTime.getAttribute(attributeName)),
+            timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone.replace('/', '-');
+      nodeWithUtcTime.textContent = utcDate.toLocaleString() + ' ' + timeZoneName;
     })
   }
 }

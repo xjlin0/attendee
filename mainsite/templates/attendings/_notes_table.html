@@ -11,10 +11,13 @@
       <tbody>
         {% for note in attending.notes %}
           <tr>
-            <td> {{ note.note_text }} </td>
-            <td class="utc"
-                data-utc={{note.iso_updated_at}}>
-              {{ note.updated_at }} UTC Time
+            <td>
+              {{ note.note_text|safe }}
+            </td>
+            <td>
+              <time datetime="{{note.iso_updated_at}}">
+                {{ note.updated_at }} UTC Time
+              </time>
             </td>
           </tr>
         {% endfor %}

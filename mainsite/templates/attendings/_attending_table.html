@@ -50,9 +50,10 @@
       </tr>
       <tr>
         <th scope="row">updated_at</th>
-        <td class="utc"
-            data-utc={{attending.iso_updated_at}}>
-          {{ attending.updated_at }} UTC Time
+        <td>
+          <time datetime="{{attending.iso_updated_at}}">
+            {{ attending.updated_at }} UTC Time
+          </time>
         </td>
       </tr>
       <tr>
