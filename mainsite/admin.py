@@ -3,7 +3,7 @@ from django.contrib import admin
 from mainsite.models import *
 
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ('address_type', 'street1', 'city', 'zip_code', 'updated_at')
+    list_display = ('address_type', 'street', 'city', 'zip_code', 'updated_at')
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_addresses', 'updated_at')

@@ -33,4 +33,4 @@ class Address(models.Model):
         )
 
     def __str__(self):
-        return '%s %s %s %s %s' % (self.address_type, self.street1, self.city, self.state, self.zip_code)
+        return '%s %s %s %s %s' % (self.address_type, self.street, self.city, self.state, self.zip_code)

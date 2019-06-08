@@ -10,7 +10,7 @@ class Attendee(models.Model):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     def __str__(self):
-        return '%s %s' % (self.english_name, self.chinese_name)
+        return '%s %s' % (self.english_name or '', self.chinese_name or '')
 
     def clean(self):
         if not (self.english_name or self.chinese_name):
