@@ -1,8 +1,10 @@
 from django.db import models
 from .link_note import LinkNote
 from .enum import RecordStatusEnum
+from .formatter import Formatter
 
-class Address(models.Model):
+
+class Address(models.Model, Formatter):
     email1 = models.CharField(max_length=100, blank=True, null=True, db_index=True)
     email2 = models.CharField(max_length=100, blank=True, null=True)
     phone1 = models.CharField(max_length=15, blank=True, null=True, db_index=True)
