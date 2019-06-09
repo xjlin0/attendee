@@ -1,6 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from mainsite.models import Attending
+from .view_helpers import NoteHelper
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Count, Sum
@@ -33,12 +34,6 @@ class AttendingListView(ListView):
 
 
 @method_decorator([login_required], name='dispatch')
-class AttendingDetailView(DetailView):
+class AttendingDetailView(DetailView, NoteHelper):
     model = Attending
     template_name = 'attendings/detail.html'
-
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        data['note_counts'] = len(self.object.notes)
-        data['note_class'] = '' if data['note_counts'] > 0 else 'd-none'
-        return data
