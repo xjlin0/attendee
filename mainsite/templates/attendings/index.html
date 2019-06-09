@@ -46,25 +46,8 @@
           {% endif %}
       </td>
       <td>
-        <a href="#ee"
-           aria-label="Edit"
-           title="Click to edit {{attending.attendee}}">
-          <i class="fas fa-edit"></i>
-          <span class="sr-only">Edit</span>
-        </a>
-        <a href="#tt"
-           aria-label="Delete"
-           title="Click to delete {{ attending.attendee }}"
-           onclick="return confirm('Are you sure to delete {{ attending.attendee }}?')">
-          <i class="fas fa-trash-alt"></i>
-          <span class="sr-only">Delete</span>
-        </a>
-        <a href="{% url 'attending_detail' attending.id %}"
-           aria-label="View"
-           title="Click to view {{attending.attendee}}">
-          <i class="fas fa-eye"></i>
-          <span class="sr-only">View</span>
-        </a>
+        {% url 'attending_detail' attending.id as detail_path %}
+        {% include "shared/_rud_actions.html" with display_name=attending.attendee detail_path=detail_path only %}
       </td>
     </tr>
 {% empty %}
