@@ -30,7 +30,7 @@
   </thead>
   <tbody>
 {% for attending in attending_list %}
-    <tr>
+    <tr id="{{attending.id}}">
       <th scope="row">
           {{ attending.main_contact }}
       </th>
@@ -51,7 +51,7 @@
       </td>
     </tr>
 {% empty %}
-    <tr>
+    <tr id="empty">
       <th colspan="999">Sorry, no attendings in this list.</th>
     </tr>
 {% endfor %}

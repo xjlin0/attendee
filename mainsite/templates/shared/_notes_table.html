@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         {% for note in notes %}
-          <tr>
+          <tr id="{{note.id}}">
             <td>
               {{ note.note_text|safe }}
             </td>

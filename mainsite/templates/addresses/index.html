@@ -25,7 +25,7 @@
     </thead>
     <tbody>
       {% for address in address_list %}
-        <tr title="{{address.updated_at}} UTC">
+        <tr id="{{address.id}}">
           <td>{{ address.address_type }}</td>
           <td>{{ address.street }}</td>
           <td>{{ address.city }}</td>
@@ -37,7 +37,7 @@
           </td>
         </tr>
       {% empty %}
-        <tr>
+        <tr id="empty">
           <th colspan="999">Sorry, no addresses in this list.</th>
         </tr>
       {% endfor %}
