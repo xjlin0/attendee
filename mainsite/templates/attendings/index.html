@@ -47,7 +47,7 @@
       </td>
       <td>
         {% url 'attending_detail' attending.id as detail_path %}
-        {% include "shared/_rud_actions.html" with display_name=attending.attendee detail_path=detail_path only %}
+        {% include "shared/_rud_actions.html" with display_name=attending.attendee detail_path=detail_path show_view=True only %}
       </td>
     </tr>
 {% empty %}

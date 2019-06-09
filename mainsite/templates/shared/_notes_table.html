@@ -6,6 +6,7 @@
         <tr>
           <th scope="col">Content</th>
           <th scope="col">Time</th>
+          <th scope="col">action</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +20,12 @@
                 {{ note.updated_at }} UTC Time
               </time>
             </td>
+
+      <td>
+        {% url 'link_note_detail' note.id as detail_path %}
+        {% include "shared/_rud_actions.html" with display_name=note.note_text detail_path=detail_path show_view=False only %}
+      </td>
+
           </tr>
         {% endfor %}
       </tbody>

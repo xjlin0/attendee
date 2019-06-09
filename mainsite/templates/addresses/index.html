@@ -33,7 +33,7 @@
           <td>{{ address.zip_code }}</td>
           <td>
             {% url 'address_detail' address.id as detail_path %}
-            {% include "shared/_rud_actions.html" with display_name=address detail_path=detail_path only %}
+            {% include "shared/_rud_actions.html" with display_name=address detail_path=detail_path show_view=True only %}
           </td>
         </tr>
       {% empty %}
