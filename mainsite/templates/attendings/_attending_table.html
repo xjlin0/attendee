@@ -61,7 +61,7 @@
         <td> {{ attending.status }} </td>
       </tr>
     <caption>
-      {{ note_counts }} note{{ note_counts|pluralize }} attached.
+      {{ attending.notes|length }} note{{ attending.notes.count|pluralize }} attached.
     </caption>
   </table>
 </div>

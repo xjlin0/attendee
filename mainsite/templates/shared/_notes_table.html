@@ -1,6 +1,6 @@
-<div class="notes {{ note_class }}">
-  <h5 class="notes">Notes</h5>
-  <div class="notes table-responsive">
+<div class="notes {{ notes|yesno:',d-none,' }}">
+  <h5>Notes</h5>
+  <div class="table-responsive">
     <table class="table table-sm table-hover table-striped">
       <thead>
         <tr>
