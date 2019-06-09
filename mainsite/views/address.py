@@ -1,7 +1,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from mainsite.models import Address
-from .view_helpers import NoteHelper
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -13,7 +12,7 @@ class AddressListView(ListView):
 
 
 @method_decorator([login_required], name='dispatch')
-class AddressDetailView(DetailView, NoteHelper):
+class AddressDetailView(DetailView):
     model = Address
     template_name = 'addresses/detail.html'
 
