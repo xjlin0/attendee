@@ -1,0 +1,24 @@
+<!--/attendee/mainsite/templates/addresses/detail.html-->
+{% extends 'shared/base.html'%}
+
+{% load static %}
+
+{% block title %}
+  /attendee/mainsite/templates/addresses/detail.html
+{% endblock title %}
+
+{% block extra_head %}
+  <script defer
+          src="{% static 'javascripts/shared/utilities.js' %}">
+  </script>
+
+  <!--<script defer-->
+          <!--src="{% static 'javascripts/addresses/detail.js' %}">-->
+  <!--</script>-->
+{% endblock extra_head %}
+
+{% block content %}
+        {% include 'addresses/_address_table.html' %}
+        {% include 'shared/_notes_table.html' with notes=address.notes only %}
+        <a href="{% url 'addresses' %}">Back to address list.</a>
+{% endblock content%}

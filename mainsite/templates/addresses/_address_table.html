@@ -1,0 +1,59 @@
+<h3>Attending detail</h3>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">field</th>
+        <th scope="col">value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">id</th>
+        <td> {{ address.id }} </td>
+      </tr>
+      <tr>
+        <th scope="row">type</th>
+        <td> {{ address.address_type }} </td>
+      </tr>
+      <tr>
+        <th scope="row">phone1</th>
+        <td> {{ address.phone1 }} </td>
+      </tr>
+      <tr>
+        <th scope="row">street1</th>
+        <td> {{ address.street1 }} </td>
+      </tr>
+      <tr>
+        <th scope="row">street2</th>
+        <td> {{ address.street2 }} </td>
+      </tr>
+      <tr>
+        <th scope="row">city</th>
+        <td> {{ address.city }} </td>
+      </tr>
+      <tr>
+        <th scope="row">state</th>
+        <td> {{ address.state }} </td>
+      </tr>
+      <tr>
+        <th scope="row">zip</th>
+        <td> {{ address.zip_code }} </td>
+      </tr>
+      <tr>
+        <th scope="row">updated_at</th>
+        <td>
+          <time datetime="{{attending.iso_updated_at}}">
+            {{ attending.updated_at }} UTC Time
+          </time>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">record status</th>
+        <td> {{ attending.status }} </td>
+      </tr>
+    <caption>
+      {{ note_counts }} note{{ note_counts|pluralize }} attached.
+    </caption>
+  </table>
+</div>
