@@ -33,7 +33,9 @@
           <td>{{ address.zip_code }}</td>
           <td>
             {% url 'address_detail' address.id as detail_path %}
-            {% include "shared/_rud_actions.html" with display_name=address detail_path=detail_path show_view=True only %}
+            {% include "shared/crud_icons/_request_edit.html" with display_name=attending.attendee %}
+            {% include "shared/crud_icons/_ajax_delete.html"  with display_name=attending.attendee %}
+            {% include "shared/crud_icons/_request_view.html" with display_name=attending.attendee %}
           </td>
         </tr>
       {% empty %}

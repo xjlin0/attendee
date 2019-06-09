@@ -1,0 +1,8 @@
+<a href="#delete"
+   data-url="{{detail_path}}"
+   aria-label="Delete"
+   title="Click to delete the note: {{ display_name|truncatechars:99 }}"
+   onclick="return confirm('Are you sure to delete the note: {{ display_name|truncatechars:99 }}?')">
+  <i class="fas fa-trash-alt"></i>
+  <span class="sr-only">Delete</span>
+</a>
