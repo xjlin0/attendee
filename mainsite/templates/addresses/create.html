@@ -1,4 +1,24 @@
+<!--attendee/mainsite/templates/addresses/create.html-->
+{% extends 'shared/base.html'%}
+
+{% load static %}
+
+{% block title %}
+  attendee/mainsite/templates/addresses/create.html
+{% endblock title %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+<h1>
+    Create a new address
+</h1>
+<a href="{% url 'addresses' %}">Back to address list.</a>
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Save">
+    <input type="submit"
+           value="Save"
+           class="button btn btn-primary">
 </form>
+{% endblock content%}
