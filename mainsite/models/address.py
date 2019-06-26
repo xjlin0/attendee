@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from .link_note import LinkNote
 from .enum import RecordStatusEnum
 from .formatter import Formatter
@@ -18,6 +19,9 @@ class Address(models.Model, Formatter):
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
+
+    def get_absolute_url(self):
+        return reverse('address_detail', args=[str(self.id)])
 
     class Meta:
         db_table = 'mainsite_address'
