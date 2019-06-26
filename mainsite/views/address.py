@@ -21,7 +21,7 @@ class AddressDetailView(DetailView):
 @method_decorator([login_required], name='dispatch')
 class AddressCreateView(CreateView):
     model = Address
-    fields = ['email1', 'email2', 'phone1', 'phone2', 'address_type', 'street1', 'street2', 'city', 'state', 'zip_code']
+    fields = ['email1', 'email2', 'phone1', 'phone2', 'address_type', 'street1', 'street2', 'city', 'state', 'zip_code', 'status']
     template_name = 'addresses/create.html'
 
 
