@@ -12,13 +12,20 @@
 
 {% block content %}
 <h1>
-    Create a new address
+  {% if form.instance.pk %}
+    Edit address
+  {% else %}
+    Add a new address
+  {% endif %}
 </h1>
-<a href="{% url 'addresses' %}">Back to address list.</a>
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit"
            value="Save"
-           class="button btn btn-primary">
+           class="btn btn-primary">
+    <a href="{% url 'addresses' %}"
+       class="btn btn-secondary">
+      Cancel & Back list
+    </a>
 </form>
 {% endblock content%}
