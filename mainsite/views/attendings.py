@@ -35,4 +35,4 @@ class AttendingListView(ListView):
 @method_decorator([login_required], name='dispatch')
 class AttendingDetailView(DetailView):
     model = Attending
-    template_name = 'attendings/detail.html'
+    template_name = 'attendings/show.html'
