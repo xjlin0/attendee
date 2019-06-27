@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 from .link_note import LinkNote
 from .attendee import Attendee
@@ -28,6 +29,10 @@ class Attending(models.Model, Formatter):
     def clean(self):
         if (self.bed_needs < 1 and self.age is None):
             raise ValidationError("You must specify age for kid")
+
+    def get_absolute_url(self):
+        return reverse('attending_detail', args=[str(self.id)])
+
 
     class Meta:
         db_table = 'mainsite_attending'

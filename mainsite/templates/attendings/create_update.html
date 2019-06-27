@@ -1,0 +1,31 @@
+<!--attendee/mainsite/templates/attendings/create_update.html-->
+{% extends 'shared/base.html'%}
+
+{% load static %}
+
+{% block title %}
+  attendee/mainsite/templates/attendings/create_update.html
+{% endblock title %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+<h1>
+  {% if form.instance.pk %}
+    Edit attending
+  {% else %}
+    Add a new attending
+  {% endif %}
+</h1>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"
+           value="Save"
+           class="btn btn-primary">
+    <a href="{% url 'attendings' %}"
+       class="btn btn-secondary">
+      Cancel & Back list
+    </a>
+</form>
+{% endblock content%}

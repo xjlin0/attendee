@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required, permission_required
 # from django.views.generic.base import TemplateView
-from mainsite.views import AttendingListView, AttendingDetailView, BaseView, AddressListView, AddressDetailView, AddressCreateView, AddressUpdateView, LinkNoteDetailView
+from mainsite.views import AttendingListView, AttendingDetailView, AttendingUpdateView, BaseView, AddressListView, AddressDetailView, AddressCreateView, AddressUpdateView, LinkNoteDetailView
 
 
 urlpatterns = [
@@ -31,5 +31,6 @@ urlpatterns = [
     path('addresses/<int:pk>/edit', login_required(AddressUpdateView.as_view()), name='address_update'),
     path('addresses/<int:pk>/', login_required(AddressDetailView.as_view()), name='address_detail'),
     path('attendings/', login_required(AttendingListView.as_view()), name='attendings'),
+    path('attendings/<int:pk>/edit', login_required(AttendingUpdateView.as_view()), name='attending_update'),
     path('attendings/<int:pk>/', login_required(AttendingDetailView.as_view()), name='attending_detail'),
 ]

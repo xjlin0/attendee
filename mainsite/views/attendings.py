@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView
 from mainsite.models import Attending
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -36,3 +37,10 @@ class AttendingListView(ListView):
 class AttendingDetailView(DetailView):
     model = Attending
     template_name = 'attendings/show.html'
+
+
+@method_decorator([login_required], name='dispatch')
+class AttendingUpdateView(UpdateView):
+    model = Attending
+    fields = [f.name for f in Attending._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
+    template_name = 'attendings/create_update.html'
