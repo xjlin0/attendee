@@ -36,7 +36,7 @@
       </th>
       <td>{{ attending.attendee }}</td>
       <td>{{ attending.price }}</td>
-      <td>{{ attending.attending_program }}</td>
+      <td>{{ attending.get_attending_program_display }}</td>
       <td>
           {% if attending.bed_needs > 0 %}
               <i class="fas fa-bed"
