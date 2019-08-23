@@ -6,7 +6,7 @@ from .link_note import LinkNote
 from .attendee import Attendee
 from .address import Address
 from .registration import Registration
-from .enum import RecordStatusEnum, AttendingProgramEnum
+from .enum import RecordStatusEnum, AttendingDivisionEnum
 from .formatter import Formatter
 
 
@@ -18,7 +18,7 @@ class Attending(models.Model, Formatter):
     age = models.IntegerField(null=True, blank=True)
     gender = models.CharField(max_length=10, null=True)
     attending_type = models.CharField(max_length=20, null=True)
-    attending_program = models.CharField(choices=AttendingProgramEnum.choices(), db_index=True, null=True, default=AttendingProgramEnum.NONE, max_length=30)
+    attending_division = models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)
     belief = models.CharField(max_length=20, null=True)
     bed_needs = models.IntegerField(default=1)
     mobility = models.IntegerField(default=1000)

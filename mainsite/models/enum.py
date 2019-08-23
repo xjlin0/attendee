@@ -13,7 +13,7 @@ class RecordStatusEnum(ChoiceEnum):
     ARCHIVED = 'archived'
 
 
-class AttendingProgramEnum(ChoiceEnum):
+class AttendingDivisionEnum(ChoiceEnum):
     CHINESE = 'Chinese 中文'
     ENGLISH = 'English 英文'
     CHILDREN = 'Children 兒童'
