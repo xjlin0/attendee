@@ -46,6 +46,7 @@ Table attendee {
   english_name varchar
   actual_birthday datetime
   estimated_birthday datetime
+  medical_concern varchar [note: "food allergy: nuts"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -210,6 +211,7 @@ Table preference {
 
 Table residance {
   id int [pk]
+  event_id int [ref: > event.id]
   bed_id int [ref: > bed.id]
   attending_id int [ref: > attending.id]
   flexibility int [note: "to lable if we can change or lock the assignment"]
@@ -234,6 +236,7 @@ Table rider {
 
 Table ride {
   id int [pk]
+  event_id int [ref: > event.id]
   driver_attending_id int [ref: > attending.id]
   passenger_attending_id int [ref: > attending.id]
   address_id int [ref: > address.id]
@@ -256,6 +259,7 @@ Table character {
 Table discussion_session {
   id int [pk]
   name varchar [note: "saturday session I / II"]
+  event_id int [ref: > event.id]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -265,6 +269,7 @@ Table discussion_group {
   id int [pk]
   name varchar [note: "example: group I"]
   suite_id int [ref: > suite.id, note: "nullable"]
+  event_id int [ref: > event.id]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -273,6 +278,7 @@ Table discussion_group {
 Table discussion_participation {
   id int [pk]
   name varchar
+  event_id int [ref: > event.id]
   discussion_group_id int [ref: > discussion_group.id]
   discussion_session_id int [ref: > discussion_session.id]
   attending_id int [ref: > attending.id]
@@ -288,7 +294,7 @@ Table discussion_participation {
 
 Table kid_program_progression {
   id int [pk]
-  name varchar [note: "2020q4"]
+  name varchar [note: "2020q4, 2020 retreat"]
   event_id int [ref: > event.id]
   created_at datetime
   updated_at datetime
@@ -305,10 +311,11 @@ Table kid_program_group {
 
 Table kid_program_lesson {
   id int [pk]
+  event_id int [ref: > event.id]
   location_type varchar [note: "any location table name will do"]
-  location_id [note: "any location table primary id"]
-  kid_program_progression_id [ref: > kid_program_progression.id]
-  kid_program_group_id [ref: > kid_program_group.id]
+  location_id int [note: "any location table primary id"]
+  kid_program_progression_id int [ref: > kid_program_progression.id]
+  kid_program_group_id int [ref: > kid_program_group.id]
   attending_id int [ref: > attending.id]
   name varchar [note: "Shinning Stars"]
   character_id int [ref: > character.id, note: "LG teacher"]
@@ -331,16 +338,15 @@ Table kid_program_group_schedule {
 Table schedule {
   id int [pk]
   name varchar [note: "Last Sunday of Feb 10AM"]
-  month int [note: "1 is Jan, 2 is Feb"]
-  date int [note: "31 is 31st, 16 is 16th"]
-  weekday int [note: "1 Monday"]
+  frequncy varchar [note: "WEEKLY"]
+  byweekday int [note: "0 == Monday"]
   hour int [note: "0 is midnight, 12 is noon"]
   minute int [note: "0~59"]
   duration_in_minutes int
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+} // dateutil https://labix.org/python-dateutil
 
 /// payments ///
 
