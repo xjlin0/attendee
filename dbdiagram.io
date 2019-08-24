@@ -4,7 +4,7 @@ Enum RecordStatusEnum {
   ARCHIVED
  }
 
-Enum AttendingProgramEnum {
+Enum AttendingDivisionEnum {
   CHINESE
   ENGLISH
   CHILDREN
@@ -44,10 +44,22 @@ Table attendee {
   id int [pk]
   chinese_name varchar
   english_name varchar
+  actual_birthday datetime
+  estimated_birthday datetime
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
 } // hope someday we can collect birth year / blood type
+
+Table relative {
+  id int [pk]
+  primary_attendee_id int [ref: > attendee.id]
+  relative_attendee_id int [ref: > attendee.id]
+  relationship varchar // relative_attendee to primary_attendee
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+} // mother/father/parent/guardian/sharperon/register
 
 Table address {
   id int [pk]
@@ -85,7 +97,7 @@ Table attending {
   age int
   gender varchar
   attending_type varchar [note: "example: normal, not_going, staff"]
-  attending_program AttendingProgramEnum
+  attending_division AttendingDivisionEnum
   belief varchar
   bed_needs int
   mobility int [note: "mobility > room.accessibility to assign rooms, default 1000"]
@@ -131,9 +143,20 @@ Table event_address {
 
 /// for facilities ///
 
+Table campus {
+  id int [pk]
+  name varchar
+  address_id int [ref: > address.id]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
 Table building {
   id int [pk]
   name varchar
+  campus_id int [ref: > campus.id]
+  address_id int [ref: > address.id]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -254,6 +277,66 @@ Table discussion_participation {
   discussion_session_id int [ref: > discussion_session.id]
   attending_id int [ref: > attending.id]
   character_id int [ref: > character.id, note: "as group leader/member"]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
+// there's no attendance records needed yet 
+
+// kid programs
+
+Table kid_program_progression {
+  id int [pk]
+  name varchar [note: "2020q4"]
+  event_id int [ref: > event.id]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
+Table kid_program_group {
+  id int [pk]
+  name varchar [note: "Shinning Stars"]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
+Table kid_program_lesson {
+  id int [pk]
+  location_type varchar [note: "any location table name will do"]
+  location_id [note: "any location table primary id"]
+  kid_program_progression_id [ref: > kid_program_progression.id]
+  kid_program_group_id [ref: > kid_program_group.id]
+  attending_id int [ref: > attending.id]
+  name varchar [note: "Shinning Stars"]
+  character_id int [ref: > character.id, note: "LG teacher"]
+  start_time datetime
+  end_time datetime
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
+Table kid_program_group_schedule {
+  id int [pk]
+  kid_program_group_id int [ref: > kid_program_group.id]
+  schedule_id int [ref: > schedule.id]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
+Table schedule {
+  id int [pk]
+  name varchar [note: "Last Sunday of Feb 10AM"]
+  month int [note: "1 is Jan, 2 is Feb"]
+  date int [note: "31 is 31st, 16 is 16th"]
+  weekday int [note: "1 Monday"]
+  hour int [note: "0 is midnight, 12 is noon"]
+  minute int [note: "0~59"]
+  duration_in_minutes int
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
