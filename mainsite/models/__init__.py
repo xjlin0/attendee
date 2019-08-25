@@ -7,4 +7,4 @@ from .event import Event
 from .price import Price
 from .registration import Registration
 from .attending import Attending
-
+from .character import Character

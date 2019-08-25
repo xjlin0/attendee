@@ -82,7 +82,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': ''
+        'PORT': '',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_ALL_TABLES'",
+        },
     }
 }
 

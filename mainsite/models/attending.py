@@ -21,7 +21,7 @@ class Attending(models.Model, Formatter):
     attending_division = models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)
     belief = models.CharField(max_length=20, null=True)
     bed_needs = models.IntegerField(default=1)
-    mobility = models.IntegerField(default=1000)
+    mobility = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())

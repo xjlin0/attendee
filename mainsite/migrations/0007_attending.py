@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-from  mainsite.models.enum import RecordStatusEnum, AttendingDivisionEnum
+from mainsite.models.enum import RecordStatusEnum, AttendingDivisionEnum
 
 
 class Migration(migrations.Migration):
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('attending_division', models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)),
                 ('belief', models.CharField(max_length=20, null=True)),
                 ('bed_needs', models.IntegerField(default=1)),
-                ('mobility', models.IntegerField(default=1000)),
+                ('mobility', models.IntegerField(default=0)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
