@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 import datetime
 
@@ -22,6 +23,9 @@ class Event(models.Model, Formatter):
             link_table='mainsite_event',
             link_id=self.id
         )
+
+    def get_absolute_url(self):
+        return reverse('event_detail', args=[str(self.id)])
 
     def __str__(self):
         return '%s' % self.name
