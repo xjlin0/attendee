@@ -13,12 +13,12 @@
   </script>
 
   <script defer
-          src="{% static 'javascripts/addresses/detail.js' %}">
+          src="{% static 'javascripts/events/detail.js' %}">
   </script>
 {% endblock extra_head %}
 
 {% block content %}
         {% include 'events/_event_table.html' %}
         {% include 'shared/_notes_table.html' with notes=event.notes only %}
-        <a href="{% url 'addresses' %}">Back to event list.</a>
+        <a href="{% url 'events' %}">Back to event list.</a>
 {% endblock content%}

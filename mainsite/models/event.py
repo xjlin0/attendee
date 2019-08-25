@@ -5,9 +5,10 @@ import datetime
 from .address import Address
 from .enum import RecordStatusEnum
 from .link_note import LinkNote
+from .formatter import Formatter
 
 
-class Event(models.Model):
+class Event(models.Model, Formatter):
     name = models.CharField(max_length=50, db_index=True, default=str(datetime.date.today().year) + " summer retreat")
     address = models.ManyToManyField(Address)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)

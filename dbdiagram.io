@@ -304,6 +304,8 @@ Table kid_program_progression {
 Table kid_program_group {
   id int [pk]
   name varchar [note: "Shining Stars"]
+  info varchar [note: "what to wear/bring, what to teach"]
+  url varchar [note: "link for intro"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
