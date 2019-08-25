@@ -60,7 +60,7 @@ Table relative {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // mother/father/parent/guardian/sharperon/register
+} // mother/father/parent/guardian/chaperon/register
 
 Table address {
   id int [pk]
@@ -68,7 +68,7 @@ Table address {
   email2 varchar
   phone1 varchar
   phone2 varchar
-  address_type varchar [note: "example: normal, nursey, pick_up"]
+  address_type varchar [note: "example: normal, nursery, pick_up"]
   street1 varchar
   street2 varchar
   city varchar
@@ -139,7 +139,7 @@ Table event_address {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // different programs maybe at differnt bldg/address
+} // different programs maybe at different bldg/address
 
 
 /// for facilities ///
@@ -200,7 +200,7 @@ Table preference {
   id int [pk]
   attending_id_1 int [ref: > attending.id]
   attending_id_2 int [ref: > attending.id]
-  preference_table varchar [note: "example: residance, ride"]
+  preference_table varchar [note: "example: residence, ride"]
   preference_level int [note: "how like/hate"]
   created_at datetime
   updated_at datetime
@@ -209,12 +209,12 @@ Table preference {
 
 /// room assignments ///
 
-Table residance {
+Table residence {
   id int [pk]
   event_id int [ref: > event.id]
   bed_id int [ref: > bed.id]
   attending_id int [ref: > attending.id]
-  flexibility int [note: "to lable if we can change or lock the assignment"]
+  flexibility int [note: "to label if we can change or lock the assignment"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -240,7 +240,7 @@ Table ride {
   driver_attending_id int [ref: > attending.id]
   passenger_attending_id int [ref: > attending.id]
   address_id int [ref: > address.id]
-  flexibility int [note: "to lable if we can change or lock it"]
+  flexibility int [note: "to label if we can change or lock it"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -258,7 +258,7 @@ Table character {
 
 Table discussion_session {
   id int [pk]
-  name varchar [note: "saturday session I / II"]
+  name varchar [note: "Saturday session I / II"]
   event_id int [ref: > event.id]
   created_at datetime
   updated_at datetime
@@ -268,7 +268,7 @@ Table discussion_session {
 Table discussion_group {
   id int [pk]
   name varchar [note: "example: group I"]
-  suite_id int [ref: > suite.id, note: "nullable"]
+  suite_id int [ref: > suite.id, note: "null able"]
   event_id int [ref: > event.id]
   created_at datetime
   updated_at datetime
@@ -303,7 +303,7 @@ Table kid_program_progression {
 
 Table kid_program_group {
   id int [pk]
-  name varchar [note: "Shinning Stars"]
+  name varchar [note: "Shining Stars"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -311,13 +311,12 @@ Table kid_program_group {
 
 Table kid_program_lesson {
   id int [pk]
-  event_id int [ref: > event.id]
   location_type varchar [note: "any location table name will do"]
   location_id int [note: "any location table primary id"]
   kid_program_progression_id int [ref: > kid_program_progression.id]
   kid_program_group_id int [ref: > kid_program_group.id]
   attending_id int [ref: > attending.id]
-  name varchar [note: "Shinning Stars"]
+  name varchar [note: "Lesson #3"]
   character_id int [ref: > character.id, note: "LG teacher"]
   start_time datetime
   end_time datetime
@@ -338,7 +337,7 @@ Table kid_program_group_schedule {
 Table schedule {
   id int [pk]
   name varchar [note: "Last Sunday of Feb 10AM"]
-  frequncy varchar [note: "WEEKLY"]
+  frequency varchar [note: "WEEKLY"]
   byweekday int [note: "0 == Monday"]
   hour int [note: "0 is midnight, 12 is noon"]
   minute int [note: "0~59"]
