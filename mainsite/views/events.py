@@ -18,6 +18,7 @@ class EventListView(ListView):
     # #     # filter by a variable captured from url, for example
     # #     return qs.filter(name__startswith=self.kwargs['name'])
 
+
 @method_decorator([login_required], name='dispatch')
 class EventDetailView(DetailView):
     model = Event
