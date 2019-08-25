@@ -1,0 +1,45 @@
+<!--attendee/mainsite/templates/events/index.html-->
+
+{% extends 'shared/base.html'%}
+
+{% block title %}
+    attendee/mainsite/templates/events/index.html
+{% endblock title %}
+
+{% block content %}
+<h3>
+  All Events
+</h3>
+<a href="{% url 'events_new' %}"
+  class="button btn btn-primary">
+  Create New Event
+</a>
+
+<div class = "table-responsive">
+  <table class="table table-sm table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in event_list %}
+        <tr id="{{address.id}}">
+          <td>{{ event.name }}</td>
+          <td>
+            {% url 'event_detail' event.id as detail_path %}
+            {% include "shared/crud_icons/_request_edit.html" with display_name=event.name %}
+            {% include "shared/crud_icons/_ajax_delete.html"  with display_name=event.name %}
+            {% include "shared/crud_icons/_request_view.html" with display_name=event.name %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr id="empty">
+          <th colspan="999">Sorry, no event in this list.</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

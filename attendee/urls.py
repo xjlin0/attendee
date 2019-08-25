@@ -17,19 +17,40 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required, permission_required
 # from django.views.generic.base import TemplateView
-from mainsite.views import AttendingListView, AttendingDetailView, AttendingUpdateView, BaseView, AddressListView, AddressDetailView, AddressCreateView, AddressUpdateView, LinkNoteDetailView
-
+from mainsite.views import AttendingListView,\
+                           AttendingDetailView,\
+                           AttendingUpdateView,\
+                           BaseView,\
+                           AddressListView,\
+                           AddressDetailView,\
+                           AddressCreateView,\
+                           AddressUpdateView,\
+                           LinkNoteDetailView,\
+                           EventListView,\
+                           EventDetailView,\
+                           EventCreateView,\
+                           EventUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('accounts/', include('django.contrib.auth.urls')),
+
     # path('', TemplateView.as_view(template_name='base/index.html'), name='home'),
     path('', BaseView.as_view(), name='home'),
+
     path('link_note/<int:pk>/', login_required(LinkNoteDetailView.as_view()), name='link_note_detail'),
+
+    path('events/', login_required(EventListView.as_view()), name='events'),
+    path('events/new', login_required(EventCreateView.as_view()), name='events_new'),
+    path('events/<int:pk>/edit', login_required(EventUpdateView.as_view()), name='events_update'),
+    path('events/<int:pk>/', login_required(EventDetailView.as_view()), name='event_detail'),
+
     path('addresses/', login_required(AddressListView.as_view()), name='addresses'),
     path('addresses/new', login_required(AddressCreateView.as_view()), name='addresses_new'),
     path('addresses/<int:pk>/edit', login_required(AddressUpdateView.as_view()), name='address_update'),
     path('addresses/<int:pk>/', login_required(AddressDetailView.as_view()), name='address_detail'),
+
     path('attendings/', login_required(AttendingListView.as_view()), name='attendings'),
     path('attendings/<int:pk>/edit', login_required(AttendingUpdateView.as_view()), name='attending_update'),
     path('attendings/<int:pk>/', login_required(AttendingDetailView.as_view()), name='attending_detail'),

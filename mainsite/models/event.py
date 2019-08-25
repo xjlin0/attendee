@@ -4,6 +4,7 @@ import datetime
 
 from .address import Address
 from .enum import RecordStatusEnum
+from .link_note import LinkNote
 
 
 class Event(models.Model):
@@ -12,6 +13,14 @@ class Event(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
+
+    @property
+    def notes(self):
+        return LinkNote.objects.filter(
+            status=self.status,
+            link_table='mainsite_event',
+            link_id=self.id
+        )
 
     def __str__(self):
         return '%s' % self.name
