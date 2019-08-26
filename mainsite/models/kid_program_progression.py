@@ -1,11 +1,11 @@
 from django.db import models
 from django.urls import reverse
-from .link_note import LinkNote
+
 from .enum import RecordStatusEnum
-from .formatter import Formatter
+from .utility import Utility
 
 
-class KidProgramProgression(models.Model, Formatter):
+class KidProgramProgression(models.Model, Utility):
     name = models.CharField(max_length=50, blank=True, null=False, db_index=True)
     display_order = models.IntegerField(default=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
@@ -17,14 +17,6 @@ class KidProgramProgression(models.Model, Formatter):
 
     class Meta:
         db_table = 'mainsite_kid_program_progression'
-
-    @property
-    def notes(self):
-        return LinkNote.objects.filter(
-            status=self.status,
-            link_table='mainsite_kid_program_progression',
-            link_id=self.id
-        )
 
     def __str__(self):
         return '%s %s' % (self.name, self.display_order or '')

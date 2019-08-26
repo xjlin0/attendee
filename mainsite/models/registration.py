@@ -1,12 +1,12 @@
 from django.db import models
 
-from .link_note import LinkNote
 from .event import Event
 from .attendee import Attendee
+from .utility import Utility
 from .enum import RecordStatusEnum
 
 
-class Registration(models.Model):
+class Registration(models.Model, Utility):
     event = models.ForeignKey(Event, null=True, on_delete=models.SET_NULL)
     main_attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     apply_type = models.CharField(max_length=20, null=True)
@@ -15,14 +15,6 @@ class Registration(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
-
-    @property
-    def notes(self):
-        return LinkNote.objects.filter(
-            status=self.status,
-            link_table='mainsite_registration',
-            link_id=self.id
-        )
 
     @property
     def total(self):

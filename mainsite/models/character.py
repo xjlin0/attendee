@@ -1,11 +1,11 @@
 from django.db import models
 from django.urls import reverse
-from .link_note import LinkNote
+
 from .enum import RecordStatusEnum
-from .formatter import Formatter
+from .utility import Utility
 
 
-class Character(models.Model, Formatter):
+class Character(models.Model, Utility):
     name = models.CharField(max_length=50, blank=True, null=False, db_index=True)
     info = models.CharField(max_length=255, blank=True, null=True)
     type = models.CharField(max_length=50, null=False, default='normal', db_index=True)
@@ -19,14 +19,6 @@ class Character(models.Model, Formatter):
 
     class Meta:
         db_table = 'mainsite_character'
-
-    @property
-    def notes(self):
-        return LinkNote.objects.filter(
-            status=self.status,
-            link_table='mainsite_character',
-            link_id=self.id
-        )
 
     def __str__(self):
         return '%s %s %s' % (self.name, self.type, self.info or '')

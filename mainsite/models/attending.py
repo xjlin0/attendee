@@ -2,15 +2,14 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 
-from .link_note import LinkNote
 from .attendee import Attendee
 from .address import Address
 from .registration import Registration
 from .enum import RecordStatusEnum, AttendingDivisionEnum
-from .formatter import Formatter
+from .utility import Utility
 
 
-class Attending(models.Model, Formatter):
+class Attending(models.Model, Utility):
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     address = models.ManyToManyField(Address)
@@ -35,15 +34,7 @@ class Attending(models.Model, Formatter):
 
 
     class Meta:
-        db_table = 'mainsite_attending'
-
-    @property
-    def notes(self):
-        return LinkNote.objects.filter(
-            status=self.status,
-            link_table='mainsite_attending',
-            link_id=self.id
-        )
+        ordering = ['registration']
 
     @property
     def main_contact(self):
@@ -51,7 +42,3 @@ class Attending(models.Model, Formatter):
 
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.attending_program, self.bed_needs)
-
-
-    class Meta:
-        ordering = ['registration']

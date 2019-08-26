@@ -1,8 +1,11 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from .enum import RecordStatusEnum
 
-class Attendee(models.Model):
+from .enum import RecordStatusEnum
+from .utility import Utility
+
+
+class Attendee(models.Model, Utility):
     chinese_name = models.CharField(max_length=20, db_index=True, null=True, blank=True)
     english_name = models.CharField(max_length=50, db_index=True, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)

@@ -5,24 +5,15 @@ import datetime
 
 from .address import Address
 from .enum import RecordStatusEnum
-from .link_note import LinkNote
-from .formatter import Formatter
+from .utility import Utility
 
 
-class Event(models.Model, Formatter):
+class Event(models.Model, Utility):
     name = models.CharField(max_length=50, db_index=True, default=str(datetime.date.today().year) + " summer retreat")
     address = models.ManyToManyField(Address)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
-
-    @property
-    def notes(self):
-        return LinkNote.objects.filter(
-            status=self.status,
-            link_table='mainsite_event',
-            link_id=self.id
-        )
 
     def get_absolute_url(self):
         return reverse('event_detail', args=[str(self.id)])

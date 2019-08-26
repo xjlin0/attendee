@@ -1,9 +1,9 @@
 from django.db import models
+
 from .enum import RecordStatusEnum
-from .formatter import Formatter
 
 
-class LinkNote(models.Model, Formatter):
+class LinkNote(models.Model):
     link_table = models.CharField(max_length=50, db_index=True)
     link_id = models.IntegerField(db_index=True)
     note_type = models.CharField(max_length=20, blank=True, null=True)
@@ -17,3 +17,7 @@ class LinkNote(models.Model, Formatter):
 
     class Meta:
         ordering = ('-updated_at',)
+
+    @property
+    def iso_updated_at(self):
+        return self.updated_at.isoformat()
