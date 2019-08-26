@@ -8,3 +8,5 @@ from .price import Price
 from .registration import Registration
 from .attending import Attending
 from .character import Character
+from .kid_program_progression import KidProgramProgression
+from .kid_program_group import KidProgramGroup

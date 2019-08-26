@@ -297,6 +297,7 @@ Table discussion_participation {
 Table kid_program_progression {
   id int [pk]
   name varchar [note: "2020q4, 2020 retreat"]
+  display_order int
   event_id int [ref: > event.id]
   created_at datetime
   updated_at datetime
@@ -343,7 +344,7 @@ Table kid_program_team {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // All Small groups are defined here
+} // All Small groups are defined here, please don't define Main/Large group
 
 
 Table kid_program_participation {
@@ -355,7 +356,7 @@ Table kid_program_participation {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+} // denormalize and add kid_program_lesson_id here for easier query, kid_program_team_id is nullable
 
 Table kid_program_group_schedule {
   id int [pk]

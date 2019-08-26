@@ -34,7 +34,7 @@ class Address(models.Model, Formatter):
     def notes(self):
         return LinkNote.objects.filter(
             status=self.status,
-            link_table='mainsite_address',
+            link_table=self._meta.db_table,
             link_id=self.id
         )
 
