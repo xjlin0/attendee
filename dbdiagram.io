@@ -251,6 +251,8 @@ Table ride {
 Table character {
   id int [pk]
   name varchar [note: "example: (vice) leader / member"]
+  type varchar [note: "children program, retreat discussion"]
+  display_order int
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -303,7 +305,7 @@ Table kid_program_progression {
 
 Table kid_program_group {
   id int [pk]
-  name varchar [note: "Shining Stars"]
+  name varchar [note: "Shining Stars, The Rock"]
   info varchar [note: "what to wear/bring, what to teach"]
   url varchar [note: "link for intro"]
   created_at datetime
@@ -313,15 +315,43 @@ Table kid_program_group {
 
 Table kid_program_lesson {
   id int [pk]
-  location_type varchar [note: "any location table name will do"]
-  location_id int [note: "any location table primary id"]
   kid_program_progression_id int [ref: > kid_program_progression.id]
   kid_program_group_id int [ref: > kid_program_group.id]
-  attending_id int [ref: > attending.id]
-  name varchar [note: "Lesson #3"]
-  character_id int [ref: > character.id, note: "LG teacher"]
+  name varchar [note: "Lesson #3 resurrection"]
   start_time datetime
   end_time datetime
+  location_type varchar [note: "any location table name will do"]
+  location_id int [note: "any location table primary id"]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+
+  indexes {
+    (kid_program_group_id, location_type, location_id, start_time) [unique]
+  }
+} // so we can have The Rock @ Main or Burbank campus
+
+Table kid_program_team {
+  id int [pk]
+  kid_program_lesson_id int [ref: > kid_program_lesson.id]
+  name varchar [note: "Small group 4th grade, (Main/Large group is null)"]
+  display_order int
+  start_time datetime
+  end_time datetime
+  location_type varchar [note: "any location table name will do"]
+  location_id int [note: "any location table primary id"]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+} // All Small groups are defined here
+
+
+Table kid_program_participation {
+  id int [pk]
+  kid_program_lesson_id int [ref: > kid_program_lesson.id]
+  kid_program_team_id int [ref: > kid_program_team.id]
+  attending_id int [ref: > attending.id]
+  character_id int [ref: > character.id, note: "LG leader, student"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
