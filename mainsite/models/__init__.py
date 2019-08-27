@@ -14,3 +14,4 @@ from .campus import Campus
 from .building import Building
 from .suite import Suite
 from .room import Room
+from .kid_program_lesson import KidProgramLesson

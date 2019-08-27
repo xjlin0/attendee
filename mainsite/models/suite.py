@@ -18,4 +18,4 @@ class Suite(models.Model, Utility):
         return reverse('suite_detail', args=[str(self.id)])
 
     def __str__(self):
-        return '%s %s %s' % (self.build, self.name, self.location or '')
+        return '%s %s %s' % (self.building, self.name, self.location or '')

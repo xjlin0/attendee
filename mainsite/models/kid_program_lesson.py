@@ -18,19 +18,27 @@ class KidProgramLesson(models.Model, Utility):
     start_time = models.DateTimeField(blank=False, auto_now_add=True)
     end_time = models.DateTimeField(blank=True, auto_now_add=True)
     location_type = models.CharField(max_length=50)
-    location_id = models.IntegerField(max_length=20)
+    location_id = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
+    TABLE_NAME_TO_CLASS = {
+        'mainsite_campus': Campus,
+        'mainsite_building': Building,
+        'mainsite_suite': Suite,
+        'mainsite_room': Room,
+    }
+
     def get_absolute_url(self):
         return reverse('kid_program_lesson_detail', args=[str(self.id)])
 
+    @property
     def location(self):
-        return ''
+        return self.TABLE_NAME_TO_CLASS[self.location_type].objects.get(pk=self.location_id)
 
     class Meta:
-        db_table = 'mainsite_kid_program_group'
+        db_table = 'mainsite_kid_program_lesson'
         constraints = [
             models.UniqueConstraint(fields=['kid_program_group_id', 'location_type', 'location_id', 'start_time'], name='uniq_group_location_time')
         ]
