@@ -7,7 +7,7 @@ from .utility import Utility
 
 
 class Room(models.Model, Utility):
-    name = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=50, blank=False, null=False, db_index=True)
     suite = models.ForeignKey(Suite, null=True, on_delete=models.SET_NULL)
     label = models.CharField(max_length=20, blank=True)
     accessibility = models.IntegerField(default=0, blank=False, null=False)
