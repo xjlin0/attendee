@@ -16,6 +16,7 @@ class LinkNote(models.Model):
         return '%s %s %s' % (self.link_table, self.link_id, self.note_text)
 
     class Meta:
+        db_table = 'mainsite_link_note'
         ordering = ('-updated_at',)
 
     @property
