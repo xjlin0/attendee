@@ -10,3 +10,7 @@ from .attending import Attending
 from .character import Character
 from .kid_program_progression import KidProgramProgression
 from .kid_program_group import KidProgramGroup
+from .campus import Campus
+from .building import Building
+from .suite import Suite
+from .room import Room

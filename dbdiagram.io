@@ -151,7 +151,7 @@ Table campus {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+}  // Main, Burbank, Sonoma, etc
 
 Table building {
   id int [pk]
@@ -161,28 +161,28 @@ Table building {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+}  // Fellowship hall, Library, Sirah/Grenach, etc
 
 Table suite {
   id int [pk]
   name varchar [note: "example: 7214"]
   building_id int [ref: > building.id]
-  floor varchar
+  location varchar [note: "2F floor"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+}  // 2F, west wing, 7205
 
 Table room {
   id int [pk]
   suite_id int [ref: > suite.id]
   name varchar
   label varchar [note: "A, B, C"]
-  accessibility int [note: "attending.mobility > accessibility to assign rooms, default 1000"]
+  accessibility int [note: "attending.mobility > accessibility to assign rooms, default 0"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+}  // pastor office, room 513, room 7205-A
 
 Table bed {
   id int [pk]
