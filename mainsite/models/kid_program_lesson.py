@@ -24,10 +24,10 @@ class KidProgramLesson(models.Model, Utility):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     TABLE_NAME_TO_CLASS = {
-        'mainsite_campus': Campus,
-        'mainsite_building': Building,
-        'mainsite_suite': Suite,
-        'mainsite_room': Room,
+        Campus._meta.db_table: Campus,
+        Building._meta.db_table: Building,
+        Suite._meta.db_table: Suite,
+        Room._meta.db_table: Room,
     }
 
     def get_absolute_url(self):
