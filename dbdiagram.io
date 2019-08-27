@@ -151,7 +151,7 @@ Table campus {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}  // Main, Burbank, Sonoma, etc
+}  // Main, Burbank, Sonoma, Cannery Park, etc
 
 Table building {
   id int [pk]
@@ -161,7 +161,7 @@ Table building {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}  // Fellowship hall, Library, Sirah/Grenach, etc
+}  // Fellowship hall, Library, Sirah/Grenach, Baseball field, etc
 
 Table suite {
   id int [pk]

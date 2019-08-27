@@ -7,7 +7,7 @@ from .utility import Utility
 
 
 class Suite(models.Model, Utility):
-    name = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=50, blank=False, null=False, db_index=True)
     building = models.ForeignKey(Building, null=True, on_delete=models.SET_NULL)
     location = models.CharField(max_length=50, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)

@@ -7,7 +7,7 @@ from .utility import Utility
 
 
 class Campus(models.Model, Utility):
-    name = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=50, blank=False, null=False, db_index=True)
     address = models.ForeignKey(Address, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
