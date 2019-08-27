@@ -11,7 +11,7 @@ from .character import Character
 from .kid_program_progression import KidProgramProgression
 from .kid_program_group import KidProgramGroup
 from .campus import Campus
-from .building import Building
+from .property import Property
 from .suite import Suite
 from .room import Room
 from .kid_program_lesson import KidProgramLesson

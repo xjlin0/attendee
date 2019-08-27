@@ -4,7 +4,7 @@ from django.urls import reverse
 from .enum import RecordStatusEnum
 from .utility import Utility
 from .campus import Campus
-from .building import Building
+from .property import Property
 from .suite import Suite
 from .room import Room
 from .kid_program_progression import KidProgramProgression
@@ -25,7 +25,7 @@ class KidProgramLesson(models.Model, Utility):
 
     TABLE_NAME_TO_CLASS = {
         Campus._meta.db_table: Campus,
-        Building._meta.db_table: Building,
+        Property._meta.db_table: Property,
         Suite._meta.db_table: Suite,
         Room._meta.db_table: Room,
     }

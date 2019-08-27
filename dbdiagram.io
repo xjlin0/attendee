@@ -153,7 +153,7 @@ Table campus {
   status RecordStatusEnum
 }  // Main, Burbank, Sonoma, Cannery Park, etc
 
-Table building {
+Table property {
   id int [pk]
   name varchar
   campus_id int [ref: > campus.id]
@@ -166,7 +166,7 @@ Table building {
 Table suite {
   id int [pk]
   name varchar [note: "example: 7214"]
-  building_id int [ref: > building.id]
+  property_id int [ref: > property.id]
   location varchar [note: "2F floor"]
   created_at datetime
   updated_at datetime

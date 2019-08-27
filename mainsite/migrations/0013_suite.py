@@ -8,7 +8,7 @@ from mainsite.models.enum import RecordStatusEnum
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '0012_building'),
+        ('mainsite', '0012_property'),
     ]
 
     operations = [
@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='Suite',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('building', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Building')),
+                ('property', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Property')),
                 ('name', models.CharField(db_index=True, max_length=50)),
                 ('location', models.CharField(blank=True, max_length=50)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

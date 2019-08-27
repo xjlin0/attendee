@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Building',
+            name='Property',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('address', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Address')),
