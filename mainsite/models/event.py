@@ -18,6 +18,9 @@ class Event(models.Model, Utility):
     def get_absolute_url(self):
         return reverse('event_detail', args=[str(self.id)])
 
+    class Meta:
+        ordering = ('-updated_at',)
+
     def __str__(self):
         return '%s' % self.name
 

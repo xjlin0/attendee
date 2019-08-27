@@ -20,6 +20,10 @@ class Migration(migrations.Migration):
                 ('address', models.ManyToManyField(to='mainsite.Address')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),            ],
+                ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
+            ],
+            options={
+                'ordering': ('-updated_at',),
+            },
         ),
     ]
