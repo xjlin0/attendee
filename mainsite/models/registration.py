@@ -25,5 +25,5 @@ class Registration(models.Model, Utility):
 
 
     class Meta:
-        db_table = 'mainsite_registration'
+        db_table = 'mainsite_registrations'
         ordering = ['main_attendee__english_name', 'main_attendee__chinese_name']

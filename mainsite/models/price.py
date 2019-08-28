@@ -15,7 +15,7 @@ class Price(models.Model):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     class Meta:
-        db_table = 'mainsite_price'
+        db_table = 'mainsite_prices'
 
     def __str__(self):
         return '%s %s %s %s %s' % (self.event, self.price_label, self.start_date, self.price_type, self.price_value)

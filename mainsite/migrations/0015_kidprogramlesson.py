@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
-                'db_table': 'mainsite_kid_program_lesson',
+                'db_table': 'mainsite_kid_program_lessons',
             },
         ),
         migrations.AddConstraint(

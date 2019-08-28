@@ -16,7 +16,7 @@ Enum AttendingDivisionEnum {
 
 /// Dydamic tables for note & images for any tables ///
 
-Table linknote {
+Table link_notes {
   id int [pk]
   link_table varchar [note: "any table name will do"]
   link_id int [note: "any table primary id"]
@@ -27,7 +27,7 @@ Table linknote {
   status RecordStatusEnum
 }
 
-Table linkimage {
+Table link_images {
   id int [pk]
   link_table varchar [note: "any table name will do"]
   link_id int [note: "any table primary id"]
@@ -40,7 +40,7 @@ Table linkimage {
 
 /// core people tables ///
 
-Table attendee {
+Table attendees {
   id int [pk]
   chinese_name varchar
   english_name varchar
@@ -52,7 +52,7 @@ Table attendee {
   status RecordStatusEnum
 } // hope someday we can collect birth year / blood type
 
-Table relative {
+Table relatives {
   id int [pk]
   primary_attendee_id int [ref: > attendee.id]
   relative_attendee_id int [ref: > attendee.id]
@@ -62,7 +62,7 @@ Table relative {
   status RecordStatusEnum
 } // mother/father/parent/guardian/chaperon/register
 
-Table address {
+Table addresses {
   id int [pk]
   email1 varchar
   email2 varchar
@@ -79,7 +79,7 @@ Table address {
   status RecordStatusEnum
 }
 
-Table registration {
+Table registrations {
   id int [pk]
   apply_type varchar [note: "example: online / paper"]
   apply_key varchar [note: "example: E1T1F1 / paper form serial#"]
@@ -92,7 +92,7 @@ Table registration {
   status RecordStatusEnum
 }
 
-Table attending {
+Table attendings {
   id int [pk]
   price_value decimal [default: 999999]
   age int
@@ -109,7 +109,7 @@ Table attending {
   status RecordStatusEnum
 }
 
-Table attending_address {
+Table attendings_address {
   id int [pk]
   attendee_id int [ref: > attendee.id]
   address_id int [ref: > address.id]
@@ -120,7 +120,7 @@ Table attending_address {
 
 /// for events ///
 
-Table event {
+Table events {
   id int [pk]
   name varchar
   registration_start datetime
@@ -132,7 +132,7 @@ Table event {
   status RecordStatusEnum
 }
 
-Table event_address {
+Table events_address {
   id int [pk]
   event_id int [ref: > event.id]
   address_id int [ref: > address.id]
@@ -153,7 +153,7 @@ Table campus {
   status RecordStatusEnum
 }  // Main, Burbank, Sonoma, Cannery Park, etc
 
-Table property {
+Table properties {
   id int [pk]
   name varchar
   campus_id int [ref: > campus.id]
@@ -163,7 +163,7 @@ Table property {
   status RecordStatusEnum
 }  // Fellowship hall, Library, Sirah/Grenach, Baseball field, etc
 
-Table suite {
+Table suites {
   id int [pk]
   name varchar [note: "example: 7214"]
   property_id int [ref: > property.id]
@@ -173,7 +173,7 @@ Table suite {
   status RecordStatusEnum
 }  // 2F, west wing, 7205
 
-Table room {
+Table rooms {
   id int [pk]
   suite_id int [ref: > suite.id]
   name varchar
@@ -184,7 +184,7 @@ Table room {
   status RecordStatusEnum
 }  // pastor office, room 513, room 7205-A
 
-Table bed {
+Table beds {
   id int [pk]
   room_id int [ref: > room.id]
   name varchar [note: "can be *floor*"]
@@ -196,7 +196,7 @@ Table bed {
 
 /// dynamic preference table ///
 
-Table preference {
+Table preferences {
   id int [pk]
   attending_id_1 int [ref: > attending.id]
   attending_id_2 int [ref: > attending.id]
@@ -209,7 +209,7 @@ Table preference {
 
 /// room assignments ///
 
-Table residence {
+Table residences {
   id int [pk]
   event_id int [ref: > event.id]
   bed_id int [ref: > bed.id]
@@ -223,7 +223,7 @@ Table residence {
 
 /// ride & pick ups  ///
 
-Table rider {
+Table riders {
   id int [pk]
   attending_id int [ref: > attending.id]
   address_id int [ref: > address.id]
@@ -234,7 +234,7 @@ Table rider {
   status RecordStatusEnum
 }
 
-Table ride {
+Table rides {
   id int [pk]
   event_id int [ref: > event.id]
   driver_attending_id int [ref: > attending.id]
@@ -248,7 +248,7 @@ Table ride {
 
 /// discussion groups ///
 
-Table character {
+Table characters {
   id int [pk]
   name varchar [note: "example: (vice) leader / member"]
   type varchar [note: "children program, retreat discussion"]
@@ -258,7 +258,7 @@ Table character {
   status RecordStatusEnum
 } // some people don't attend discussions, such as kids.  Also, roles are for app users
 
-Table discussion_session {
+Table discussion_sessions {
   id int [pk]
   name varchar [note: "Saturday session I / II"]
   event_id int [ref: > event.id]
@@ -267,7 +267,7 @@ Table discussion_session {
   status RecordStatusEnum
 }
 
-Table discussion_group {
+Table discussion_groups {
   id int [pk]
   name varchar [note: "example: group I"]
   suite_id int [ref: > suite.id, note: "null able"]
@@ -277,7 +277,7 @@ Table discussion_group {
   status RecordStatusEnum
 }
 
-Table discussion_participation {
+Table discussion_participations {
   id int [pk]
   name varchar
   event_id int [ref: > event.id]
@@ -294,7 +294,7 @@ Table discussion_participation {
 
 // kid programs
 
-Table kid_program_progression {
+Table kid_program_progressions {
   id int [pk]
   name varchar [note: "2020q4, 2020 retreat"]
   display_order int
@@ -304,7 +304,7 @@ Table kid_program_progression {
   status RecordStatusEnum
 }
 
-Table kid_program_group {
+Table kid_program_groups {
   id int [pk]
   name varchar [note: "Shining Stars, The Rock"]
   info varchar [note: "what to wear/bring, what to teach"]
@@ -314,7 +314,7 @@ Table kid_program_group {
   status RecordStatusEnum
 }
 
-Table kid_program_lesson {
+Table kid_program_lessons {
   id int [pk]
   kid_program_progression_id int [ref: > kid_program_progression.id]
   kid_program_group_id int [ref: > kid_program_group.id]
@@ -332,7 +332,7 @@ Table kid_program_lesson {
   }
 } // so we can have The Rock @ Main or Burbank campus
 
-Table kid_program_team {
+Table kid_program_teams {
   id int [pk]
   kid_program_lesson_id int [ref: > kid_program_lesson.id]
   name varchar [note: "Small group 4th grade, (Main/Large group is null)"]
@@ -347,7 +347,7 @@ Table kid_program_team {
 } // All Small groups are defined here, please don't define Main/Large group
 
 
-Table kid_program_participation {
+Table kid_program_participations {
   id int [pk]
   kid_program_lesson_id int [ref: > kid_program_lesson.id]
   kid_program_team_id int [ref: > kid_program_team.id]
@@ -358,7 +358,7 @@ Table kid_program_participation {
   status RecordStatusEnum
 } // denormalize and add kid_program_lesson_id here for easier query, kid_program_team_id is nullable
 
-Table kid_program_group_schedule {
+Table kid_program_group_schedules {
   id int [pk]
   kid_program_group_id int [ref: > kid_program_group.id]
   schedule_id int [ref: > schedule.id]
@@ -367,7 +367,7 @@ Table kid_program_group_schedule {
   status RecordStatusEnum
 }
 
-Table schedule {
+Table schedules {
   id int [pk]
   name varchar [note: "Last Sunday of Feb 10AM"]
   frequency varchar [note: "WEEKLY"]
@@ -382,7 +382,7 @@ Table schedule {
 
 /// payments ///
 
-Table price {
+Table prices {
   id int [pk]
   price_label varchar
   price_type varchar  [note: "example: nobed_earlybird"]
@@ -393,7 +393,7 @@ Table price {
   status RecordStatusEnum
 } // latest records meeting start_date and price_type will be effective
 
-Table payment {
+Table payments {
   id int [pk]
   payee_attending_id int [ref: > attending.id]
   amount decimal
@@ -405,7 +405,7 @@ Table payment {
   status RecordStatusEnum
 } // how to support cancellation? manually negative amount?
 
-Table registration_payment {
+Table registrations_payment {
   id int [pk]
   registration_id int [ref: > registration.id]
   payment_id int [ref: > payment.id]

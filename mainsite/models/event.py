@@ -17,7 +17,7 @@ class Event(models.Model, Utility):
         return reverse('event_detail', args=[str(self.id)])
 
     class Meta:
-        db_table = 'mainsite_event'
+        db_table = 'mainsite_events'
         ordering = ('-updated_at',)
 
     def __str__(self):

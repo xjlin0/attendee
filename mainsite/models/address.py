@@ -24,7 +24,7 @@ class Address(models.Model, Utility):
         return reverse('address_detail', args=[str(self.id)])
 
     class Meta:
-        db_table = 'mainsite_address'
+        db_table = 'mainsite_addresses'
 
     @property
     def street(self):

@@ -16,7 +16,7 @@ class KidProgramProgression(models.Model, Utility):
         return reverse('kid_program_progression_detail', args=[str(self.id)])
 
     class Meta:
-        db_table = 'mainsite_kid_program_progression'
+        db_table = 'mainsite_kid_program_progressions'
 
     def __str__(self):
         return '%s %s' % (self.name, self.display_order or '')

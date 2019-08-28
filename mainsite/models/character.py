@@ -18,7 +18,7 @@ class Character(models.Model, Utility):
         return reverse('character_detail', args=[str(self.id)])
 
     class Meta:
-        db_table = 'mainsite_character'
+        db_table = 'mainsite_characters'
 
     def __str__(self):
         return '%s %s %s' % (self.name, self.type, self.info or '')

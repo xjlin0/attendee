@@ -38,7 +38,7 @@ class KidProgramLesson(models.Model, Utility):
         return self.TABLE_NAME_TO_CLASS[self.location_type].objects.get(pk=self.location_id)
 
     class Meta:
-        db_table = 'mainsite_kid_program_lesson'
+        db_table = 'mainsite_kid_program_lessons'
         constraints = [
             models.UniqueConstraint(fields=['kid_program_group_id', 'location_type', 'location_id', 'start_time'], name='uniq_group_location_time')
         ]

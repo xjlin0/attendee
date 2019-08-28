@@ -16,7 +16,7 @@ class Property(models.Model, Utility):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     class Meta:
-        db_table = 'mainsite_property'
+        db_table = 'mainsite_properties'
 
 
     def get_absolute_url(self):

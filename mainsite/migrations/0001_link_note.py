@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
-                'db_table': 'mainsite_link_note',
+                'db_table': 'mainsite_link_notes',
                 'ordering': ('-updated_at',),
             },
         ),

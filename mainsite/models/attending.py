@@ -34,7 +34,7 @@ class Attending(models.Model, Utility):
 
 
     class Meta:
-        db_table = 'mainsite_attending'
+        db_table = 'mainsite_attendings'
         ordering = ['registration']
 
     @property

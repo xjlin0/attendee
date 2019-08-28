@@ -16,7 +16,7 @@ class Room(models.Model, Utility):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     class Meta:
-        db_table = 'mainsite_room'
+        db_table = 'mainsite_rooms'
 
 
     def get_absolute_url(self):

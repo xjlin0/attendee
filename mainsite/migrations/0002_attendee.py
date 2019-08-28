@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
-                'db_table': 'mainsite_attendee',
+                'db_table': 'mainsite_attendees',
                 'ordering': ['english_name', 'chinese_name'],
             },
         ),

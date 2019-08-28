@@ -15,7 +15,7 @@ class Suite(models.Model, Utility):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     class Meta:
-        db_table = 'mainsite_suite'
+        db_table = 'mainsite_suites'
 
 
     def get_absolute_url(self):
