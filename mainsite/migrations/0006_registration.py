@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
+                'db_table': 'mainsite_registration',
                 'ordering': ['main_attendee__english_name', 'main_attendee__chinese_name'],
             },
         ),

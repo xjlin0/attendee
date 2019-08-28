@@ -20,4 +20,5 @@ class Attendee(models.Model, Utility):
             raise ValidationError("You must specify either english_name or chinese_name")
 
     class Meta:
+        db_table = 'mainsite_attendee'
         ordering = ['english_name', 'chinese_name']

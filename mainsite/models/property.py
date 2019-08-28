@@ -15,6 +15,10 @@ class Property(models.Model, Utility):
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
+    class Meta:
+        db_table = 'mainsite_property'
+
+
     def get_absolute_url(self):
         return reverse('property_detail', args=[str(self.id)])
 

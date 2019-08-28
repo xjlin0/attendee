@@ -24,5 +24,8 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
+            options={
+                'db_table': 'mainsite_room',
+            },
         ),
     ]
