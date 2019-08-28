@@ -2,8 +2,7 @@
 
 from django.db import migrations, models
 
-import mainsite.models.enum
-import mainsite.models.utility
+from mainsite.models.enum import RecordStatusEnum
 
 
 class Migration(migrations.Migration):
@@ -26,7 +25,7 @@ class Migration(migrations.Migration):
                 ('location_id', models.IntegerField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(choices=[('ACTIVE', 'active'), ('DELETED', 'deleted'), ('ARCHIVED', 'archived')], db_index=True, default=mainsite.models.enum.RecordStatusEnum('active'), max_length=10)),
+                ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
                 'db_table': 'mainsite_kid_program_lesson',

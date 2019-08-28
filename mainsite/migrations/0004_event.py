@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from  mainsite.models.enum import RecordStatusEnum
+from mainsite.models.enum import RecordStatusEnum
 
 
 class Migration(migrations.Migration):
@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='Event',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(db_index=True, default='2019 summer retreat', max_length=50)),
+                ('name', models.CharField(db_index=True, max_length=50)),
                 ('address', models.ManyToManyField(to='mainsite.Address')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),

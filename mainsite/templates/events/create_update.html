@@ -18,9 +18,7 @@
     Add a new event
   {% endif %}
 </h1>
-<p>
-  The following name default defined in attendee/mainsite/models/event.py
-</p>
+
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit"

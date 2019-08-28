@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from  mainsite.models.enum import RecordStatusEnum
+from mainsite.models.enum import RecordStatusEnum
 
 
 class Migration(migrations.Migration):
