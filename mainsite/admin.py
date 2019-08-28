@@ -12,7 +12,7 @@ class EventAdmin(admin.ModelAdmin):
 
 
 class AttendeeAdmin(admin.ModelAdmin):
-    list_display = ('chinese_name', 'english_name', 'updated_at')
+    list_display = ('first_name', 'last_name', 'updated_at')
 
 
 class PriceAdmin(admin.ModelAdmin):

@@ -21,7 +21,6 @@ class Migration(migrations.Migration):
                 ('registration', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Registration')),
                 ('price', models.DecimalField(decimal_places=2, default=999999, max_digits=8)),
                 ('age', models.IntegerField(blank=True, null=True)),
-                ('gender', models.CharField(max_length=10, null=True)),
                 ('attending_type', models.CharField(max_length=20, null=True)),
                 ('attending_division', models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)),
                 ('belief', models.CharField(max_length=20, null=True)),

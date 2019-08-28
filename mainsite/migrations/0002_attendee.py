@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from mainsite.models.enum import RecordStatusEnum
+from mainsite.models.enum import RecordStatusEnum, GenderEnum
 
 
 class Migration(migrations.Migration):
@@ -16,15 +16,22 @@ class Migration(migrations.Migration):
             name='Attendee',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('chinese_name', models.CharField(blank=True, db_index=True, max_length=20, null=True)),
-                ('english_name', models.CharField(blank=True, db_index=True, max_length=50, null=True)),
+                ('chinese_first_name', models.CharField(blank=True, db_index=True, max_length=12, null=True)),
+                ('chinese_last_name', models.CharField(blank=True, db_index=True, max_length=8, null=True)),
+                ('first_name', models.CharField(blank=True, db_index=True, max_length=25, null=True)),
+                ('last_name', models.CharField(blank=True, db_index=True, max_length=25, null=True)),
+                ('other_name', models.CharField(blank=True, db_index=True, max_length=20, null=True)),
+                ('gender', models.CharField(max_length=11, blank=False, null=False, default=GenderEnum.UNSPECIFIED, choices=GenderEnum.choices())),
+                ('actual_birthday', models.DateTimeField(blank=True, null=True)),
+                ('estimated_birthday', models.DateTimeField(blank=True, null=True)),
+                ('medical_concern', models.CharField(blank=False, default="Food allergy: nothing", max_length=50, null=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
                 'db_table': 'mainsite_attendees',
-                'ordering': ['english_name', 'chinese_name'],
+                'ordering': ['last_name', 'chinese_last_name'],
             },
         ),
     ]

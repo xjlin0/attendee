@@ -42,8 +42,12 @@ Table link_images {
 
 Table attendees {
   id int [pk]
-  chinese_name varchar
-  english_name varchar
+  chinese_first_name varchar
+  chinese_last_name varchar
+  first_name varchar
+  last_name varchar
+  other_name varchar
+  gender varchar
   actual_birthday datetime
   estimated_birthday datetime
   medical_concern varchar [note: "food allergy: nuts"]
@@ -96,7 +100,6 @@ Table attendings {
   id int [pk]
   price_value decimal [default: 999999]
   age int
-  gender varchar
   attending_type varchar [note: "example: normal, not_going, staff"]
   attending_division AttendingDivisionEnum
   belief varchar

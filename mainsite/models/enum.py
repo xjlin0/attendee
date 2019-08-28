@@ -7,8 +7,15 @@ class ChoiceEnum(Enum):
         return [(choice.name, choice.value) for choice in cls]
 
 
+class GenderEnum(ChoiceEnum):
+    MALE = 'male'
+    FEMALE = 'female'
+    UNSPECIFIED = 'unspecified'
+
+
 class RecordStatusEnum(ChoiceEnum):
     ACTIVE = 'active'
+    INACTIVE = 'inactive'
     DELETED = 'deleted'
     ARCHIVED = 'archived'
 

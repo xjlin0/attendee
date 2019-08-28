@@ -15,7 +15,6 @@ class Attending(models.Model, Utility):
     address = models.ManyToManyField(Address)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     age = models.IntegerField(null=True, blank=True)
-    gender = models.CharField(max_length=10, null=True)
     attending_type = models.CharField(max_length=20, null=True)
     attending_division = models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)
     belief = models.CharField(max_length=20, null=True)
@@ -42,4 +41,4 @@ class Attending(models.Model, Utility):
         return self.registration.main_attendee
 
     def __str__(self):
-        return '%s %s %s' % (self.attendee, self.attending_program, self.bed_needs)
+        return '%s %s %s' % (self.attendee, self.attending_division, self.bed_needs)
