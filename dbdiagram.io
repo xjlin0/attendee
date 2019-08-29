@@ -56,11 +56,11 @@ Table attendees {
   status RecordStatusEnum
 } // hope someday we can collect birth year / blood type
 
-Table relatives {
+Table relationships {
   id int [pk]
-  primary_attendee_id int [ref: > attendee.id]
-  relative_attendee_id int [ref: > attendee.id]
-  relationship varchar // relative_attendee to primary_attendee
+  main_attendee_id int [ref: > attendee.id]
+  other_attendee_id int [ref: > attendee.id]
+  relation_to_main varchar // relative_attendee to primary_attendee
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
