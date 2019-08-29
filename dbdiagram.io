@@ -42,10 +42,10 @@ Table link_images {
 
 Table attendees {
   id int [pk]
-  chinese_first_name varchar
-  chinese_last_name varchar
   first_name varchar
   last_name varchar
+  first_name2 varchar
+  last_name2 varchar
   other_name varchar
   gender varchar
   actual_birthday datetime

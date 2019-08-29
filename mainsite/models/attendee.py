@@ -6,10 +6,10 @@ from .utility import Utility
 
 
 class Attendee(models.Model, Utility):
-    chinese_first_name = models.CharField(max_length=12, db_index=True, null=True, blank=True)
-    chinese_last_name = models.CharField(max_length=8, db_index=True, null=True, blank=True)
     first_name = models.CharField(max_length=25, db_index=True, null=True, blank=True)
     last_name = models.CharField(max_length=25, db_index=True, null=True, blank=True)
+    first_name2 = models.CharField(max_length=12, db_index=True, null=True, blank=True)
+    last_name2 = models.CharField(max_length=8, db_index=True, null=True, blank=True)
     other_name = models.CharField(max_length=20, db_index=True, null=True, blank=True)
     gender = models.CharField(max_length=11, blank=False, null=False, default=GenderEnum.UNSPECIFIED, choices=GenderEnum.choices())
     actual_birthday = models.DateTimeField(blank=True, null=True)
@@ -23,9 +23,9 @@ class Attendee(models.Model, Utility):
         return '%s %s' % (self.first_name or '', self.last_name or '')
 
     def clean(self):
-        if not (self.chinese_last_name or self.last_name):
-            raise ValidationError("You must specify either chinese_last_name or last_name")
+        if not (self.last_name or self.last_name2):
+            raise ValidationError("You must specify a last_name")
 
     class Meta:
         db_table = 'mainsite_attendees'
-        ordering = ['last_name', 'chinese_last_name']
+        ordering = ['last_name', 'first_name']

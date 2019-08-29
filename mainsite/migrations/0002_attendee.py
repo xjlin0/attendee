@@ -16,10 +16,10 @@ class Migration(migrations.Migration):
             name='Attendee',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('chinese_first_name', models.CharField(blank=True, db_index=True, max_length=12, null=True)),
-                ('chinese_last_name', models.CharField(blank=True, db_index=True, max_length=8, null=True)),
                 ('first_name', models.CharField(blank=True, db_index=True, max_length=25, null=True)),
                 ('last_name', models.CharField(blank=True, db_index=True, max_length=25, null=True)),
+                ('first_name2', models.CharField(blank=True, db_index=True, max_length=12, null=True)),
+                ('last_name2', models.CharField(blank=True, db_index=True, max_length=8, null=True)),
                 ('other_name', models.CharField(blank=True, db_index=True, max_length=20, null=True)),
                 ('gender', models.CharField(max_length=11, blank=False, null=False, default=GenderEnum.UNSPECIFIED, choices=GenderEnum.choices())),
                 ('actual_birthday', models.DateTimeField(blank=True, null=True)),
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'mainsite_attendees',
-                'ordering': ['last_name', 'chinese_last_name'],
+                'ordering': ['last_name', 'first_name'],
             },
         ),
     ]
