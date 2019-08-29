@@ -1,10 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from .campus import Campus
-from .address import Address
-from .enum import RecordStatusEnum
-from .utility import Utility
+from . import Campus, Address, RecordStatusEnum, Utility
 
 
 class Property(models.Model, Utility):

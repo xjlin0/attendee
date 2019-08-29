@@ -2,11 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 
-from .attendee import Attendee
-from .address import Address
-from .registration import Registration
-from .enum import RecordStatusEnum, AttendingDivisionEnum
-from .utility import Utility
+from . import Attendee, Address, Registration, Utility, RecordStatusEnum, AttendingDivisionEnum
 
 
 class Attending(models.Model, Utility):

@@ -1,8 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
-from .enum import RecordStatusEnum, GenderEnum
-from .utility import Utility
+from . import RecordStatusEnum, GenderEnum, Utility
 
 
 class Attendee(models.Model, Utility):

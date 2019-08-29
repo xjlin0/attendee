@@ -1,14 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from .enum import RecordStatusEnum
-from .utility import Utility
-from .campus import Campus
-from .property import Property
-from .suite import Suite
-from .room import Room
-from .kid_program_progression import KidProgramProgression
-from .kid_program_group import KidProgramGroup
+from . import RecordStatusEnum, Utility, Campus, Property, Suite, Room, KidProgramProgression, KidProgramGroup
 
 
 class KidProgramLesson(models.Model, Utility):

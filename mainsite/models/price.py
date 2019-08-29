@@ -1,10 +1,9 @@
 from django.db import models
 
-from .event import Event
-from .enum import RecordStatusEnum
+from . import Utility, Event, RecordStatusEnum
 
 
-class Price(models.Model):
+class Price(models.Model, Utility):
     price_label = models.CharField(max_length=50)
     event = models.ForeignKey(Event, null=True, on_delete=models.SET_NULL)
     price_type = models.CharField(max_length=20, db_index=True)

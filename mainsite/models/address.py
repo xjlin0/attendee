@@ -1,8 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from .enum import RecordStatusEnum
-from .utility import Utility
+from . import RecordStatusEnum, Utility
 
 
 class Address(models.Model, Utility):

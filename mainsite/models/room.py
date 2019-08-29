@@ -1,9 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from .suite import Suite
-from .enum import RecordStatusEnum
-from .utility import Utility
+from . import Suite, RecordStatusEnum, Utility
 
 
 class Room(models.Model, Utility):

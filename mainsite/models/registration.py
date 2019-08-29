@@ -1,9 +1,6 @@
 from django.db import models
 
-from .event import Event
-from .attendee import Attendee
-from .utility import Utility
-from .enum import RecordStatusEnum
+from . import Event, Attendee, Utility, RecordStatusEnum
 
 
 class Registration(models.Model, Utility):
