@@ -128,6 +128,7 @@ Table events {
   name varchar
   registration_start datetime
   registration_end datetime
+  division AttendingDivisionEnum
   event_start datetime
   event_end datetime
   created_at datetime

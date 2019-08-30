@@ -23,8 +23,7 @@ class RecordStatusEnum(ChoiceEnum):
 class AttendingDivisionEnum(ChoiceEnum):
     CHINESE = 'Chinese 中文'
     ENGLISH = 'English 英文'
-    CHILDREN = 'Children 兒童'
-    NURSERY = 'Nursery 嬰孩'
+    CHILDREN = 'Children 兒童'  # combine 'Nursery 嬰孩'
     STAFF = 'Staff 勤務'
     OTHER = 'Other 其他'
     NONE = None

@@ -1,11 +1,12 @@
 from django.db import models
 from django.urls import reverse
 
-from . import Address, RecordStatusEnum, Utility
+from . import Address, RecordStatusEnum, Utility, AttendingDivisionEnum
 
 
 class Event(models.Model, Utility):
     name = models.CharField(max_length=50, db_index=True)
+    division = models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=False, blank=False, default=AttendingDivisionEnum.NONE, max_length=30)
     address = models.ManyToManyField(Address)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
