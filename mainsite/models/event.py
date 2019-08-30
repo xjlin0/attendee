@@ -24,3 +24,18 @@ class Event(models.Model, Utility):
 
     def get_addresses(self):
         return "\n".join([a.street1 + a.city for a in self.address.all()])
+
+    def ttttt(self):
+        return "ttttt"
+
+from rest_framework import serializers
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'name', 'division', 'ttttt']
+
+# from mainsite.models.event import EventSerializer
+# k2=Event.objects.get(pk=2)
+# serializer=EventSerializer(k2)
+# serializer.data
+# #=> {'id': 2, 'name': '2019 Fall kid programs', 'division': 'none', 'ttttt': 'ttttt'}
