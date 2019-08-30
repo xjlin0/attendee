@@ -7,14 +7,12 @@ Enum RecordStatusEnum {
 Enum AttendingDivisionEnum {
   CHINESE
   ENGLISH
-  CHILDREN
-  NURSERY
-  STAFF
+  CHILDREN // NURSERY, STAFF combined
   OTHER
   NONE
  }
 
-/// Dydamic tables for note & images for any tables ///
+/// Dynamic tables for note & images for any tables ///
 
 Table link_notes {
   id int [pk]
@@ -322,7 +320,7 @@ Table kid_program_lessons {
   id int [pk]
   kid_program_progression_id int [ref: > kid_program_progression.id]
   kid_program_group_id int [ref: > kid_program_group.id]
-  name varchar [note: "Lesson #3 resurrection"]
+  name varchar [note: "Lesson #3 resurrection, retreat #2, etc"]
   start_time datetime
   end_time datetime
   location_type varchar [note: "any location table name will do"]
@@ -341,9 +339,9 @@ Table kid_program_teams {
   kid_program_lesson_id int [ref: > kid_program_lesson.id]
   name varchar [note: "Small group 4th grade, (Main/Large group is null)"]
   display_order int
-  start_time datetime
+  start_time datetime  [note: "team start/end time can be different from lesson"]
   end_time datetime
-  location_type varchar [note: "any location table name will do"]
+  location_type varchar [note: "any location table name, team location can be different from lesson"]
   location_id int [note: "any location table primary id"]
   created_at datetime
   updated_at datetime
@@ -361,6 +359,47 @@ Table kid_program_participations {
   updated_at datetime
   status RecordStatusEnum
 } // denormalize and add kid_program_lesson_id here for easier query, kid_program_team_id is nullable
+
+// Table 'event' provides AttendingDivisionEnum for creating kid_program_progression
+//
+// Table kid_program_progressions example:
+// +-------------------+----+-------------+
+// |       event       |name|display_order|
+// +-------------------+----+-------------+
+// |2019-20 kid program| Q4 |     4       |
+// +-------------------+----+-------------+
+
+// Table kid_program_lessons example:
+// +-----------------------+-----------------+--------------------+
+// |kid_program_progression|kid_program_group|        name        |
+// +-----------------------+-----------------+--------------------+
+// |          Q4           |    The Rock     | Lesson #3 09/01/19 |
+// +-----------------------+-----------------+--------------------+
+//
+//
+// Table 'attendings' provides AttendingDivisionEnum for participation assignment
+//
+// Example of The Rock student participates large group AND 4th small group:
+// +------------------+----------------+---------+
+// |kid_program_lesson|kid_program_team|character|
+// +------------------+----------------+---------+
+// |Lesson #3 09/01/19| 4th SG         | student |
+// +------------------+----------------+---------+
+//
+// Example of The Rock large group leader:
+// +------------------+----------------+---------+
+// |kid_program_lesson|kid_program_team|character|
+// +------------------+----------------+---------+
+// |Lesson #3 09/01/19| NULL           |LG leader|
+// +------------------+----------------+---------+
+//
+// Example of The Rock large small group leader for 4th Grade:
+// +------------------+----------------+---------+
+// |kid_program_lesson|kid_program_team|character|
+// +------------------+----------------+---------+
+// |Lesson #3 09/01/19| 4th SG         |SG leader|
+// +------------------+----------------+---------+
+
 
 Table kid_program_group_schedules {
   id int [pk]
