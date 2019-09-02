@@ -198,7 +198,7 @@ Table beds {
 
 /// dynamic preference table ///
 
-Table preferences {
+Table attendings_preferences {
   id int [pk]
   attending_id_1 int [ref: > attending.id]
   attending_id_2 int [ref: > attending.id]
@@ -208,6 +208,20 @@ Table preferences {
   updated_at datetime
   status RecordStatusEnum
 } // to define how two people like/hate to be in the same room/ride/discussion
+
+Table participations_preferences {
+  id int [pk]
+  attending_id int [ref: > attending.id]
+  participation_table varchar [note: "example: residence, ride"]
+  participation_id int [note: "how like/hate"]
+  available boolean [note: "true is available, false is unavailable, not null"]
+  schedule_id int [ref: > schedules.id]   // nullable for single time
+  start_at datetime  // can be generated from regular schedule
+  end_at datetime    // can be generated from regular schedule
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+} // to define how a person's (in)availability, single time or from referencing regular schedule
 
 /// room assignments ///
 
@@ -251,7 +265,7 @@ Table rides {
 /// discussion groups ///
 
 Table characters {
-  id int [pk]
+  id int [pk] [note: "id 1 is magic number, means all characters, 0 is no characters"]
   name varchar [note: "example: (vice) leader / member"]
   type varchar [note: "children program, retreat discussion"]
   display_order int
@@ -259,6 +273,16 @@ Table characters {
   updated_at datetime
   status RecordStatusEnum
 } // some people don't attend discussions, such as kids.  Also, roles are for app users
+
+Table characters_exclusions {
+  id int [pk]
+  main_character_id int [ref: > character.id]
+  other_character_id int [ref: > character.id, note: "1 means exclude everyone, 0 means compatible with everyone, not null"]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+} // don't consider rigidity here
+
 
 Table discussion_sessions {
   id int [pk]
@@ -417,6 +441,8 @@ Table schedules {
   byweekday int [note: "0 == Monday"]
   hour int [note: "0 is midnight, 12 is noon"]
   minute int [note: "0~59"]
+  start_at datetime  [note: "i.e.: every Tuesday from November'19"]
+  end_at datetime [note: "null means endless"]
   duration_in_minutes int
   created_at datetime
   updated_at datetime
@@ -428,7 +454,7 @@ Table schedules {
 Table prices {
   id int [pk]
   price_label varchar
-  price_type varchar  [note: "example: nobed_earlybird"]
+  price_type varchar  [note: "example: no bed_earlybird"]
   price_value decimal [default: 999999]
   start_date datetime [note: "When the price start to be effective"]
   created_at datetime
