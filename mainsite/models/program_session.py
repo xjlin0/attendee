@@ -1,12 +1,12 @@
 from django.db import models
 from django.urls import reverse
 
-from . import RecordStatusEnum, Utility, Campus, Property, Suite, Room, KidProgramProgression, KidProgramGroup
+from . import RecordStatusEnum, Utility, Campus, Property, Suite, Room, ProgramProgression, ProgramGroup
 
 
-class KidProgramLesson(models.Model, Utility):
-    kid_program_progression = models.ForeignKey(KidProgramProgression, blank=False, null=False, on_delete=models.SET(0))
-    kid_program_group = models.ForeignKey(KidProgramGroup, null=True, on_delete=models.SET_NULL)
+class ProgramSession(models.Model, Utility):
+    program_progression = models.ForeignKey(ProgramProgression, blank=False, null=False, on_delete=models.SET(0))
+    program_group = models.ForeignKey(ProgramGroup, null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=50, blank=True)
     start_time = models.DateTimeField(blank=False, auto_now_add=True)
     end_time = models.DateTimeField(blank=True, auto_now_add=True)
@@ -24,17 +24,17 @@ class KidProgramLesson(models.Model, Utility):
     }
 
     def get_absolute_url(self):
-        return reverse('kid_program_lesson_detail', args=[str(self.id)])
+        return reverse('program_session_detail', args=[str(self.id)])
 
     @property
     def location(self):
         return self.TABLE_NAME_TO_CLASS[self.location_type].objects.get(pk=self.location_id)
 
     class Meta:
-        db_table = 'mainsite_kid_program_lessons'
+        db_table = 'mainsite_program_sessions'
         constraints = [
-            models.UniqueConstraint(fields=['kid_program_group_id', 'location_type', 'location_id', 'start_time'], name='uniq_group_location_time')
+            models.UniqueConstraint(fields=['program_group_id', 'location_type', 'location_id', 'start_time'], name='uniq_group_location_time')
         ]
 
     def __str__(self):
-        return '%s %s %s %s' % (self.kid_program_group, self.location or '', self.iso_updated_at, self.name or '')
+        return '%s %s %s %s' % (self.program_group, self.location or '', self.iso_updated_at, self.name or '')

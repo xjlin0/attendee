@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='KidProgramLesson',
+            name='ProgramSession',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('kid_program_group', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.KidProgramGroup')),
-                ('kid_program_progression', models.ForeignKey(on_delete=models.SET(0), to='mainsite.KidProgramProgression')),
+                ('program_group', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.ProgramGroup')),
+                ('program_progression', models.ForeignKey(on_delete=models.SET(0), to='mainsite.ProgramProgression')),
                 ('name', models.CharField(blank=True, max_length=50)),
                 ('start_time', models.DateTimeField(auto_now_add=True)),
                 ('end_time', models.DateTimeField(auto_now_add=True)),
@@ -28,11 +28,11 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
-                'db_table': 'mainsite_kid_program_lessons',
+                'db_table': 'mainsite_program_sessions',
             },
         ),
         migrations.AddConstraint(
-            model_name='kidprogramlesson',
-            constraint=models.UniqueConstraint(fields=('kid_program_group_id', 'location_type', 'location_id', 'start_time'), name='uniq_group_location_time'),
+            model_name='programsession',
+            constraint=models.UniqueConstraint(fields=('program_group_id', 'location_type', 'location_id', 'start_time'), name='uniq_group_location_time'),
         ),
     ]

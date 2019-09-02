@@ -8,11 +8,11 @@ from .price import Price
 from .registration import Registration
 from .attending import Attending
 from .character import Character
-from .kid_program_progression import KidProgramProgression
-from .kid_program_group import KidProgramGroup
+from .program_progression import ProgramProgression
+from .program_group import ProgramGroup
 from .campus import Campus
 from .property import Property
 from .suite import Suite
 from .room import Room
-from .kid_program_lesson import KidProgramLesson
+from .program_session import ProgramSession
 from .relationship import Relationship

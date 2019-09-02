@@ -294,11 +294,11 @@ Table discussion_participations {
 
 // there's no attendance records needed yet 
 
-// kid programs
+// kid or other programs
 
-Table kid_program_progressions {
+Table program_progressions {
   id int [pk]
-  name varchar [note: "2020q4, 2020 retreat"]
+  name varchar [note: "2020q4 kid programs, 2020 retreat"]
   display_order int
   event_id int [ref: > event.id]
   created_at datetime
@@ -306,7 +306,7 @@ Table kid_program_progressions {
   status RecordStatusEnum
 }
 
-Table kid_program_groups {
+Table program_groups {
   id int [pk]
   name varchar [note: "Shining Stars, The Rock"]
   info varchar [note: "what to wear/bring, what to teach"]
@@ -316,10 +316,10 @@ Table kid_program_groups {
   status RecordStatusEnum
 }
 
-Table kid_program_lessons {
+Table program_sessions {
   id int [pk]
-  kid_program_progression_id int [ref: > kid_program_progression.id]
-  kid_program_group_id int [ref: > kid_program_group.id]
+  program_progression_id int [ref: > program_progression.id]
+  program_group_id int [ref: > program_group.id]
   name varchar [note: "Lesson #3 resurrection, retreat #2, etc"]
   start_time datetime
   end_time datetime
@@ -330,16 +330,16 @@ Table kid_program_lessons {
   status RecordStatusEnum
 
   indexes {
-    (kid_program_group_id, location_type, location_id, start_time) [unique]
+    (program_group_id, location_type, location_id, start_time) [unique]
   }
 } // so we can have The Rock @ Main or Burbank campus
 
-Table kid_program_teams {
+Table program_teams {
   id int [pk]
-  kid_program_lesson_id int [ref: > kid_program_lesson.id]
+  program_session_id int [ref: > program_session.id]
   name varchar [note: "Small group 4th grade, (Main/Large group is null)"]
   display_order int
-  start_time datetime  [note: "team start/end time can be different from lesson"]
+  start_time datetime  [note: "team start/end time can be different from session"]
   end_time datetime
   location_type varchar [note: "any location table name, team location can be different from lesson"]
   location_id int [note: "any location table primary id"]
@@ -349,61 +349,61 @@ Table kid_program_teams {
 } // All Small groups are defined here, please don't define Main/Large group
 
 
-Table kid_program_participations {
+Table program_participations {
   id int [pk]
-  kid_program_lesson_id int [ref: > kid_program_lesson.id]
-  kid_program_team_id int [ref: > kid_program_team.id]
+  program_lesson_id int [ref: > program_session.id]
+  program_team_id int [ref: > program_team.id]
   attending_id int [ref: > attending.id]
   character_id int [ref: > character.id, note: "LG leader, student"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // denormalize and add kid_program_lesson_id here for easier query, kid_program_team_id is nullable
+} // denormalize and add program_session_id here for easier query, program_team_id is nullable
 
-// Table 'event' provides AttendingDivisionEnum for creating kid_program_progression
+// Table 'event' provides AttendingDivisionEnum for creating program_progression
 //
-// Table kid_program_progressions example:
+// Table program_progressions example:
 // +-------------------+----+-------------+
 // |       event       |name|display_order|
 // +-------------------+----+-------------+
 // |2019-20 kid program| Q4 |     4       |
 // +-------------------+----+-------------+
 
-// Table kid_program_lessons example:
-// +-----------------------+-----------------+--------------------+
-// |kid_program_progression|kid_program_group|        name        |
-// +-----------------------+-----------------+--------------------+
-// |          Q4           |    The Rock     | Lesson #3 09/01/19 |
-// +-----------------------+-----------------+--------------------+
+// Table program_sessions example:
+// +-------------------+-------------+--------------------+
+// |program_progression|program_group|        name        |
+// +-------------------+-------------+--------------------+
+// |          Q4       | The Rock    | Lesson #3 09/01/19 |
+// +-------------------+-------------+--------------------+
 //
 //
 // Table 'attendings' provides AttendingDivisionEnum for participation assignment
 //
 // Example of The Rock student participates large group AND 4th small group:
-// +------------------+----------------+---------+
-// |kid_program_lesson|kid_program_team|character|
-// +------------------+----------------+---------+
-// |Lesson #3 09/01/19| 4th SG         | student |
-// +------------------+----------------+---------+
+// +------------------+------------+---------+
+// |  program_session |program_team|character|
+// +------------------+------------+---------+
+// |Lesson #3 09/01/19| 4th SG     | student |
+// +------------------+------------+---------+
 //
 // Example of The Rock large group leader:
-// +------------------+----------------+---------+
-// |kid_program_lesson|kid_program_team|character|
-// +------------------+----------------+---------+
-// |Lesson #3 09/01/19| NULL           |LG leader|
-// +------------------+----------------+---------+
+// +------------------+------------+---------+
+// |  program_session |program_team|character|
+// +------------------+------------+---------+
+// |Lesson #3 09/01/19| NULL       |LG leader|
+// +------------------+------------+---------+
 //
 // Example of The Rock large small group leader for 4th Grade:
-// +------------------+----------------+---------+
-// |kid_program_lesson|kid_program_team|character|
-// +------------------+----------------+---------+
-// |Lesson #3 09/01/19| 4th SG         |SG leader|
-// +------------------+----------------+---------+
+// +------------------+------------+---------+
+// |  program_session |program_team|character|
+// +------------------+------------+---------+
+// |Lesson #3 09/01/19| 4th SG     |SG leader|
+// +------------------+------------+---------+
 
 
-Table kid_program_group_schedules {
+Table program_group_schedules {
   id int [pk]
-  kid_program_group_id int [ref: > kid_program_group.id]
+  program_group_id int [ref: > program_group.id]
   schedule_id int [ref: > schedule.id]
   created_at datetime
   updated_at datetime
