@@ -80,7 +80,7 @@ Table addresses {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+} // phone1 will be sms-messaged, email1 will be emailed.
 
 Table registrations {
   id int [pk]
@@ -123,6 +123,10 @@ Table attendings_address {
   id int [pk]
   attendee_id int [ref: > attendees.id]
   address_id int [ref: > addresses.id]
+  opt_in_sms_at datetime
+  opt_out_sms_at datetime
+  opt_in_email_at datetime
+  opt_out_email_at datetime
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -209,28 +213,39 @@ Table beds {
 
 Table attendings_preferences {
   id int [pk]
-  attending_id_1 int [ref: > attendings.id]
-  attending_id_2 int [ref: > attendings.id]
+  main_attending_id int [ref: > attendings.id]
+  other_attending_id int [ref: > attendings.id]
   preference_table varchar [note: "example: residence, ride"]
   preference_level int [note: "how like/hate"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // to define how two people like/hate to be in the same room/ride/discussion
+} // [person to person] to define how two people like/unlike to be in the same room/ride/discussion, i.e. Mother/baby want to be in the same ride, but not in the same discussion_groups
 
 Table participations_preferences {
   id int [pk]
   attending_id int [ref: > attendings.id]
-  participation_table varchar [note: "example: residence, ride"]
-  participation_id int [note: "how like/hate"]
-  available boolean [note: "true is available, false is unavailable, not null"]
+  preference_table varchar [note: "example: residences, rides, discussion_groups"]
+  preference_id int [note: "how like/hate"]
+  availability int [note: "positive is available, negative is unavailable, not null"]
   schedule_id int  [ref: > schedules.id] // nullable for single time
   start_at datetime  // can be generated from regular schedule
   end_at datetime    // can be generated from regular schedule
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // to define how a person's (in)availability, single time or from referencing regular schedule
+} // Optional: [person to participation] to define how a person's (in)availability, single time or from referencing regular schedule
+
+Table characters_preferences {
+  id int [pk]
+  main_character_id int [ref: > characters.id]
+  other_character_id int [ref: > characters.id] // note: "1 means exclude everyone, 0 means compatible with everyone, not null"
+  compatibility int [note: "positive: can be served simultaneously by the same person in the same participation, negative is not, not null"]
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+} // [participation to participation] In the same session, kid food preparers can be students too. Traffic controllers cannot be pianists.
+
 
 /// room assignments ///
 
@@ -282,16 +297,6 @@ Table characters {
   updated_at datetime
   status RecordStatusEnum
 } // some people don't attend discussions, such as kids.  Also, roles are for app users
-
-Table characters_exclusions {
-  id int [pk]
-  main_character_id int [ref: > characters.id]
-  other_character_id int [ref: > characters.id] // note: "1 means exclude everyone, 0 means compatible with everyone, not null"
-  created_at datetime
-  updated_at datetime
-  status RecordStatusEnum
-} // don't consider rigidity here
-
 
 Table discussion_sessions {
   id int [pk]
@@ -384,10 +389,11 @@ Table program_teams {
 
 Table program_participations {
   id int [pk]
-  program_lesson_id int [ref: > program_sessions.id]
+  program_session_id int [ref: > program_sessions.id]
   program_team_id int [ref: > program_teams.id]
   attending_id int [ref: > attendings.id]
   character_id int [ref: > characters.id] // note: "LG leader, student"
+  free int [note: "instance level: if negative, the person is unlikely to join other sessions at the same time, i.e. drivers"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
