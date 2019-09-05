@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from mainsite.models.enum import RecordStatusEnum, AttendingDivisionEnum
+from mainsite.models.enum import RecordStatusEnum
 
 
 class Migration(migrations.Migration):
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(db_index=True, max_length=50)),
-                ('division',models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=False, blank=False, default=AttendingDivisionEnum.NONE, max_length=30)),
+                ('division', models.ForeignKey(on_delete=models.SET(0), blank=False, null=False, to='mainsite.Division')),
                 ('address', models.ManyToManyField(to='mainsite.Address')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
