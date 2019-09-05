@@ -8,7 +8,7 @@ from mainsite.models.enum import RecordStatusEnum, AttendingDivisionEnum
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '0006_registration'),
+        ('mainsite', '0016_relationship'),
     ]
 
     operations = [

@@ -8,25 +8,26 @@ from mainsite.models.enum import RecordStatusEnum
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '0004_event'),
+        ('mainsite', '0006_price'),
     ]
-
     operations = [
         migrations.CreateModel(
-            name='Price',
+            name='Registration',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price_label', models.CharField(max_length=50)),
-                ('price_type', models.CharField(db_index=True, max_length=20)),
+                ('apply_type', models.CharField(max_length=20, null=True)),
+                ('apply_key', models.CharField(max_length=50, null=True)),
                 ('event', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Event')),
-                ('start_date', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('price_value', models.DecimalField(decimal_places=2, default=999999, max_digits=8)),
+                ('main_attendee', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Attendee')),
+                ('donation', models.DecimalField(decimal_places=2, default=999999, max_digits=8)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
             ],
             options={
-                'db_table': 'mainsite_prices',
+                'db_table': 'mainsite_registrations',
+                'ordering': ['main_attendee__last_name', 'main_attendee__first_name'],
             },
         ),
     ]
+

@@ -1,5 +1,6 @@
 from .enum import RecordStatusEnum, GenderEnum, AttendingDivisionEnum
 from .utility import Utility
+from .division import Division
 from .link_note import LinkNote
 from .attendee import Attendee
 from .address import Address
