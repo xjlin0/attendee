@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from mainsite.models.enum import RecordStatusEnum, AttendingDivisionEnum
+from mainsite.models.enum import RecordStatusEnum
 
 
 class Migration(migrations.Migration):
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('price', models.DecimalField(decimal_places=2, default=999999, max_digits=8)),
                 ('age', models.IntegerField(blank=True, null=True)),
                 ('attending_type', models.CharField(max_length=20, null=True)),
-                ('attending_division', models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)),
+                ('division', models.ManyToManyField(to='mainsite.Division')),
                 ('belief', models.CharField(max_length=20, null=True)),
                 ('bed_needs', models.IntegerField(default=1)),
                 ('mobility', models.IntegerField(default=0)),

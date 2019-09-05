@@ -20,9 +20,9 @@ class RecordStatusEnum(ChoiceEnum):
     ARCHIVED = 'archived'
 
 
-class AttendingDivisionEnum(ChoiceEnum):
-    CHINESE = 'Chinese 中文'
-    ENGLISH = 'English 英文'
-    CHILDREN = 'Children 兒童'  # combine 'Nursery 嬰孩' 'Staff 勤務'
-    OTHER = 'Other 其他'
-    NONE = None
+# class AttendingDivisionEnum(ChoiceEnum):
+#     CHINESE = 'Chinese 中文'
+#     ENGLISH = 'English 英文'
+#     CHILDREN = 'Children 兒童'  # combine 'Nursery 嬰孩' 'Staff 勤務'
+#     OTHER = 'Other 其他'
+#     NONE = None

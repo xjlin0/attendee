@@ -1,4 +1,4 @@
-from .enum import RecordStatusEnum, GenderEnum, AttendingDivisionEnum
+from .enum import RecordStatusEnum, GenderEnum
 from .utility import Utility
 from .division import Division
 from .link_note import LinkNote

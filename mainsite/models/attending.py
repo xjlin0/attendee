@@ -2,7 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 
-from . import Attendee, Address, Registration, Utility, RecordStatusEnum, AttendingDivisionEnum
+from . import Attendee, Address, Registration, Utility, RecordStatusEnum, Division
 
 
 class Attending(models.Model, Utility):
@@ -12,7 +12,7 @@ class Attending(models.Model, Utility):
     price = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
     age = models.IntegerField(null=True, blank=True)
     attending_type = models.CharField(max_length=20, null=True)
-    attending_division = models.CharField(choices=AttendingDivisionEnum.choices(), db_index=True, null=True, default=AttendingDivisionEnum.NONE, max_length=30)
+    division = models.ManyToManyField(Division)
     belief = models.CharField(max_length=20, null=True)
     bed_needs = models.IntegerField(default=1)
     mobility = models.IntegerField(default=0)
@@ -37,4 +37,4 @@ class Attending(models.Model, Utility):
         return self.registration.main_attendee
 
     def __str__(self):
-        return '%s %s %s' % (self.attendee, self.attending_division, self.bed_needs)
+        return '%s %s %s' % (self.attendee, self.division, self.bed_needs)
