@@ -6,9 +6,9 @@ from . import Address, RecordStatusEnum, Utility, Division
 
 class Event(models.Model, Utility):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    # addresses = models.ManyToManyField(Address, through='EventAddress')
     name = models.CharField(max_length=50, db_index=True)
     division = models.ForeignKey(Division, null=False, blank=False, on_delete=models.SET(0))
-    addresses = models.ManyToManyField(Address)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
