@@ -5,6 +5,7 @@ from . import RecordStatusEnum, Utility
 
 
 class Address(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     email1 = models.CharField(max_length=100, blank=True, null=True, db_index=True)
     email2 = models.CharField(max_length=100, blank=True, null=True)
     phone1 = models.CharField(max_length=15, blank=True, null=True, db_index=True)

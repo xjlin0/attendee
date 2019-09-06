@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Suite',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('property', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Property')),
                 ('name', models.CharField(db_index=True, max_length=50)),
                 ('location', models.CharField(blank=True, max_length=50)),

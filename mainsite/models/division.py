@@ -4,6 +4,7 @@ from . import RecordStatusEnum, Utility
 
 
 class Division(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50, blank=False, null=False)
     key = models.CharField(max_length=50, blank=False, null=False, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)

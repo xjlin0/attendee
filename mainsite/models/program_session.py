@@ -5,6 +5,7 @@ from . import RecordStatusEnum, Utility, Campus, Property, Suite, Room, ProgramP
 
 
 class ProgramSession(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     program_progression = models.ForeignKey(ProgramProgression, blank=False, null=False, on_delete=models.SET(0))
     program_group = models.ForeignKey(ProgramGroup, null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=50, blank=True)

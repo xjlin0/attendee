@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Attending',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('address', models.ManyToManyField(to='mainsite.Address')),
                 ('attendee', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Attendee')),
                 ('registration', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Registration')),

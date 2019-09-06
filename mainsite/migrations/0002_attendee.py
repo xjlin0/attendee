@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Attendee',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(blank=True, db_index=True, max_length=25, null=True)),
                 ('last_name', models.CharField(blank=True, db_index=True, max_length=25, null=True)),
                 ('first_name2', models.CharField(blank=True, db_index=True, max_length=12, null=True)),

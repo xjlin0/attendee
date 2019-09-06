@@ -4,6 +4,7 @@ from .enum import RecordStatusEnum
 
 
 class LinkNote(models.Model):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     link_table = models.CharField(max_length=50, db_index=True)
     link_id = models.IntegerField(db_index=True)
     note_type = models.CharField(max_length=20, blank=True, null=True)

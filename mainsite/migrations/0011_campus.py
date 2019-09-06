@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Campus',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('address', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Address')),
                 ('name', models.CharField(db_index=True, max_length=50)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProgramProgression',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(blank=True, db_index=True, max_length=50)),
                 ('display_order', models.IntegerField(blank=True, default=0, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

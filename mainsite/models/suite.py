@@ -5,6 +5,7 @@ from . import Property, RecordStatusEnum, Utility
 
 
 class Suite(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50, blank=False, null=False, db_index=True)
     property = models.ForeignKey(Property, null=True, on_delete=models.SET_NULL)
     location = models.CharField(max_length=50, blank=True)

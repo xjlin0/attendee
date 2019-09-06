@@ -5,6 +5,7 @@ from . import RecordStatusEnum, Utility
 
 
 class Character(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50, blank=True, null=False, db_index=True)
     info = models.CharField(max_length=255, blank=True, null=True)
     type = models.CharField(max_length=50, null=False, default='normal', db_index=True)

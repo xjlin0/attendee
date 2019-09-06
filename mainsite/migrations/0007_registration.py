@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Registration',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('apply_type', models.CharField(max_length=20, null=True)),
                 ('apply_key', models.CharField(max_length=50, null=True)),
                 ('event', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Event')),

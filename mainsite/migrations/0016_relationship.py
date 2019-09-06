@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Relationship',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('main_attendee', models.ForeignKey(on_delete=models.SET(0), related_name='primary', to='mainsite.Attendee')),
                 ('other_attendee', models.ForeignKey(null=True, on_delete=models.SET(0), related_name='relative', to='mainsite.Attendee')),
                 ('relation_to_main', models.CharField(db_index=True, max_length=20)),

@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Room',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('suite', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.Suite')),
                 ('name', models.CharField(db_index=True, max_length=50)),
                 ('label', models.CharField(blank=True, max_length=20)),

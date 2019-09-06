@@ -4,6 +4,7 @@ from . import Utility, Event, RecordStatusEnum
 
 
 class Price(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     price_label = models.CharField(max_length=50)
     event = models.ForeignKey(Event, null=True, on_delete=models.SET_NULL)
     price_type = models.CharField(max_length=20, db_index=True)

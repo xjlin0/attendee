@@ -5,6 +5,7 @@ from . import Address, RecordStatusEnum, Utility
 
 
 class Campus(models.Model, Utility):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50, blank=False, null=False, db_index=True)
     address = models.ForeignKey(Address, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
