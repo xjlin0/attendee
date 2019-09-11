@@ -1,12 +1,12 @@
 from django.db import models
 from django.urls import reverse
 
-from . import Address, RecordStatusEnum, Utility, Division
+from . import RecordStatusEnum, Utility, Division
 
 
 class Event(models.Model, Utility):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    # addresses = models.ManyToManyField(Address, through='EventAddress')
+    addresses = models.ManyToManyField('Address', through='EventAddress')
     name = models.CharField(max_length=50, db_index=True)
     division = models.ForeignKey(Division, null=False, blank=False, on_delete=models.SET(0))
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
@@ -24,7 +24,7 @@ class Event(models.Model, Utility):
         return '%s' % self.name
 
     def get_addresses(self):
-        return "\n".join([a.street1 + a.city for a in self.address.all()])
+        return "\n".join([a.street1 + a.city for a in self.addresses.all()])
 
     def ttttt(self):
         return "ttttt"
