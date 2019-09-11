@@ -63,6 +63,10 @@ Table relationships {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
+
+  indexes {
+    (main_attendee_id, other_attendee_id) [unique]
+  }
 } // mother/father/parent/guardian/chaperon/register
 
 Table addresses {
@@ -110,16 +114,20 @@ Table attendings {
   status RecordStatusEnum
 }
 
-Table attendings_divisions {
+Table attending_divisions {
   id int [pk]
   attending_id int [ref: > attendings.id]
   division_id int [ref: > divisions.id]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
+
+  indexes {
+    (attending_id, division_id) [unique]
+  }
 } // a person can join different divisions
 
-Table attendings_address {
+Table attending_address {
   id int [pk]
   attendee_id int [ref: > attendees.id]
   address_id int [ref: > addresses.id]
@@ -130,6 +138,10 @@ Table attendings_address {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
+
+  indexes {
+    (attendee_id, address_id) [unique]
+  }
 }
 
 /// for events ///
@@ -139,7 +151,7 @@ Table events {
   name varchar
   registration_start datetime
   registration_end datetime
-  division AttendingDivisionEnum
+  division_id [ref: > divisions.id]
   event_start datetime
   event_end datetime
   created_at datetime
@@ -147,13 +159,17 @@ Table events {
   status RecordStatusEnum
 }
 
-Table events_address {
+Table event_address {
   id int [pk]
   event_id int [ref: > events.id]
   address_id int [ref: > addresses.id]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
+
+  indexes {
+    (event_id, address_id) [unique]
+  }
 } // different programs maybe at different bldg/address
 
 
@@ -211,18 +227,23 @@ Table beds {
 
 /// dynamic preference table ///
 
-Table attendings_preferences {
+Table attending_preferences {
   id int [pk]
   main_attending_id int [ref: > attendings.id]
   other_attending_id int [ref: > attendings.id]
-  preference_table varchar [note: "example: residence, ride"]
+  preference_table varchar [note: "example: residences, rides, null means globally, such as elder care givers"]
   preference_level int [note: "how like/hate"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // [person to person] to define how two people like/unlike to be in the same room/ride/discussion, i.e. Mother/baby want to be in the same ride, but not in the same discussion_groups
 
-Table participations_preferences {
+  indexes {
+    (main_attending_id, other_attending_id, preference_table) [unique]
+  }
+} // [person to person] to define how two people like/unlike to be in the same room/ride/discussion,
+  // i.e. Mother/baby want to be in the same ride, but not in the same discussion_groups
+
+Table participation_preferences {
   id int [pk]
   attending_id int [ref: > attendings.id]
   preference_table varchar [note: "example: residences, rides, discussion_groups"]
@@ -236,7 +257,7 @@ Table participations_preferences {
   status RecordStatusEnum
 } // Optional: [person to participation] to define how a person's (in)availability, single time or from referencing regular schedule
 
-Table characters_preferences {
+Table character_preferences {
   id int [pk]
   main_character_id int [ref: > characters.id]
   other_character_id int [ref: > characters.id] // note: "1 means exclude everyone, 0 means compatible with everyone, not null"
@@ -399,7 +420,7 @@ Table program_participations {
   status RecordStatusEnum
 } // denormalize and add program_session_id here for easier query, program_team_id is nullable
 
-// Table 'event' provides AttendingDivisionEnum for creating program_progression
+// Table 'event' provides division for creating program_progression
 //
 // Table program_progressions example:
 // +-------------------+----+-------------+
@@ -416,7 +437,7 @@ Table program_participations {
 // +-------------------+-------------+--------------------+
 //
 //
-// Table 'attendings' provides AttendingDivisionEnum for participation assignment
+// Model 'Attending' provides divisions for participation assignment
 //
 // Example of The Rock student participates large group AND 4th small group:
 // +------------------+------------+---------+
