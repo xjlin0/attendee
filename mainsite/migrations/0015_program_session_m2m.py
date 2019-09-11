@@ -35,4 +35,14 @@ class Migration(migrations.Migration):
             model_name='programsession',
             constraint=models.UniqueConstraint(fields=('program_group_id', 'location_type', 'location_id', 'start_time'), name='uniq_group_location_time'),
         ),
+        migrations.AddField(
+            model_name='programgroup',
+            name='program_progressions',
+            field=models.ManyToManyField(through='mainsite.ProgramSession', to='mainsite.ProgramProgression'),
+        ),
+        migrations.AddField(
+            model_name='programprogression',
+            name='program_progressions',
+            field=models.ManyToManyField(through='mainsite.ProgramSession', to='mainsite.ProgramGroup'),
+        ),
     ]
