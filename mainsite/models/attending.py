@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from . import Attendee, Registration, Utility, RecordStatusEnum
@@ -11,7 +12,7 @@ class Attending(models.Model, Utility):
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     addresses = models.ManyToManyField('Address', through='AttendingAddress')
-    price = models.DecimalField(max_digits=8, decimal_places=2, default=999999)
+    price = models.DecimalField(max_digits=8, decimal_places=2, default=999999, validators=[MinValueValidator(0)])
     age = models.IntegerField(null=True, blank=True)
     attending_type = models.CharField(max_length=20, null=True)
     divisions = models.ManyToManyField('Division', through='AttendingDivision')

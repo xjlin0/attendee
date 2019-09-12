@@ -17,4 +17,4 @@ class AttendingAddress(models.Model, Utility):
         ]
 
     def __str__(self):
-        return '%s %s' % (self.attending, self.division)
+        return '%s %s' % (self.attending, self.address)

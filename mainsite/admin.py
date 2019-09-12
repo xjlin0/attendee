@@ -30,6 +30,7 @@ class AttendingAdmin(admin.ModelAdmin):
 class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'info', 'updated_at')
 
+
 admin.site.register(LinkNote)
 admin.site.register(Attendee, AttendeeAdmin)
 admin.site.register(Address, AddressAdmin)
