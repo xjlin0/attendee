@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='programsession',
-            constraint=models.UniqueConstraint(fields=('program_group_id', 'location_type', 'location_id', 'start_time'), name='uniq_group_location_time'),
+            constraint=models.UniqueConstraint(fields=('program_group_id', 'content_type_id', 'object_id', 'start_time'), name='uniq_group_location_time'),
         ),
         migrations.AddField(
             model_name='programgroup',

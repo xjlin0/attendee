@@ -37,7 +37,7 @@ class ProgramSession(models.Model, Utility):
     class Meta:
         db_table = 'mainsite_program_sessions'
         constraints = [
-            models.UniqueConstraint(fields=['program_group_id', 'location_type', 'location_id', 'start_time'], name='uniq_group_location_time')
+            models.UniqueConstraint(fields=['program_group_id', 'content_type_id', 'object_id', 'start_time'], name='uniq_group_location_time')
         ]
 
     def __str__(self):
