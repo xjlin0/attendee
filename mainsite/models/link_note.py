@@ -21,7 +21,3 @@ class LinkNote(models.Model, Utility):
     class Meta:
         db_table = 'mainsite_link_notes'
         ordering = ('-updated_at',)
-
-    @property
-    def iso_updated_at(self):
-        return self.updated_at.isoformat()
