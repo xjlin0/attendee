@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.contenttypes.fields import GenericRelation
 from . import RecordStatusEnum, Utility, Campus, Property, Suite, Room, ProgramProgression, ProgramGroup
 
 
 class ProgramSession(models.Model, Utility):
+    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     program_progression = models.ForeignKey(ProgramProgression, blank=False, null=False, on_delete=models.SET(0))
     program_group = models.ForeignKey(ProgramGroup, null=True, on_delete=models.SET_NULL)

@@ -16,8 +16,8 @@ class Migration(migrations.Migration):
             name='LinkNote',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('link_table', models.CharField(db_index=True, max_length=50)),
-                ('link_id', models.IntegerField(db_index=True)),
+                ('content_type', models.ForeignKey(on_delete=models.SET(0), to='contenttypes.ContentType')),
+                ('object_id', models.BigIntegerField()),
                 ('note_type', models.CharField(blank=True, max_length=20, null=True)),
                 ('note_text', models.CharField(max_length=2000)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

@@ -1,9 +1,10 @@
 from django.db import models
-
+from django.contrib.contenttypes.fields import GenericRelation
 from . import Utility, Attendee, RecordStatusEnum
 
 
 class Relationship(models.Model, Utility):
+    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     main_attendee = models.ForeignKey(Attendee, null=False, blank=False, on_delete=models.SET(0), related_name="primary")
     other_attendee = models.ForeignKey(Attendee, null=True, blank=False, on_delete=models.SET(0), related_name="relative")

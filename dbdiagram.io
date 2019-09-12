@@ -17,8 +17,8 @@ Table divisions {
 
 Table link_notes {
   id int [pk]
-  link_table varchar [note: "any table name will do"]
-  link_id int [note: "any table primary id"]
+  content_type_id int [note: "any table id in Django's django_content_type will do"]
+  object_id int [note: "any table primary id"]
   note_type varchar
   note_text varchar
   created_at datetime
@@ -28,8 +28,8 @@ Table link_notes {
 
 Table link_images {
   id int [pk]
-  link_table varchar [note: "any table name will do"]
-  link_id int [note: "any table primary id"]
+  content_type_id int [note: "any table id in Django's django_content_type will do"]
+  object_id int [note: "any table primary id"]
   image_type varchar
   image_url varchar
   created_at datetime

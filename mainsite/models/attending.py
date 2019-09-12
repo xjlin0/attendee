@@ -1,11 +1,12 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
-
+from django.contrib.contenttypes.fields import GenericRelation
 from . import Attendee, Address, Registration, Utility, RecordStatusEnum, Division
 
 
 class Attending(models.Model, Utility):
+    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)

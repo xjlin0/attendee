@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.contenttypes.fields import GenericRelation
 from . import RecordStatusEnum, Utility
 
 
 class EventAddress(models.Model, Utility):
+    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     event = models.ForeignKey('Event', on_delete=models.SET(0), null=False, blank=False)
     address = models.ForeignKey('Address', on_delete=models.SET(0), null=False, blank=False)

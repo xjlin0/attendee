@@ -1,9 +1,10 @@
 from django.db import models
-
+from django.contrib.contenttypes.fields import GenericRelation
 from . import Event, Attendee, Utility, RecordStatusEnum
 
 
 class Registration(models.Model, Utility):
+    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     event = models.ForeignKey(Event, null=True, on_delete=models.SET_NULL)
     main_attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)

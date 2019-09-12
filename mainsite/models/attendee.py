@@ -1,10 +1,11 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-
+from django.contrib.contenttypes.fields import GenericRelation
 from . import RecordStatusEnum, GenderEnum, Utility
 
 
 class Attendee(models.Model, Utility):
+    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     first_name = models.CharField(max_length=25, db_index=True, null=True, blank=True)
     last_name = models.CharField(max_length=25, db_index=True, null=True, blank=True)
