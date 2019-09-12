@@ -1,11 +1,8 @@
 from django.db import models
-from django.urls import reverse
-from django.contrib.contenttypes.fields import GenericRelation
 from . import RecordStatusEnum, Utility
 
 
 class EventAddress(models.Model, Utility):
-    notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     event = models.ForeignKey('Event', on_delete=models.SET(0), null=False, blank=False)
     address = models.ForeignKey('Address', on_delete=models.SET(0), null=False, blank=False)
@@ -18,10 +15,6 @@ class EventAddress(models.Model, Utility):
         constraints = [
             models.UniqueConstraint(fields=['event', 'address'], name="event_address")
         ]
-
-
-    def get_absolute_url(self):
-        return reverse('event_address_detail', args=[str(self.id)])
 
     def __str__(self):
         return '%s %s' % (self.name, self.address or '')
