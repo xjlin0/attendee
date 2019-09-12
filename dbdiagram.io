@@ -382,8 +382,8 @@ Table program_sessions {
   name varchar [note: "Lesson #3 resurrection, retreat #2, etc"]
   start_time datetime
   end_time datetime
-  location_type varchar [note: "any location table name will do"]
-  location_id int [note: "any location table primary id"]
+  content_type varchar [note: "any table id in Django's django_content_type will do"]
+  object_id int [note: "any location table primary id"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
