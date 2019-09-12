@@ -10,6 +10,7 @@ from .price import Price
 from .registration import Registration
 from .attending import Attending
 from .attending_division import AttendingDivision
+from .attending_address import AttendingAddress
 from .character import Character
 from .program_progression import ProgramProgression
 from .program_group import ProgramGroup
