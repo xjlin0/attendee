@@ -6,6 +6,7 @@ from . import RecordStatusEnum, GenderEnum, Utility
 
 class Attendee(models.Model, Utility):
     notes = GenericRelation('LinkNote')
+    relatives = models.ManyToManyField('self', through='Relationship', symmetrical=False, related_name='related_to+')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     first_name = models.CharField(max_length=25, db_index=True, null=True, blank=True)
     last_name = models.CharField(max_length=25, db_index=True, null=True, blank=True)

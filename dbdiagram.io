@@ -57,17 +57,17 @@ Table attendees {
 
 Table relationships {
   id int [pk]
-  main_attendee_id int [ref: > attendees.id]
-  other_attendee_id int [ref: > attendees.id]
-  relation_to_main varchar // relative_attendee to primary_attendee
+  from_attendee_id int [ref: > attendees.id]
+  to_attendee_id int [ref: > attendees.id]
+  relation varchar [note: "pseudo-symmetrical relation, such as father-daughter, mother/father/parent/guardian/chaperon/register"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
 
   indexes {
-    (main_attendee_id, other_attendee_id) [unique]
+    (from_attendee_id, to_attendee_id) [unique]
   }
-} // mother/father/parent/guardian/chaperon/register
+} // Django's M2M through has to be asymmetrical, so creation/deletion IN PAIR is necessary
 
 Table addresses {
   id int [pk]
