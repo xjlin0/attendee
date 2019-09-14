@@ -6,6 +6,10 @@ class Utility:
     def iso_updated_at(self):
         return self.updated_at.isoformat()
 
+    @property
+    def notes(self):
+        return self.link_notes.all()
+
     # @property
     # def notes(self):
     #     return LinkNote.objects.filter(

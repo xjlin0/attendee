@@ -5,7 +5,7 @@ from . import Suite, RecordStatusEnum, Utility
 
 
 class Room(models.Model, Utility):
-    notes = GenericRelation('LinkNote')
+    link_notes = GenericRelation('LinkNote')
     program_session = GenericRelation('ProgramSession')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50, blank=False, null=False, db_index=True)

@@ -7,7 +7,7 @@ from . import Attendee, Registration, Utility, RecordStatusEnum
 
 
 class Attending(models.Model, Utility):
-    notes = GenericRelation('LinkNote')
+    link_notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)

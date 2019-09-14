@@ -5,7 +5,7 @@ from . import RecordStatusEnum, Utility, Division
 
 
 class Event(models.Model, Utility):
-    notes = GenericRelation('LinkNote')
+    link_notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     addresses = models.ManyToManyField('Address', through='EventAddress')
     name = models.CharField(max_length=50, db_index=True)

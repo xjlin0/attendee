@@ -6,7 +6,7 @@ from . import RecordStatusEnum, Utility, ProgramProgression, ProgramGroup
 
 
 class ProgramSession(models.Model, Utility):
-    notes = GenericRelation('LinkNote')
+    link_notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     program_progression = models.ForeignKey(ProgramProgression, blank=False, null=False, on_delete=models.SET(0))
     program_group = models.ForeignKey(ProgramGroup, null=True, on_delete=models.SET_NULL)

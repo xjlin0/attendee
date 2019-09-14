@@ -5,7 +5,7 @@ from . import RecordStatusEnum, Utility
 
 
 class ProgramProgression(models.Model, Utility):
-    notes = GenericRelation('LinkNote')
+    link_notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50, blank=True, null=False, db_index=True)
     display_order = models.IntegerField(default=0, blank=True, null=True)
