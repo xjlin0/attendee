@@ -39,5 +39,9 @@ class Attending(models.Model, Utility):
     def main_contact(self):
         return self.registration.main_attendee
 
+    @property
+    def division_names(self):
+        return ",".join([d.name for d in self.divisions.all()])
+
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.division, self.bed_needs)
