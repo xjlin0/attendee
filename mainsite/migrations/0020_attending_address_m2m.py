@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
             name='AttendingAddress',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('address', models.ForeignKey(on_delete=models.SET(0), to='mainsite.Address')),
+                ('attending', models.ForeignKey(on_delete=models.SET(0), to='mainsite.Attending')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
-                ('address', models.ForeignKey(on_delete=models.SET(0), to='mainsite.Address')),
-                ('attending', models.ForeignKey(on_delete=models.SET(0), to='mainsite.Attending')),
             ],
             options={
                 'db_table': 'mainsite_attending_addresses',
