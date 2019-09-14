@@ -11,4 +11,5 @@
 * Prepare database, default database name in DATABASES['default']['NAME'] is attendee_development
 * python manage.py migrate
 * python manage.py createsuperuser
+* python manage.py loaddata mainsite/db_seed.json
 * python manage.py runserver
