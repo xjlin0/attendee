@@ -3,6 +3,8 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils.functional import cached_property
+
 from . import Attendee, Registration, Utility, RecordStatusEnum
 
 
@@ -39,9 +41,9 @@ class Attending(models.Model, Utility):
     def main_contact(self):
         return self.registration.main_attendee
 
-    @property
+    @cached_property
     def division_names(self):
         return ",".join([d.name for d in self.divisions.all()])
 
     def __str__(self):
-        return '%s %s %s' % (self.attendee, self.division, self.bed_needs)
+        return '%s %s %s' % (self.attendee, self.division_names, self.bed_needs)

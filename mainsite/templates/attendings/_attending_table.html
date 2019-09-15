@@ -34,7 +34,7 @@
       </tr>
       <tr>
         <th scope="row">divisions</th>
-        <td> {{ attending.division_names }} </td>
+        <td> {{ attending.division_names|default:"---" }} </td>
       </tr>
       <tr>
         <th scope="row">belief</th>

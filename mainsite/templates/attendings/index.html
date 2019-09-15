@@ -25,7 +25,7 @@
       <th scope="col">Contact</th>
       <th scope="col">name</th>
       <th scope="col">price</th>
-      <th scope="col">program</th>
+      <th scope="col">division</th>
       <th scope="col">bed</th>
       <th scope="col">action</th>
     </tr>
@@ -38,7 +38,7 @@
       </th>
       <td>{{ attending.attendee }}</td>
       <td>{{ attending.price }}</td>
-      <td>{{ attending.get_attending_program_display }}</td>
+      <td>{{ attending.division_names|default:"---" }}</td>
       <td>
           {% if attending.bed_needs > 0 %}
               <i class="fas fa-bed"
