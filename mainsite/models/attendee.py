@@ -22,7 +22,7 @@ class Attendee(models.Model, Utility):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     def __str__(self):
-        return '%s %s' % (self.first_name or '', self.last_name or '')
+        return '%s %s %s %s' % (self.first_name or '', self.last_name or '', self.last_name2 or '', self.first_name2 or '')
 
     def clean(self):
         if not (self.last_name or self.last_name2):

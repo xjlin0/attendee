@@ -151,7 +151,7 @@ Table events {
   name varchar
   registration_start datetime
   registration_end datetime
-  division_id [ref: > divisions.id]
+  division_id int [ref: > divisions.id]
   event_start datetime
   event_end datetime
   created_at datetime
@@ -389,7 +389,7 @@ Table program_sessions {
   status RecordStatusEnum
 
   indexes {
-    (program_group_id, location_type, location_id, start_time) [unique]
+    (program_group_id, content_type, object_id, start_time) [unique]
   }
 } // so we can have The Rock @ Main or Burbank campus
 

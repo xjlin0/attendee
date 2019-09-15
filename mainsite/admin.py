@@ -12,7 +12,7 @@ class EventAdmin(admin.ModelAdmin):
 
 
 class AttendeeAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'updated_at')
+    list_display = ('first_name', 'last_name', 'last_name2', 'first_name2', 'updated_at')
 
 
 class PriceAdmin(admin.ModelAdmin):
@@ -24,14 +24,20 @@ class RegistrationAdmin(admin.ModelAdmin):
 
 
 class AttendingAdmin(admin.ModelAdmin):
-    list_display = ('registration', 'attendee', 'price', 'bed_needs', 'updated_at')
+    list_display = ('registration', 'attendee', 'price', 'division_names', 'bed_needs', 'updated_at')
 
 
 class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'info', 'updated_at')
 
 
-admin.site.register(LinkNote)
+class LinkNoteAdmin(admin.ModelAdmin):
+    list_display = ('note_text', 'content_type', 'object_id', 'content_object', 'updated_at')
+
+
+
+
+admin.site.register(LinkNote, LinkNoteAdmin)
 admin.site.register(Attendee, AttendeeAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(Event, EventAdmin)
