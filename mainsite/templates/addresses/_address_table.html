@@ -43,7 +43,7 @@
       <tr>
         <th scope="row">updated_at</th>
         <td>
-          <time datetime="{{address.iso_updated_at}}">
+          <time datetime="{{address.updated_at|date:'c'}}">
             {{ address.updated_at }} UTC Time
           </time>
         </td>

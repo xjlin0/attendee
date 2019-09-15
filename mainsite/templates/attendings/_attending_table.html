@@ -47,7 +47,7 @@
       <tr>
         <th scope="row">updated_at</th>
         <td>
-          <time datetime="{{attending.iso_updated_at}}">
+          <time datetime="{{attending.updated_at|date:'c'}}">
             {{ attending.updated_at }} UTC Time
           </time>
         </td>
