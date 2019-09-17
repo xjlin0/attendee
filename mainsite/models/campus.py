@@ -22,4 +22,4 @@ class Campus(models.Model, Utility):
         return reverse('campus_detail', args=[str(self.id)])
 
     def __str__(self):
-        return '%s %s' % (self.name, self.address or '')
+        return '%s' % (self.name)
