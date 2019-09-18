@@ -3,11 +3,21 @@ from django.contrib import admin
 from mainsite.models import *
 
 
+class EventAddressAdmin(admin.ModelAdmin):
+    list_display = ('event', 'address', 'updated_at')
+
+class EventAddressInline(admin.TabularInline):
+    model = EventAddress
+    extra = 1
+
+
 class AddressAdmin(admin.ModelAdmin):
+    inlines = (EventAddressInline,)
     list_display = ('address_type', 'street', 'city', 'zip_code', 'updated_at')
 
 
 class EventAdmin(admin.ModelAdmin):
+    inlines = (EventAddressInline,)
     list_display = ('name', 'get_addresses', 'updated_at')
 
 
@@ -65,6 +75,7 @@ class ProgramSessionAdmin(admin.ModelAdmin):
 
 admin.site.register(LinkNote, LinkNoteAdmin)
 admin.site.register(Attendee, AttendeeAdmin)
+admin.site.register(EventAddress, EventAddressAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Price, PriceAdmin)

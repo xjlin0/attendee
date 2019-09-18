@@ -17,4 +17,4 @@ class EventAddress(models.Model, Utility):
         ]
 
     def __str__(self):
-        return '%s %s' % (self.name, self.address or '')
+        return '%s %s' % (self.event, self.address or '')
