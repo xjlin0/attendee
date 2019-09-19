@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -30,6 +31,19 @@ class EventCreateView(CreateView):
     model = Event
     fields = [f.name for f in Event._meta.fields if f.name not in ['created_at', 'updated_at']]
     template_name = 'events/create_update.html'
+
+    # def form_valid(self, form):
+    #     self.object = form.save()
+    #     # do something with self.object
+    #     # remember the import: from django.http import HttpResponseRedirect
+    #     return HttpResponseRedirect(self.get_success_url())
+
+    #
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.user = self.request.user
+    #     self.object.save()
+    #     return HttpResponseRedirect(self.get_success_url())
 
 
 @method_decorator([login_required], name='dispatch')
