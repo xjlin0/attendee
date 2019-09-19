@@ -384,6 +384,16 @@ Table program_groups {
   status RecordStatusEnum
 }
 
+Table program_teams {
+  id int [pk]
+  program_group_id int [ref: > program_groups.id]
+  name varchar [note: "Small group 4th grade, (Main/Large group is null)"]
+  display_order int
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+} // All Small groups are defined here, please don't define Main/Large group
+
 Table program_sessions {
   id int [pk]
   program_progression_id int [ref: > program_progressions.id]
@@ -402,20 +412,6 @@ Table program_sessions {
   }
 } // so we can have The Rock @ Main or Burbank campus
 
-Table program_teams {
-  id int [pk]
-  program_session_id int [ref: > program_sessions.id]
-  name varchar [note: "Small group 4th grade, (Main/Large group is null)"]
-  display_order int
-  start_time datetime  [note: "team start/end time can be different from session"]
-  end_time datetime
-  site_type varchar [note: "any location table name, team location can be different from lesson"]
-  site_id int [note: "any location table primary id"]
-  created_at datetime
-  updated_at datetime
-  status RecordStatusEnum
-} // All Small groups are defined here, please don't define Main/Large group
-
 
 Table program_participations {
   id int [pk]
@@ -427,7 +423,7 @@ Table program_participations {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // denormalize and add program_session_id here for easier query, program_team_id is nullable
+} // denormalize and add program_session_id here since program_team_id is nullable
 
 // Table 'event' provides division for creating program_progression
 //
