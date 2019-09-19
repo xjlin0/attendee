@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 from . import RecordStatusEnum, Utility, ProgramGroup
 
 
