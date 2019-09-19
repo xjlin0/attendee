@@ -409,8 +409,8 @@ Table program_teams {
   display_order int
   start_time datetime  [note: "team start/end time can be different from session"]
   end_time datetime
-  location_type varchar [note: "any location table name, team location can be different from lesson"]
-  location_id int [note: "any location table primary id"]
+  site_type varchar [note: "any location table name, team location can be different from lesson"]
+  site_id int [note: "any location table primary id"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
