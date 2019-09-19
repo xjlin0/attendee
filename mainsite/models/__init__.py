@@ -4,6 +4,7 @@ from .division import Division
 from .link_note import LinkNote
 from .attendee import Attendee
 from .address import Address
+from .organization import Organization
 from .event import Event
 from .event_address import EventAddress
 from .price import Price

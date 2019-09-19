@@ -4,8 +4,17 @@ Enum RecordStatusEnum {
   ARCHIVED
  }
 
+Table organizations {
+  id int [pk]
+  name varchar
+  created_at datetime
+  updated_at datetime
+  status RecordStatusEnum
+}
+
 Table divisions {
   id int [pk]
+  organization_id int [ref: > organizations.id]
   key varchar [note: "CHINESE ENGLISH CHILDREN OTHER NONE, etc"]
   name varchar
   created_at datetime

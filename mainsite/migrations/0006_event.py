@@ -18,7 +18,6 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(db_index=True, max_length=50)),
                 ('division', models.ForeignKey(on_delete=models.SET(0), blank=False, null=False, to='mainsite.Division')),
-                # ('addresses', models.ManyToManyField('Address', through='mainsite.EventAddress')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
