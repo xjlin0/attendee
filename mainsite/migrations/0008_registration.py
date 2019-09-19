@@ -8,7 +8,7 @@ from mainsite.models.enum import RecordStatusEnum
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '0006_price'),
+        ('mainsite', '0007_price'),
     ]
     operations = [
         migrations.CreateModel(

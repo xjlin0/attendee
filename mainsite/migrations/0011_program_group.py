@@ -8,7 +8,7 @@ from mainsite.models.enum import RecordStatusEnum
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '0009_program_progression'),
+        ('mainsite', '0010_program_progression'),
     ]
 
     operations = [
