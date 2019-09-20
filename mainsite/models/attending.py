@@ -14,6 +14,7 @@ class Attending(models.Model, Utility):
     registration = models.ForeignKey(Registration, null=True, on_delete=models.SET_NULL)
     attendee = models.ForeignKey(Attendee, null=True, on_delete=models.SET_NULL)
     addresses = models.ManyToManyField('Address', through='AttendingAddress')
+    program_sessions = models.ManyToManyField('ProgramSession', through='ProgramParticipation')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=999999, validators=[MinValueValidator(0)])
     age = models.IntegerField(null=True, blank=True)
     attending_type = models.CharField(max_length=20, null=True)

@@ -416,10 +416,11 @@ Table program_sessions {
 Table program_participations {
   id int [pk]
   program_session_id int [ref: > program_sessions.id]
-  program_team_id int [ref: > program_teams.id]
+  program_team_id int [ref: > program_teams.id] // nullable
   attending_id int [ref: > attendings.id]
   character_id int [ref: > characters.id] // note: "LG leader, student"
   free int [note: "instance level: if negative, the person is unlikely to join other sessions at the same time, i.e. drivers"]
+  attend_at datetime [note: "default is null"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum

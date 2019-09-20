@@ -22,3 +22,4 @@ from .room import Room
 from .program_session import ProgramSession
 from .relationship import Relationship
 from .program_team import ProgramTeam
+from .program_participation import ProgramParticipation

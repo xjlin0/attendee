@@ -17,5 +17,5 @@ class ProgramTeam(models.Model, Utility):
         db_table = 'mainsite_program_teams'
 
     def __str__(self):
-        return '%s %s %s %s' % (self.program_session, self.name or '', self.location, self.start_time)
+        return '%s %s' % (self.program_group, self.name or '')
 
