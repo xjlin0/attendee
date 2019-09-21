@@ -16,8 +16,11 @@ class Migration(migrations.Migration):
             name='ProgramProgression',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, db_index=True, max_length=50)),
+                ('name', models.CharField(blank=True, null=True, db_index=True, max_length=50)),
                 ('display_order', models.IntegerField(blank=True, default=0, null=True)),
+                ('start_at', models.DateTimeField(auto_now_add=True)),
+                ('end_at', models.DateTimeField(blank=True, default=None, null=True)),
+                ('duration', models.DurationField(default=0)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),

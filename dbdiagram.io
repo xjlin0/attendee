@@ -369,9 +369,9 @@ Table program_progressions {
   name varchar [note: "2020q4 kid programs, 2020 retreat"]
   display_order int
   event_id int [ref: > events.id]
-  start_time datetime
-  end_time datetime
-  duration varchar // https://pypi.org/project/django-relativedelta/
+  start_at datetime
+  end_at datetime
+  duration bigint // https://pypi.org/project/django-relativedelta/ is for Postgres
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
