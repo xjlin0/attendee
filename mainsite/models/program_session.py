@@ -12,11 +12,11 @@ class ProgramSession(models.Model, Utility):
     program_group = models.ForeignKey(ProgramGroup, null=True, on_delete=models.SET_NULL)
     attendings = models.ManyToManyField('Attending', through='ProgramParticipation')
     name = models.CharField(max_length=50, blank=True)
-    start_time = models.DateTimeField(blank=False, auto_now_add=True)
-    end_time = models.DateTimeField(blank=True, auto_now_add=True)
-    content_type = models.ForeignKey(ContentType, on_delete=models.SET(0), help_text='location: django_content_type id for table name')
-    object_id = models.BigIntegerField()
-    location = GenericForeignKey('content_type', 'object_id')
+    start_at = models.DateTimeField(blank=False, auto_now_add=True)
+    end_at = models.DateTimeField(blank=True, auto_now_add=True)
+    site_type = models.ForeignKey(ContentType, on_delete=models.SET(0), help_text='location: django_content_type id for table name')
+    site_id = models.BigIntegerField()
+    location = GenericForeignKey('site_type', 'site_id')
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
@@ -38,8 +38,8 @@ class ProgramSession(models.Model, Utility):
     class Meta:
         db_table = 'mainsite_program_sessions'
         constraints = [
-            models.UniqueConstraint(fields=['program_group_id', 'content_type_id', 'object_id', 'start_time'], name='uniq_group_location_time')
+            models.UniqueConstraint(fields=['program_group_id', 'site_type_id', 'site_id', 'start_at'], name='uniq_group_location_time')
         ]
 
     def __str__(self):
-        return '%s %s %s %s' % (self.program_group, self.location or '', self.updated_at.isoformat(), self.name or '')
+        return '%s %s %s %s' % (self.program_group, self.location or '', self.start_at, self.name or '')

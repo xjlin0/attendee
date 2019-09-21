@@ -19,10 +19,10 @@ class Migration(migrations.Migration):
                 ('program_group', models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='mainsite.ProgramGroup')),
                 ('program_progression', models.ForeignKey(on_delete=models.SET(0), to='mainsite.ProgramProgression')),
                 ('name', models.CharField(blank=True, max_length=50)),
-                ('start_time', models.DateTimeField(auto_now_add=True)),
-                ('end_time', models.DateTimeField(auto_now_add=True)),
-                ('content_type', models.ForeignKey(on_delete=models.SET(0), to='contenttypes.ContentType', help_text='location: django_content_type id for table name')),
-                ('object_id', models.BigIntegerField()),
+                ('start_at', models.DateTimeField(auto_now_add=True)),
+                ('end_at', models.DateTimeField(auto_now_add=True)),
+                ('site_type', models.ForeignKey(on_delete=models.SET(0), to='contenttypes.ContentType', help_text='location: django_content_type id for table name')),
+                ('site_id', models.BigIntegerField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('status', models.CharField(choices=RecordStatusEnum.choices(), db_index=True, default=RecordStatusEnum.ACTIVE, max_length=10)),
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='programsession',
-            constraint=models.UniqueConstraint(fields=('program_group_id', 'content_type_id', 'object_id', 'start_time'), name='uniq_group_location_time'),
+            constraint=models.UniqueConstraint(fields=('program_group_id', 'site_type_id', 'site_id', 'start_at'), name='uniq_group_location_time'),
         ),
         migrations.AddField(
             model_name='programgroup',
