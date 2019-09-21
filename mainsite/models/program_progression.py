@@ -12,7 +12,6 @@ class ProgramProgression(models.Model, Utility):
     program_progressions = models.ManyToManyField('ProgramGroup', through='ProgramSession')
     start_at = models.DateTimeField(auto_now_add=True, blank=False)
     end_at = models.DateTimeField(default=None, blank=True, null=True)
-    duration = models.DurationField(default=0, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())

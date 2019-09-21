@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 # ('events', models.ManyToManyField('Event', through='mainsite.EventAddress', related_name='addresses')),
-                ('email1', models.CharField(blank=True, db_index=True, max_length=100, null=True)),
-                ('email2', models.CharField(blank=True, max_length=100, null=True)),
+                ('email1', models.EmailField(blank=True, db_index=True, null=True)),
+                ('email2', models.EmailField(blank=True, null=True)),
                 ('phone1', models.CharField(blank=True, db_index=True, max_length=15, null=True)),
                 ('phone2', models.CharField(blank=True, max_length=15, null=True)),
                 ('address_type', models.CharField(max_length=20, null=True)),
