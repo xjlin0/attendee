@@ -86,11 +86,11 @@ class ProgramProgressionAdmin(admin.ModelAdmin):
 
 class ProgramSessionAdmin(admin.ModelAdmin):
     inlines = (ProgramParticipationInline,)
-    list_display = ('name', 'start_at', 'program_group', 'program_progression', 'updated_at')
+    list_display = ('program_group', 'program_progression', 'start_at', 'name', 'location', 'updated_at')
 
 
 class ProgramGroupSettingAdmin(admin.ModelAdmin):
-    list_display = ('program_group', 'get_recurrences', 'start_time', 'duration', 'location', 'updated_at')
+    list_display = ('program_group', 'schedules', 'start_time', 'duration', 'location', 'updated_at')
 
 
 admin.site.register(LinkNote, LinkNoteAdmin)

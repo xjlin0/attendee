@@ -22,7 +22,7 @@ class ProgramGroupSetting(models.Model, Utility):
     class Meta:
         db_table = 'mainsite_program_group_settings'
 
-    def get_recurrences(self):
+    def schedules(self):
         return ".".join([rule.to_text() for rule in self.recurrences.rrules])
 
     def __str__(self):
