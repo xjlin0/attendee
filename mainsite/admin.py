@@ -89,6 +89,10 @@ class ProgramSessionAdmin(admin.ModelAdmin):
     list_display = ('name', 'start_at', 'program_group', 'program_progression', 'updated_at')
 
 
+class ProgramGroupSettingAdmin(admin.ModelAdmin):
+    list_display = ('program_group', 'get_recurrences', 'start_time', 'duration', 'location', 'updated_at')
+
+
 admin.site.register(LinkNote, LinkNoteAdmin)
 admin.site.register(Attendee, AttendeeAdmin)
 admin.site.register(EventAddress, EventAddressAdmin)
@@ -107,3 +111,5 @@ admin.site.register(ProgramProgression, ProgramProgressionAdmin)
 admin.site.register(ProgramSession, ProgramSessionAdmin)
 admin.site.register(ProgramTeam, ProgramTeamAdmin)
 admin.site.register(ProgramParticipation, ProgramParticipationAdmin)
+admin.site.register(ProgramGroupSetting, ProgramGroupSettingAdmin)
+

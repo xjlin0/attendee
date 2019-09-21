@@ -401,10 +401,10 @@ Table program_sessions {
   program_progression_id int [ref: > program_progressions.id]
   program_group_id int [ref: > program_groups.id]
   name varchar [note: "Lesson #3 resurrection, retreat #2, etc"]
-  start_time datetime
-  end_time datetime
-  content_type varchar [note: "any table id in Django's django_content_type will do"]
-  object_id int [note: "any location table primary id"]
+  start_at datetime
+  end_at datetime
+  site_type varchar [note: "any table id in Django's django_content_type will do"]
+  site_id int [note: "any location table primary id"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -475,6 +475,7 @@ Table program_group_settings {
   program_group_id int [ref: > program_groups.id]
   recurrences int [ref: > schedules.id] //recurrences = RecurrenceField()
   duration bigint // https://pypi.org/project/django-relativedelta/ is for Postgres
+  start_time time // no timezone
   site_type varchar [note: "any location table id in Django's django_content_type"]
   site_id int [note: "any location table primary id"]
   created_at datetime
