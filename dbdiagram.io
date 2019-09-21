@@ -369,6 +369,9 @@ Table program_progressions {
   name varchar [note: "2020q4 kid programs, 2020 retreat"]
   display_order int
   event_id int [ref: > events.id]
+  start_time datetime
+  end_time datetime
+  duration varchar // https://pypi.org/project/django-relativedelta/
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -446,13 +449,14 @@ Table program_participations {
 // Model 'Attending' provides divisions for participation assignment
 //
 // Example of The Rock student participates large group AND 4th small group:
+// By design everyone must attend main team, which program_team_id is null
 // +------------------+------------+---------+
 // |  program_session |program_team|character|
 // +------------------+------------+---------+
 // |Lesson #3 09/01/19| 4th SG     | student |
 // +------------------+------------+---------+
 //
-// Example of The Rock large group leader:
+// Example of The Rock large group (main team) leader:
 // +------------------+------------+---------+
 // |  program_session |program_team|character|
 // +------------------+------------+---------+
@@ -467,14 +471,16 @@ Table program_participations {
 // +------------------+------------+---------+
 
 
-Table program_group_schedules {
+Table program_group_settings {
   id int [pk]
   program_group_id int [ref: > program_groups.id]
-  schedule_id int [ref: > schedules.id]
+  schedule_id int [ref: > schedules.id] //recurrences = RecurrenceField()
+  site_type varchar [note: "any location table id in Django's django_content_type"]
+  site_id int [note: "any location table primary id"]
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-}
+} // https://django-recurrence.readthedocs.io/en/latest/usage/getting_started.html
 
 
 Table schedules {
@@ -490,7 +496,7 @@ Table schedules {
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
-} // dateutil https://labix.org/python-dateutil
+} // dateutil https://labix.org/python-dateutil  https://django-recurrence.readthedocs.org/.
 
 /// payments ///
 

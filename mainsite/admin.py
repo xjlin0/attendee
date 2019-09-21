@@ -41,6 +41,10 @@ class CharacterAdmin(admin.ModelAdmin):
     list_display = ('name', 'info', 'updated_at')
 
 
+class ProgramTeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'program_group', 'display_order', 'updated_at')
+
+
 class LinkNoteAdmin(admin.ModelAdmin):
     list_display = ('note_text', 'content_type', 'object_id', 'content_object', 'updated_at')
 
@@ -89,3 +93,4 @@ admin.site.register(Room, RoomAdmin)
 admin.site.register(ProgramGroup, ProgramGroupAdmin)
 admin.site.register(ProgramProgression, ProgramProgressionAdmin)
 admin.site.register(ProgramSession, ProgramSessionAdmin)
+admin.site.register(ProgramTeam, ProgramTeamAdmin)
