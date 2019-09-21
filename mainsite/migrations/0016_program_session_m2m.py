@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('program_progression', models.ForeignKey(on_delete=models.SET(0), to='mainsite.ProgramProgression')),
                 ('name', models.CharField(blank=True, max_length=50)),
                 ('start_at', models.DateTimeField(auto_now_add=True)),
-                ('end_at', models.DateTimeField(auto_now_add=True)),
+                ('end_at', models.DateTimeField(auto_now_add=True, blank=True, null=True)),
                 ('site_type', models.ForeignKey(on_delete=models.SET(0), to='contenttypes.ContentType', help_text='location: django_content_type id for table name')),
                 ('site_id', models.BigIntegerField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

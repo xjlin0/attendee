@@ -86,7 +86,7 @@ class ProgramProgressionAdmin(admin.ModelAdmin):
 
 class ProgramSessionAdmin(admin.ModelAdmin):
     inlines = (ProgramParticipationInline,)
-    list_display = ('name', 'start_time', 'program_group', 'program_progression', 'updated_at')
+    list_display = ('name', 'start_at', 'program_group', 'program_progression', 'updated_at')
 
 
 admin.site.register(LinkNote, LinkNoteAdmin)
