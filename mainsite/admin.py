@@ -6,6 +6,7 @@ from mainsite.models import *
 class EventAddressAdmin(admin.ModelAdmin):
     list_display = ('event', 'address', 'updated_at')
 
+
 class EventAddressInline(admin.TabularInline):
     model = EventAddress
     extra = 1
@@ -33,7 +34,17 @@ class RegistrationAdmin(admin.ModelAdmin):
     list_display = ('main_attendee', 'apply_type', 'apply_key', 'event', 'updated_at')
 
 
+class ProgramParticipationAdmin(admin.ModelAdmin):
+    list_display = ('program_session', 'attending', 'character', 'program_team', 'updated_at')
+
+
+class ProgramParticipationInline(admin.StackedInline):
+    model = ProgramParticipation
+    extra = 1
+
+
 class AttendingAdmin(admin.ModelAdmin):
+    inlines = (ProgramParticipationInline,)
     list_display = ('registration', 'attendee', 'price', 'division_names', 'bed_needs', 'updated_at')
 
 
@@ -74,6 +85,7 @@ class ProgramProgressionAdmin(admin.ModelAdmin):
 
 
 class ProgramSessionAdmin(admin.ModelAdmin):
+    inlines = (ProgramParticipationInline,)
     list_display = ('name', 'start_time', 'program_group', 'program_progression', 'updated_at')
 
 
@@ -94,3 +106,4 @@ admin.site.register(ProgramGroup, ProgramGroupAdmin)
 admin.site.register(ProgramProgression, ProgramProgressionAdmin)
 admin.site.register(ProgramSession, ProgramSessionAdmin)
 admin.site.register(ProgramTeam, ProgramTeamAdmin)
+admin.site.register(ProgramParticipation, ProgramParticipationAdmin)

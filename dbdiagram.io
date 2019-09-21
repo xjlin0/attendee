@@ -371,7 +371,6 @@ Table program_progressions {
   event_id int [ref: > events.id]
   start_at datetime
   end_at datetime
-  duration bigint // https://pypi.org/project/django-relativedelta/ is for Postgres
   created_at datetime
   updated_at datetime
   status RecordStatusEnum
@@ -474,7 +473,8 @@ Table program_participations {
 Table program_group_settings {
   id int [pk]
   program_group_id int [ref: > program_groups.id]
-  schedule_id int [ref: > schedules.id] //recurrences = RecurrenceField()
+  recurrences int [ref: > schedules.id] //recurrences = RecurrenceField()
+  duration bigint // https://pypi.org/project/django-relativedelta/ is for Postgres
   site_type varchar [note: "any location table id in Django's django_content_type"]
   site_id int [note: "any location table primary id"]
   created_at datetime
@@ -483,20 +483,20 @@ Table program_group_settings {
 } // https://django-recurrence.readthedocs.io/en/latest/usage/getting_started.html
 
 
-Table schedules {
-  id int [pk]
-  name varchar [note: "Last Sunday of Feb 10AM"]
-  frequency varchar [note: "WEEKLY"]
-  byweekday int [note: "0 == Monday"]
-  hour int [note: "0 is midnight, 12 is noon"]
-  minute int [note: "0~59"]
-  start_at datetime  [note: "i.e.: every Tuesday from November'19"]
-  end_at datetime [note: "null means endless"]
-  duration_in_minutes int
-  created_at datetime
-  updated_at datetime
-  status RecordStatusEnum
-} // dateutil https://labix.org/python-dateutil  https://django-recurrence.readthedocs.org/.
+//Table schedules {
+//  id int [pk]
+//  name varchar [note: "Last Sunday of Feb 10AM"]
+//  frequency varchar [note: "WEEKLY"]
+//  byweekday int [note: "0 == Monday"]
+//  hour int [note: "0 is midnight, 12 is noon"]
+//  minute int [note: "0~59"]
+//  start_at datetime  [note: "i.e.: every Tuesday from November'19"]
+//  end_at datetime [note: "null means endless"]
+//  duration_in_minutes int
+//  created_at datetime
+//  updated_at datetime
+//  status RecordStatusEnum
+//} // dateutil https://labix.org/python-dateutil  https://django-recurrence.readthedocs.org/.
 
 /// payments ///
 
