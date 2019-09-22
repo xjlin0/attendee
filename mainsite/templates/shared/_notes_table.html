@@ -17,7 +17,7 @@
             </td>
             <td>
               <time datetime="{{note.iso_updated_at}}">
-                {{ note.updated_at }} UTC Time
+                {{ note.updated_at }} {{ note.updated_at.tzname }}
               </time>
             </td>
 

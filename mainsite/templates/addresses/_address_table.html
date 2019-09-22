@@ -44,7 +44,7 @@
         <th scope="row">updated_at</th>
         <td>
           <time datetime="{{address.updated_at|date:'c'}}">
-            {{ address.updated_at }} UTC Time
+            {{ address.updated_at }} {{ address.updated_at.tzname }}
           </time>
         </td>
       </tr>

@@ -20,7 +20,7 @@
         <th scope="row">updated_at</th>
         <td>
           <time datetime="{{event.iso_updated_at}}">
-            {{ event.updated_at }} UTC Time
+            {{ event.updated_at }} {{ event.updated_at.tzname }}
           </time>
         </td>
       </tr>
