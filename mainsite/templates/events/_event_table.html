@@ -19,7 +19,7 @@
       <tr>
         <th scope="row">updated_at</th>
         <td>
-          <time datetime="{{event.iso_updated_at}}">
+          <time datetime="{{event.updated_at|date:'c'}}">
             {{ event.updated_at }} {{ event.updated_at.tzname }}
           </time>
         </td>

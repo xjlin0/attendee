@@ -16,7 +16,7 @@
               {{ note.note_text|safe }}
             </td>
             <td>
-              <time datetime="{{note.iso_updated_at}}">
+              <time datetime="{{note.updated_at|date:'c'}}">
                 {{ note.updated_at }} {{ note.updated_at.tzname }}
               </time>
             </td>
