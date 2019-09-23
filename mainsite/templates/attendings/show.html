@@ -19,6 +19,6 @@
 
 {% block content %}
         {% include 'attendings/_attending_table.html' %}
-        {% include 'shared/_notes_table.html' with notes=attending.notes only %}
+        {% include 'shared/_notes_table.html' with notes=attending.notes timezone_name=timezone_name only %}
         <a href="{% url 'attendings' %}">Back to attending list.</a>
 {% endblock content%}

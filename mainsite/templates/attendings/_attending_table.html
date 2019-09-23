@@ -47,9 +47,7 @@
       <tr>
         <th scope="row">updated_at</th>
         <td>
-          <time datetime="{{attending.updated_at|date:'c'}}">
-            {{ attending.updated_at }} {{ attending.updated_at.tzname }}
-          </time>
+            {{ attending.updated_at }} {{timezone_name}}
         </td>
       </tr>
       <tr>

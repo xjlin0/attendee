@@ -19,6 +19,6 @@
 
 {% block content %}
         {% include 'events/_event_table.html' %}
-        {% include 'shared/_notes_table.html' with notes=event.notes only %}
+        {% include 'shared/_notes_table.html' with notes=event.notes timezone_name=timezone_name only %}
         <a href="{% url 'events' %}">Back to event list.</a>
 {% endblock content%}
