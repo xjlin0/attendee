@@ -1,12 +1,13 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
-from . import RecordStatusEnum, Utility
+from . import RecordStatusEnum, Utility, Division
 
 
 class ProgramGroup(models.Model, Utility):
     link_notes = GenericRelation('LinkNote')
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    division = models.ForeignKey(Division, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=50, blank=True, null=False, db_index=True)
     info = models.CharField(max_length=255, blank=True, null=True)
     url = models.CharField(max_length=255, blank=True, null=False)

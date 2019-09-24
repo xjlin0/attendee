@@ -378,6 +378,7 @@ Table program_progressions {
 
 Table program_groups {
   id int [pk]
+  division_id int [ref: > divisions.id]
   name varchar [note: "Shining Stars, The Rock"]
   info varchar [note: "what to wear/bring, what to teach"]
   url varchar [note: "link for intro"]
