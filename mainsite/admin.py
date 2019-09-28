@@ -76,6 +76,18 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ('name', 'label', 'suite', 'updated_at')
 
 
+class OrganizationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'updated_at')
+
+
+class DivisionAdmin(admin.ModelAdmin):
+    list_display = ('organization', 'name', 'key', 'updated_at')
+
+
+class RelationshipAdmin(admin.ModelAdmin):
+    list_display = ('from_attendee', 'to_attendee', 'relation', 'updated_at')
+
+
 class ProgramGroupAdmin(admin.ModelAdmin):
     list_display = ('name', 'info', 'url', 'updated_at')
 
@@ -106,6 +118,9 @@ admin.site.register(Campus, CampusAdmin)
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(Suite, SuiteAdmin)
 admin.site.register(Room, RoomAdmin)
+admin.site.register(Division, DivisionAdmin)
+admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(Relationship, RelationshipAdmin)
 admin.site.register(ProgramGroup, ProgramGroupAdmin)
 admin.site.register(ProgramProgression, ProgramProgressionAdmin)
 admin.site.register(ProgramSession, ProgramSessionAdmin)
