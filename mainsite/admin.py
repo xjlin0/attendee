@@ -9,7 +9,7 @@ class EventAddressAdmin(admin.ModelAdmin):
 
 class EventAddressInline(admin.TabularInline):
     model = EventAddress
-    extra = 1
+    extra = 0
 
 
 class AddressAdmin(admin.ModelAdmin):
@@ -23,6 +23,7 @@ class EventAdmin(admin.ModelAdmin):
 
 
 class AttendeeAdmin(admin.ModelAdmin):
+    search_fields = ('first_name', 'last_name', 'last_name2', 'first_name2')
     list_display = ('first_name', 'last_name', 'last_name2', 'first_name2', 'updated_at')
 
 
@@ -35,15 +36,17 @@ class RegistrationAdmin(admin.ModelAdmin):
 
 
 class ProgramParticipationAdmin(admin.ModelAdmin):
+    # list_filter = ('program_session', 'attending', 'character', 'program_team')
     list_display = ('program_session', 'attending', 'character', 'program_team', 'updated_at')
 
 
 class ProgramParticipationInline(admin.StackedInline):
     model = ProgramParticipation
-    extra = 1
+    extra = 0
 
 
 class AttendingAdmin(admin.ModelAdmin):
+    search_fields = ['attendee']
     inlines = (ProgramParticipationInline,)
     list_display = ('registration', 'attendee', 'price', 'division_names', 'bed_needs', 'updated_at')
 
@@ -89,15 +92,19 @@ class RelationshipAdmin(admin.ModelAdmin):
 
 
 class ProgramGroupAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
     list_display = ('name', 'info', 'url', 'updated_at')
 
 
 class ProgramProgressionAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
     list_display = ('name', 'display_order', 'updated_at')
 
 
 class ProgramSessionAdmin(admin.ModelAdmin):
     inlines = (ProgramParticipationInline,)
+    # search_fields = ('program_group', 'program_progression', 'name')
+    # list_filter = ('program_group', 'program_progression')
     list_display = ('program_group', 'program_progression', 'start_at', 'name', 'location', 'updated_at')
 
 

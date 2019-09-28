@@ -37,6 +37,7 @@ class ProgramSession(models.Model, Utility):
 
     class Meta:
         db_table = 'mainsite_program_sessions'
+        ordering = ['program_group', 'program_progression', 'start_at']
         constraints = [
             models.UniqueConstraint(fields=['program_group_id', 'site_type_id', 'site_id', 'start_at'], name='uniq_group_location_time')
         ]
