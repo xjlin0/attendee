@@ -17,6 +17,20 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ('address_type', 'street', 'city', 'zip_code', 'phone1', 'email1')
 
 
+class AttendingAddressInline(admin.StackedInline):
+    model = AttendingAddress
+    extra = 0
+
+
+class DivisionAdmin(admin.ModelAdmin):
+    list_display = ('organization', 'name', 'key', 'updated_at')
+
+
+class AttendingDivisionInline(admin.StackedInline):
+    model = AttendingDivision
+    extra = 0
+
+
 class EventAdmin(admin.ModelAdmin):
     inlines = (EventAddressInline,)
     list_display = ('name', 'get_addresses', 'updated_at')
@@ -47,8 +61,8 @@ class ProgramParticipationInline(admin.StackedInline):
 
 class AttendingAdmin(admin.ModelAdmin):
     search_fields = ('attendee__first_name', 'attendee__last_name', 'attendee__first_name2', 'attendee__first_name2')
-    inlines = (ProgramParticipationInline,)
-    list_display = ('registration', 'attendee', 'price', 'division_names', 'bed_needs', 'updated_at')
+    inlines = (AttendingDivisionInline, AttendingAddressInline, ProgramParticipationInline,)
+    list_display = ('registration', 'attendee', 'price', 'division_names', 'bed_needs', 'all_addresses')
 
 
 class CharacterAdmin(admin.ModelAdmin):
@@ -81,10 +95,6 @@ class RoomAdmin(admin.ModelAdmin):
 
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ('name', 'updated_at')
-
-
-class DivisionAdmin(admin.ModelAdmin):
-    list_display = ('organization', 'name', 'key', 'updated_at')
 
 
 class RelationshipAdmin(admin.ModelAdmin):
