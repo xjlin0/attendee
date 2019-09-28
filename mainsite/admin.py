@@ -14,7 +14,7 @@ class EventAddressInline(admin.TabularInline):
 
 class AddressAdmin(admin.ModelAdmin):
     inlines = (EventAddressInline,)
-    list_display = ('address_type', 'street', 'city', 'zip_code', 'updated_at')
+    list_display = ('address_type', 'street', 'city', 'zip_code', 'phone1', 'email1')
 
 
 class EventAdmin(admin.ModelAdmin):
@@ -46,7 +46,7 @@ class ProgramParticipationInline(admin.StackedInline):
 
 
 class AttendingAdmin(admin.ModelAdmin):
-    search_fields = ['attendee']
+    search_fields = ('attendee__first_name', 'attendee__last_name', 'attendee__first_name2', 'attendee__first_name2')
     inlines = (ProgramParticipationInline,)
     list_display = ('registration', 'attendee', 'price', 'division_names', 'bed_needs', 'updated_at')
 
@@ -103,7 +103,7 @@ class ProgramProgressionAdmin(admin.ModelAdmin):
 
 class ProgramSessionAdmin(admin.ModelAdmin):
     inlines = (ProgramParticipationInline,)
-    # search_fields = ('program_group', 'program_progression', 'name')
+    search_fields = ('program_group__name', 'program_progression__name', 'name')
     # list_filter = ('program_group', 'program_progression')
     list_display = ('program_group', 'program_progression', 'start_at', 'name', 'location', 'updated_at')
 

@@ -43,4 +43,4 @@ class ProgramSession(models.Model, Utility):
         ]
 
     def __str__(self):
-        return '%s %s %s %s' % (self.program_group, self.location or '', self.start_at, self.name or '')
+        return '%s %s %s %s' % (self.program_group, self.start_at, self.name or '', self.location or '')

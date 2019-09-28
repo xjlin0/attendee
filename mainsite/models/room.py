@@ -24,4 +24,4 @@ class Room(models.Model, Utility):
         return reverse('room_detail', args=[str(self.id)])
 
     def __str__(self):
-        return '%s %s %s' % (self.suite, self.name, self.label or '')
+        return '%s %s %s' % (self.suite.name, self.name, self.label or '')
