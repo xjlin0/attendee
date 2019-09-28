@@ -51,7 +51,7 @@ class RegistrationAdmin(admin.ModelAdmin):
 
 class ProgramParticipationAdmin(admin.ModelAdmin):
     # list_filter = ('program_session', 'attending', 'character', 'program_team')
-    list_display = ('program_session', 'attending', 'character', 'program_team', 'updated_at')
+    list_display = ('brief_program_session', 'attending', 'character', 'program_team', 'updated_at')
 
 
 class ProgramParticipationInline(admin.StackedInline):
