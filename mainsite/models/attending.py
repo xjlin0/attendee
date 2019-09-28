@@ -27,7 +27,7 @@ class Attending(models.Model, Utility):
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
     def clean(self):
-        if (self.bed_needs < 1 and self.age is None):
+        if self.bed_needs < 1 and self.age is None:
             raise ValidationError("You must specify age for kid")
 
     def get_absolute_url(self):
@@ -45,6 +45,10 @@ class Attending(models.Model, Utility):
     @cached_property
     def division_names(self):
         return ",".join([d.name for d in self.divisions.all()])
+
+    @cached_property
+    def all_addresses(self):
+        return ",".join([str(a) for a in self.addresses.all()])
 
     def __str__(self):
         return '%s %s %s' % (self.attendee, self.division_names, self.bed_needs)

@@ -45,6 +45,10 @@
         <td> {{ attending.bed_needs }} </td>
       </tr>
       <tr>
+        <th scope="row">addresses</th>
+        <td> {{ attending.all_addresses|default:"---" }} </td>
+      </tr>
+      <tr>
         <th scope="row">updated_at</th>
         <td>
             {{ attending.updated_at }} {{timezone_name}}

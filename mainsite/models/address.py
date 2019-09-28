@@ -34,4 +34,4 @@ class Address(models.Model, Utility):
         return ('{street1} {street2}').format(street1=self.street1, street2=self.street2 or '').strip()
 
     def __str__(self):
-        return '%s %s %s %s %s' % (self.address_type, self.street, self.city, self.state, self.zip_code)
+        return '%s, %s, %s. %s %s' % (self.street, self.city, self.zip_code, self.phone1 or '', self.email1 or '')
