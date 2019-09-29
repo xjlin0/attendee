@@ -29,6 +29,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'mainsite_program_sessions',
+                'ordering': ['program_group', 'program_progression', 'start_at'],
             },
         ),
         migrations.AddConstraint(
