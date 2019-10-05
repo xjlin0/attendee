@@ -21,12 +21,12 @@ class AddressDetailView(DetailView):
 @method_decorator([login_required], name='dispatch')
 class AddressCreateView(CreateView):
     model = Address
-    fields = [f.name for f in Address._meta.fields if f.name not in ['created_at', 'updated_at']]
+    fields = [f.name for f in model._meta.fields if f.name not in ['created_at', 'updated_at']]
     template_name = 'addresses/create_update.html'
 
 
 @method_decorator([login_required], name='dispatch')
 class AddressUpdateView(UpdateView):
     model = Address
-    fields = [f.name for f in Address._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
+    fields = [f.name for f in model._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
     template_name = 'addresses/create_update.html'

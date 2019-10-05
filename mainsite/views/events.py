@@ -29,7 +29,7 @@ class EventDetailView(DetailView):
 @method_decorator([login_required], name='dispatch')
 class EventCreateView(CreateView):
     model = Event
-    fields = [f.name for f in Event._meta.fields if f.name not in ['created_at', 'updated_at']]
+    fields = [f.name for f in model._meta.fields if f.name not in ['created_at', 'updated_at']]
     template_name = 'events/create_update.html'
 
     # def form_valid(self, form):
@@ -49,5 +49,5 @@ class EventCreateView(CreateView):
 @method_decorator([login_required], name='dispatch')
 class EventUpdateView(UpdateView):
     model = Event
-    fields = [f.name for f in Event._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
+    fields = [f.name for f in model._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
     template_name = 'events/create_update.html'
