@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_ALL_TABLES'",
+            'init_command': "SET sql_mode='STRICT_ALL_TABLES', storage_engine=INNODB",
         },
     }
 }

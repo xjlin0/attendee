@@ -42,5 +42,5 @@ class AttendingDetailView(DetailView):
 @method_decorator([login_required], name='dispatch')
 class AttendingUpdateView(UpdateView):
     model = Attending
-    fields = [f.name for f in Attending._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
+    fields = [f.name for f in model._meta.fields if f.name not in ['created_at', 'updated_at', 'status']]
     template_name = 'attendings/create_update.html'
