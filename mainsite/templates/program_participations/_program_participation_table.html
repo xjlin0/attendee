@@ -1,0 +1,53 @@
+<h3>program_participations detail</h3>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">field</th>
+        <th scope="col">value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">id</th>
+        <td> {{ program_participation.id }} </td>
+      </tr>
+      <tr>
+        <th scope="row">attending</th>
+        <td> {{ program_participation.attending }} </td>
+      </tr>
+      <tr>
+        <th scope="row">character</th>
+        <td> {{ program_participation.character }} </td>
+      </tr>
+      <tr>
+        <th scope="row">program_session</th>
+        <td> {{ program_participation.program_session }} </td>
+      </tr>
+      <tr>
+        <th scope="row">program_team</th>
+        <td> {{ program_participation.program_team }} </td>
+      </tr>
+      <tr>
+        <th scope="row">free</th>
+        <td> {{ program_participation.free }} </td>
+      </tr>
+      <tr>
+        <th scope="row">attend_at</th>
+        <td> {{ program_participation.attend_at }} </td>
+      </tr>
+      <tr>
+        <th scope="row">updated_at</th>
+        <td>
+            {{ program_participation.updated_at }} {{timezone_name}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">record status</th>
+        <td> {{ program_participation.status }} </td>
+      </tr>
+    <caption>
+      {{ program_participation.notes|length }} note{{ program_participation.notes.count|pluralize }} attached.
+    </caption>
+  </table>
+</div>

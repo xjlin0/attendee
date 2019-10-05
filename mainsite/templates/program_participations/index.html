@@ -1,0 +1,53 @@
+<!--attendee/mainsite/templates/program_participations/index.html-->
+
+{% extends 'shared/base.html'%}
+
+{% block title %}
+    attendee/mainsite/templates/program_participations/index.html
+{% endblock title %}
+
+{% block content %}
+<h3>
+  Program Participation
+</h3>
+<a href="{% url 'program_participations_new' %}"
+  class="button btn btn-primary">
+  Create New Program Participation
+</a>
+
+<div class = "table-responsive">
+  <table class="table table-sm table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">program_session</th>
+        <th scope="col">character</th>
+        <th scope="col">program_team</th>
+        <th scope="col">attending</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for program_participation in object_list %}
+        <tr id="{{program_participation.id}}">
+          <td>{{ program_participation.id }}</td>
+          <td>{{ program_participation.brief_program_session }}</td>
+          <td>{{ program_participation.character }}</td>
+          <td>{{ program_participation.program_team }}</td>
+          <td>{{ program_participation.attending }}</td>
+          <td>
+            {% url 'program_participation_detail' program_participation.id as detail_path %}
+            {% include "shared/crud_icons/_request_edit.html" with display_name=program_participation.attending %}
+            {% include "shared/crud_icons/_ajax_delete.html"  with display_name=program_participation.attending %}
+            {% include "shared/crud_icons/_request_view.html" with display_name=program_participation.attending %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr id="empty">
+          <th colspan="999">Sorry, no program participations in this list.</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

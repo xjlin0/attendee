@@ -1,0 +1,31 @@
+<!--attendee/mainsite/templates/program_participations/create_update.html-->
+{% extends 'shared/base.html'%}
+
+{% load static %}
+
+{% block title %}
+  attendee/mainsite/templates/program_participations/create_update.html
+{% endblock title %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+<h1>
+  {% if form.instance.pk %}
+    Edit Program Participation
+  {% else %}
+    Add a new Program Participation
+  {% endif %}
+</h1>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"
+           value="Save"
+           class="btn btn-primary">
+    <a href="{% url 'program_participations' %}"
+       class="btn btn-secondary">
+      Cancel & Back list
+    </a>
+</form>
+{% endblock content%}

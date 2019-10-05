@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.contrib.contenttypes.fields import GenericRelation
 from . import RecordStatusEnum, Utility, Attending, Character, ProgramSession, ProgramTeam
@@ -21,6 +22,9 @@ class ProgramParticipation(models.Model, Utility):
     def brief_program_session(self):
         program_session = self.program_session
         return program_session.program_group.name + program_session.start_at.strftime(" @ %b.%d'%y")
+
+    def get_absolute_url(self):
+        return reverse('program_participation_detail', args=[str(self.id)])
 
     class Meta:
         db_table = 'mainsite_program_participations'

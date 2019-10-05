@@ -29,7 +29,11 @@ from mainsite.views import AttendingListView,\
                            EventListView,\
                            EventDetailView,\
                            EventCreateView,\
-                           EventUpdateView
+                           EventUpdateView,\
+                           ProgramParticipationListView,\
+                           ProgramParticipationDetailView,\
+                           ProgramParticipationCreateView,\
+                           ProgramParticipationUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -54,4 +58,10 @@ urlpatterns = [
     path('attendings/', login_required(AttendingListView.as_view()), name='attendings'),
     path('attendings/<int:pk>/edit', login_required(AttendingUpdateView.as_view()), name='attending_update'),
     path('attendings/<int:pk>/', login_required(AttendingDetailView.as_view()), name='attending_detail'),
+
+    path('program_participations/', login_required(ProgramParticipationListView.as_view()), name='program_participations'),
+    path('program_participations/new', login_required(ProgramParticipationCreateView.as_view()), name='program_participations_new'),
+    path('program_participations/<int:pk>/edit', login_required(ProgramParticipationUpdateView.as_view()), name='program_participation_update'),
+    path('program_participations/<int:pk>/', login_required(ProgramParticipationDetailView.as_view()), name='program_participation_detail'),
+
 ]
