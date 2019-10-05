@@ -10,24 +10,24 @@
     <tbody>
       <tr>
         <th scope="row">id</th>
-        <td> {{ event.id }} </td>
+        <td> {{ object.id }} </td>
       </tr>
       <tr>
         <th scope="row">type</th>
-        <td> {{ event.name }} </td>
+        <td> {{ object.name }} </td>
       </tr>
       <tr>
         <th scope="row">updated_at</th>
         <td>
-            {{ event.updated_at }} {{timezone_name}}
+            {{ object.updated_at }} {{timezone_name}}
         </td>
       </tr>
       <tr>
         <th scope="row">record status</th>
-        <td> {{ event.status }} </td>
+        <td> {{ object.status }} </td>
       </tr>
     <caption>
-      {{ event.notes|length }} note{{ event.notes.count|pluralize }} attached.
+      {{ object.notes|length }} note{{ object.notes.count|pluralize }} attached.
     </caption>
   </table>
 </div>

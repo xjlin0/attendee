@@ -1,4 +1,4 @@
-<h3>Attending detail</h3>
+<h3>address detail</h3>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped">
     <thead>
@@ -10,48 +10,48 @@
     <tbody>
       <tr>
         <th scope="row">id</th>
-        <td> {{ address.id }} </td>
+        <td> {{ object.id }} </td>
       </tr>
       <tr>
         <th scope="row">type</th>
-        <td> {{ address.address_type }} </td>
+        <td> {{ object.address_type }} </td>
       </tr>
       <tr>
         <th scope="row">phone1</th>
-        <td> {{ address.phone1 }} </td>
+        <td> {{ object.phone1 }} </td>
       </tr>
       <tr>
         <th scope="row">street1</th>
-        <td> {{ address.street1 }} </td>
+        <td> {{ object.street1 }} </td>
       </tr>
       <tr>
         <th scope="row">street2</th>
-        <td> {{ address.street2 }} </td>
+        <td> {{ object.street2 }} </td>
       </tr>
       <tr>
         <th scope="row">city</th>
-        <td> {{ address.city }} </td>
+        <td> {{ object.city }} </td>
       </tr>
       <tr>
         <th scope="row">state</th>
-        <td> {{ address.state }} </td>
+        <td> {{ object.state }} </td>
       </tr>
       <tr>
         <th scope="row">zip</th>
-        <td> {{ address.zip_code }} </td>
+        <td> {{ object.zip_code }} </td>
       </tr>
       <tr>
         <th scope="row">updated_at</th>
         <td>
-            {{ address.updated_at }} {{timezone_name}}
+            {{ object.updated_at }} {{timezone_name}}
         </td>
       </tr>
       <tr>
         <th scope="row">record status</th>
-        <td> {{ attending.status }} </td>
+        <td> {{ object.status }} </td>
       </tr>
     <caption>
-      {{ address.notes|length }} note{{ address.notes.count|pluralize }} attached.
+      {{ object.notes|length }} note{{ object.notes.count|pluralize }} attached.
     </caption>
   </table>
 </div>

@@ -1,4 +1,4 @@
-<h3>program_participations detail</h3>
+<h3>program_participation detail</h3>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped">
     <thead>
@@ -10,44 +10,44 @@
     <tbody>
       <tr>
         <th scope="row">id</th>
-        <td> {{ program_participation.id }} </td>
+        <td> {{ object.id }} </td>
       </tr>
       <tr>
         <th scope="row">attending</th>
-        <td> {{ program_participation.attending }} </td>
+        <td> {{ object.attending }} </td>
       </tr>
       <tr>
         <th scope="row">character</th>
-        <td> {{ program_participation.character }} </td>
+        <td> {{ object.character }} </td>
       </tr>
       <tr>
         <th scope="row">program_session</th>
-        <td> {{ program_participation.program_session }} </td>
+        <td> {{ object.program_session }} </td>
       </tr>
       <tr>
         <th scope="row">program_team</th>
-        <td> {{ program_participation.program_team }} </td>
+        <td> {{ object.program_team }} </td>
       </tr>
       <tr>
         <th scope="row">free</th>
-        <td> {{ program_participation.free }} </td>
+        <td> {{ object.free }} </td>
       </tr>
       <tr>
         <th scope="row">attend_at</th>
-        <td> {{ program_participation.attend_at }} </td>
+        <td> {{ object.attend_at }} </td>
       </tr>
       <tr>
         <th scope="row">updated_at</th>
         <td>
-            {{ program_participation.updated_at }} {{timezone_name}}
+            {{ object.updated_at }} {{timezone_name}}
         </td>
       </tr>
       <tr>
         <th scope="row">record status</th>
-        <td> {{ program_participation.status }} </td>
+        <td> {{ object.status }} </td>
       </tr>
     <caption>
-      {{ program_participation.notes|length }} note{{ program_participation.notes.count|pluralize }} attached.
+      {{ object.notes|length }} note{{ object.notes.count|pluralize }} attached.
     </caption>
   </table>
 </div>
