@@ -17,6 +17,10 @@
         <td> {{ object.name }} </td>
       </tr>
       <tr>
+        <th scope="row">addresses</th>
+        <td> {{ object.get_addresses }} </td>
+      </tr>
+      <tr>
         <th scope="row">updated_at</th>
         <td>
             {{ object.updated_at }} {{timezone_name}}
