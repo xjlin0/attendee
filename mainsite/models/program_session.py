@@ -21,19 +21,17 @@ class ProgramSession(models.Model, Utility):
     updated_at = models.DateTimeField(auto_now=True, blank=False)
     status = models.CharField(max_length=10, db_index=True, default=RecordStatusEnum.ACTIVE, null=False, choices=RecordStatusEnum.choices())
 
-    # TABLE_NAME_TO_CLASS = {
-    #     Campus._meta.db_table: Campus,
-    #     Property._meta.db_table: Property,
-    #     Suite._meta.db_table: Suite,
-    #     Room._meta.db_table: Room,
-    # }
+    # from itertools import groupby
+    # from operator import attrgetter
+    #
+    # ordered_program_sessions = ProgramSession.objects.order_by('program_group', 'start_at')
+    # program_sessions_grouped_by_program_groups = {
+    #     k: list(v)
+    #     for k, v in groupby(ordered_program_sessions, attrgetter('program_group'))
+    # } #=> {<ProgramGroup: The Rock  >: [<ProgramSession: The Rock #1...>, <ProgramSession: The Rock #2...>]}
 
     def get_absolute_url(self):
         return reverse('program_session_detail', args=[str(self.id)])
-
-    # @property
-    # def location(self):
-    #     return self.TABLE_NAME_TO_CLASS[self.location_type].objects.get(pk=self.location_id)
 
     class Meta:
         db_table = 'mainsite_program_sessions'
