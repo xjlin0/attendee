@@ -12,6 +12,7 @@ class ProgramSession(models.Model, Utility):
     program_group = models.ForeignKey(ProgramGroup, null=True, on_delete=models.SET_NULL)
     attendings = models.ManyToManyField('Attending', through='ProgramParticipation')
     name = models.CharField(max_length=50, blank=True)
+    # link = models.CharField(max_length=254, blank=True)
     start_at = models.DateTimeField(blank=False, null=False)
     end_at = models.DateTimeField(blank=True, null=True)
     site_type = models.ForeignKey(ContentType, on_delete=models.SET(0), help_text='location: django_content_type id for table name')
